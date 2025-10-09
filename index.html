@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【20代特化】キャリアコーチング×転職エージェント | 転職をゴールにしない本質支援</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Interフォントと背景色の設定 */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* bg-slate-500 */
+            /* 固定ナビゲーションバーの高さを確保 */
+            padding-top: 80px; 
+            padding-bottom: 0;
+        }
+
+        /* FVの背景スタイル - 【新しい画像URLに更新】 */
+        .fv-background {
+            /* ユーザーから提供された圧縮画像URLに更新 */
+            background-image: url('https://i.ibb.co/kVbFdzt9/Image-5-1.jpg'); 
+            background-color: #f8fafc; 
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        /* FVのオーバーレイ（背景画像が見えるように調整） */
+        .fv-background::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* 背景画像が見えるよう透明度を調整 (0.40 ~ 0.70) */
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.40), rgba(255, 255, 255, 0.70));
+            z-index: 0;
+        }
+
+        /* カスタムな目立つ影 */
+        .cta-shadow {
+            box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.3), 0 4px 6px -2px rgba(6, 182, 212, 0.1);
+        }
+        /* CTAボタンのアニメーション */
+        @keyframes pulse-cta {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        .animate-cta {
+            animation: pulse-cta 1.5s infinite;
+        }
+        
+        /* FVタイトルアニメーションは削除済み */
+        .animate-fv-title {
+            animation: none;
+            opacity: 1 !important;
+        }
+
+        /* 担当者写真のスタイル (追加) */
+        .consultant-photo {
+            width: 120px; /* 画像の幅を固定 */
+            height: 120px; /* 画像の高さを固定 */
+            object-fit: cover; /* 画像が欠けないように調整し、顔を中央に配置 */
+            border-radius: 50%; /* 画像を丸くする */
+            border: 4px solid #0d9488; /* アクセントカラーの縁取り */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        /* 担当者紹介セクションのレスポンシブ調整 */
+        .consultant-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .consultant-container {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+        }
+
+        /* --- New: スクロールアニメーションの定義 --- */
+        @keyframes fade-in-up {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* --- End New --- */
+
+        /* 5つの専門領域カードのレスポンシブ幅調整 */
+        .sm-w-calc-50-percent {
+            width: 100%;
+        }
+        .lg-w-30-percent {
+            width: 100%;
+        }
+        
+        @media (min-width: 640px) {
+            .sm-w-calc-50-percent {
+                /* 2つのカードを並べるためにgapを考慮した幅 */
+                width: calc(50% - 1rem);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg-w-30-percent {
+                /* 3つのカードを並べるためにgapを考慮した幅 */
+                width: calc(33.333% - 1.333rem);
+            }
+        }
+
+        /* プラン選択のカード高さ統一 */
+        .plan-card-height {
+            min-height: 500px;
+        }
+        
+        /* 固定ナビゲーションバーのスタイル */
+        #global-nav {
+            position: fixed;
+            top: 60px; /* ヘッダーの高さ(約60px)のすぐ下に配置 */
+            width: 100%;
+            z-index: 999;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            background-color: #ffffff; /* bg-white */
+            overflow-x: auto; /* モバイルで横スクロール可能に */
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch; /* iOSでのスムーズスクロール */
+        }
+        /* スムーズスクロール調整 (ナビゲーションバーの高さ分オフセット) */
+        .scroll-offset::before {
+            content: "";
+            display: block;
+            height: 100px; /* Header + Nav の高さに合わせて調整 */
+            margin: -100px 0 0;
+        }
+        
+        /* FVタイトルフォントサイズを以前の調整済みの値に戻す */
+        .fv-title-adjusted {
+            font-size: 1.4rem; /* 22.4px - モバイル2行固定用 */
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header (Navigation) - Fixed at the very top -->
+    <header class="fixed top-0 left-0 w-full z-[1000] bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-teal-600">
+                <span class="text-2xl font-extrabold tracking-tight">CAREER</span> Re:Design
+            </h1>
+            <a href="#sec-cta" class="bg-orange-500 text-white font-bold py-2 px-5 rounded-lg hover:bg-orange-600 transition duration-300 transform hover:scale-105 hidden sm:block">
+                今すぐ相談する
+            </a>
+        </div>
+    </header>
+    
+    <!-- Global Navigation (目次) - Fixed right below the header -->
+    <nav id="global-nav" class="border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6 py-2">
+            <a href="#sec-pain" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">当サポートを受ける方の特徴</a>
+            <a href="#sec-compare" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">他社との違い</a>
+            <a href="#sec-proof" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">担当者紹介</a>
+            <a href="#sec-specialty" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">専門領域</a>
+            <a href="#sec-jobs" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">求人の特徴</a>
+            <a href="#sec-plan" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">2つのプラン</a>
+            <a href="#sec-metrics" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">信頼の数字</a>
+            <a href="#sec-cta" class="text-sm font-semibold text-red-500 hover:text-red-600 transition duration-150">無料相談へ</a>
+        </div>
+    </nav>
+    
+    <!-- ======================= Content Starts Here ======================= -->
+
+    <!-- Block 1: First View (FV) -->
+    <section id="sec-fv" class="fv-background py-12 md:py-24">
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-block bg-white/90 text-teal-700 font-extrabold px-4 py-2 rounded-full text-lg sm:text-xl mb-4 border border-teal-300">
+                20代・社会人5年未満の方へ
+            </div>
+            
+            <!-- アニメーションを削除し、モバイルで強制改行を削除しました -->
+            <h2 class="text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6 animate-fv-title opacity-100">
+                「転職」をゴールにしない、
+                <span class="text-teal-700 block sm:inline-block">すべての人に夢中になれるキャリアを</span>
+            </h2>
+            <p class="mt-4 text-lg sm:text-2xl text-gray-700 max-w-3xl mx-auto font-medium">
+                「自分の市場価値がわからない」「本当にやりたいこと」を、<br>
+                20代でキャリアを駆け抜けるプロと一緒に明確化し、<br>
+                キャリアのゴールから逆算した、最適な選択を選びませんか？
+            </p>
+
+            <!-- Main CTA Button -->
+            <div class="mt-10">
+                <a href="#sec-cta" class="inline-block bg-teal-600 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
+                    【完全無料】キャリア相談を予約する
+                </a>
+            </div>
+            
+            <!-- CTAボタンの下にある小さめの LINE QRコード -->
+            <div class="mt-4 inline-flex flex-col items-center p-3 bg-white/80 rounded-lg shadow-md border border-teal-200">
+                <p class="text-sm font-bold text-teal-700 mb-2">LINEで相談も可能です</p>
+                <a href="https://lin.ee/LCVmpf6" target="_blank" rel="noopener noreferrer">
+                    <img src="https://qr-official.line.me/gs/M_697fjulu_GW.png?oat_content=qr" alt="公式LINE QRコード" class="w-[60px] h-[60px] rounded-md border-2 border-teal-300">
+                </a>
+            </div>
+            <!-- 元の説明文 -->
+            <p class="mt-4 text-sm text-gray-700">
+                あなたの希望に合わせて2つのプランから最適な支援を選べます。
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Block 2: Pain Points (共感) -->
+    <section id="sec-pain" class="scroll-offset py-16 md:py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900">
+                こんな漠然とした不安を抱えていませんか？
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pain Point 1 -->
+                <div class="bg-teal-50 p-6 rounded-2xl shadow-lg border-t-4 border-teal-500">
+                    <p class="text-lg font-semibold text-teal-800 mb-2">市場価値への不安</p>
+                    <p class="text-gray-700">「今のスキルが外で通用するのか？」「このタイミングで転職して、自分の市場価値は上がるのか？」</p>
+                </div>
+                <!-- Pain Point 2 -->
+                <div class="bg-teal-50 p-6 rounded-2xl shadow-lg border-t-4 border-teal-500">
+                    <p class="text-lg font-semibold text-teal-800 mb-2">ゴールの不明確さ</p>
+                    <p class="text-gray-700">「転職したいけど、本当にやりたいことがわからない」「自分を理解できていないので、転職の「軸」が定まらない」</p>
+                </div>
+                <!-- Pain Point 3 -->
+                <div class="bg-teal-50 p-6 rounded-2xl shadow-lg border-t-4 border-teal-500">
+                    <p class="text-lg font-semibold text-teal-800 mb-2">未来への不安</p>
+                    <p class="text-gray-700">「今は不満はないけど、ずっとこのままは不安...」「未来のためにスキルアップしたいけど、何から始めれば？」</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Block 3: Unique Value (本質支援とは) - 比較表に置き換え -->
+    <section id="sec-compare" class="scroll-offset py-16 md:py-24 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-2xl sm:text-3xl lg:text-3xl font-bold text-center mb-16 text-gray-900">
+                私たちは、一般的な転職相談支援とどう違うのか？
+            </h3>
+            
+            <!-- 比較表 (Table) -->
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-4 border-teal-600">
+                <!-- Table Header -->
+                <div class="grid grid-cols-2 lg:grid-cols-3 bg-teal-600 text-white font-extrabold text-lg sm:text-xl py-4 px-4 text-center">
+                    <div class="hidden lg:block text-left">比較項目</div>
+                    <div>CAREER Re:Design</div>
+                    <div>一般的な転職エージェント</div>
+                </div>
+                
+                <!-- Table Row 1: 面談回数・期間 -->
+                <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
+                    <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">面談回数・期間</div>
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">最低8回以上をコミット</div>
+                    <div class="text-gray-700 text-sm lg:text-base text-center">1〜3回程度（求人紹介がメイン）</div>
+                </div>
+
+                <!-- Table Row 2: ゴール設定 -->
+                <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
+                    <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">ゴール設定</div>
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">本質的なキャリアゴールの言語化</div>
+                    <div class="text-gray-700 text-sm lg:text-base text-center">転職先決定、内定獲得</div>
+                </div>
+
+                <!-- Table Row 3: 求人提案の軸 -->
+                <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
+                    <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">求人提案の軸</div>
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">求職者（あなた）の理想から逆算</div>
+                    <div class="text-gray-700 text-sm lg:text-base text-center">企業側の採用ニーズや報酬</div>
+                </div>
+
+                <!-- Table Row 4: 独自の強み（コーチング） -->
+                <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
+                    <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">独自の強み</div>
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">認知科学コーチングによる本質理解</div>
+                    <div class="text-gray-700 text-sm lg:text-base text-center">多数の求人情報、業界知識</div>
+                </div>
+                
+                <!-- Table Row 5: 入社後の支援 -->
+                <div class="grid grid-cols-2 lg:grid-cols-3 items-center py-4 px-4 gap-y-2">
+                    <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">入社後の支援</div>
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">継続的な伴走支援あり</div>
+                    <div class="text-gray-700 text-sm lg:text-base text-center">基本的には内定・入社まで</div>
+                </div>
+            </div>
+
+            <p class="mt-8 text-center text-xl text-teal-700 font-semibold">
+                当サービスは、「転職」をゴールとせず、長期的なキャリアのゴールを実現するために、入社後活躍できることを見据えた支援を軸にサポートします。
+            </p>
+        </div>
+    </section>
+
+    <!-- Block 4: Proof (実績) - 画像を挿入しました -->
+    <section id="sec-proof" class="scroll-offset py-16 md:py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="title-responsive font-bold text-center mb-12 text-gray-900">
+                担当者紹介：成功へと導くメソッドを確立したキャリアプロ
+            </h3>
+
+            <div class="space-y-12">
+                <!-- Consultant 1 (最速内定獲得 & キャリア再生のプロ) -->
+                <!-- クラス: scroll-animate を追加 -->
+                <div class="bg-teal-50 p-6 rounded-2xl shadow-lg consultant-container scroll-animate" data-delay="0">
+                    
+                    <!-- 担当者Aの画像コンテナ -->
+                    <div class="flex-shrink-0">
+                        <img src="https://i.ibb.co/v404vZ21/Image-4.jpg" alt="キャリアアドバイザーAの顔写真" class="consultant-photo" width="120" height="120" loading="lazy">
+                    </div>
+
+                    <div class="consultant-info">
+                        <div class="text-center md:text-left mb-4 md:mb-2">
+                            <p class="text-2xl font-extrabold text-teal-700">最速内定獲得 &<br class="md:hidden"> キャリア再生のプロ</p>
+                            <!-- 削除対象: <p class="text-sm text-gray-500">（キャリアアドバイザーA）</p> -->
+                        </div>
+                        
+                        <!-- 追記: 求職者向けのメッセージ -->
+                        <div class="bg-white p-4 rounded-xl shadow-inner mb-4 border border-teal-300">
+                            <p class="text-sm font-medium text-gray-800">
+                                <span class="font-bold text-teal-700">すべての人に可能性がある</span>というのが、私自身の考えです。
+                                新卒入社後、早期離職を経験しながらもキャリアを加速させた経験を持つからこそ、20代が抱える不安と可能性を理解しています。
+                                自身のメソッドと経験を活かし、皆様のキャリアに変革を起こします！
+                            </p>
+                            <!-- 追記: 好きなこと -->
+                            <p class="text-xs font-semibold text-gray-500 mt-2">
+                                好きなこと：韓国のアイドル、旅行、神社参拝
+                            </p>
+                        </div>
+
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>新卒入社8ヶ月で退職後、翌1ヶ月間で内定6社を獲得した最速実績。</li>
+                            <li>マネジメントした新人が半年で売上0円から翌半年で1500万に急成長させた育成実績あり。</li>
+                            <li>年間リーダーMVP受賞。（再現性のある営業メソッドの体現）</li>
+                            <li>入社半年で20件成約し、社内最速ギネス記録を樹立。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Consultant 2 (メソッド構築 & 累計40名育成のプロ) -->
+                <!-- クラス: scroll-animate と data-delay を追加 -->
+                <div class="bg-teal-50 p-6 rounded-2xl shadow-lg consultant-container scroll-animate" data-delay="200">
+                    
+                    <!-- 担当者Bの画像コンテナ -->
+                    <div class="flex-shrink-0">
+                        <img src="https://i.ibb.co/Fk7FjR9f/1.png" alt="キャリアアドバイザーBの顔写真" class="consultant-photo" width="120" height="120" loading="lazy">
+                    </div>
+
+                    <div class="consultant-info">
+                        <div class="text-center md:text-left mb-4 md:mb-2">
+                            <p class="text-2xl font-extrabold text-teal-700">メソッド構築 &<br class="md:hidden"> 累計40名育成のプロ</p>
+                            <!-- 削除対象: <p class="text-sm text-gray-500">（キャリアアドバイザーB）</p> -->
+                        </div>
+
+                        <!-- 追記: 求職者向けのメッセージ -->
+                        <div class="bg-white p-4 rounded-xl shadow-inner mb-4 border border-teal-300">
+                            <p class="text-sm font-medium text-gray-800">
+                                入社当初は何者でもない私でしたが、多くの部下や後輩を抱える経験を経てきました。
+                                自身の成果には自信がありますが、それ以上に自分以外の人を成長させ、笑顔にすることが何よりも幸福です。
+                                また、筋トレが大好きで、目標達成へのコミットメント力は誰にも負けません。目標達成に必要なマインドセットと再現性をお伝えします！
+                            </p>
+                            <!-- 追記: 好きなこと -->
+                            <p class="text-xs font-semibold text-gray-500 mt-2">
+                                好きなこと：筋トレ・健康、旅行
+                            </p>
+                        </div>
+                        
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>入社以来、社内成約件数トップを維持し、全社MVPを3回受賞。（成果の再現性を担保）</li>
+                            <li>累計40名のマネジメント実績を持つ、個人の強みを引き出す育成の専門家。</li>
+                            <li>本業外でプロ選手輩出実績のあるスポーツチーム指導者を兼任。</li>
+                            <li>営業スペシャリストとして社内最大手企業開拓を担当。</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Sales Method Feature (修正箇所) -->
+                <!-- クラス: scroll-animate と data-delay を追加 -->
+                <div class="text-center bg-teal-100 p-6 rounded-2xl shadow-lg border-t-4 border-teal-600 scroll-animate" data-delay="400">
+                    <h4 class="text-2xl font-extrabold text-teal-800 mb-2">
+                        💡 入社後も通用する「成果を出す再現メソッド」を伝授
+                    </h4>
+                    <p class="text-xl text-gray-700 mt-4">
+                        この「感覚論ではない、本質的なビジネススキル」は、日々の仕事だけでなく、<br>
+                        面接であなた自身を市場価値の高い人材として売り込むための最強の武器になります。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Block 5: 5 Specialized Areas (専門性) -->
+    <section id="sec-specialty" class="scroll-offset py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-16 text-gray-900">
+                「軸がない」を「確信」に変える、あなたのための5つの専門領域
+            </h3>
+            
+            <!-- 5つの要素を中央揃えにするためのFlexboxに変更 -->
+            <div class="flex flex-wrap justify-center gap-8">
+                <!-- IT -->
+                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-blue-500 w-full sm-w-calc-50-percent lg-w-30-percent">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl font-extrabold text-blue-600 mr-2">IT業界</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/><path d="M12 15L6 9h12z"/></svg>
+                    </div>
+                    <p class="text-lg font-semibold text-gray-800 mb-2">未経験からのエンジニア採用に特化</p>
+                    <p class="text-sm text-gray-600">
+                        年間140名のエンジニア採用実績からノウハウを共有。未経験から本質的なスキルが身につく優良な開発・インフラ企業を紹介。
+                    </p>
+                </div>
+
+                <!-- 営業職 -->
+                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-red-500 w-full sm-w-calc-50-percent lg-w-30-percent">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl font-extrabold text-red-600 mr-2">営業職</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 12h.01"/><path d="M12 16h.01"/><path d="M12 20h.01"/></svg>
+                    </div>
+                    <p class="text-lg font-semibold text-gray-800 mb-2">売れる営業の無形商材ノウハウ</p>
+                    <p class="text-sm text-gray-600">
+                        難易度の高い無形商材営業のキャリア形成に強み。トップ経験を活かした面接対策で、あなたのポテンシャルを最大限に引き出します。
+                    </p>
+                </div>
+
+                <!-- バックオフィス -->
+                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-green-500 w-full sm-w-calc-50-percent lg-w-30-percent">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl font-extrabold text-green-600 mr-2">バックオフィス</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 10s-2.2 2-2 5-3 2-3 2H5s-3 0-3-2c0-3 .2-5 2-5h5"/><path d="M19 19V7l-7 3 7 3"/></svg>
+                    </div>
+                    <p class="text-lg font-semibold text-gray-800 mb-2">長年の提携実績による確かなパイプ</p>
+                    <p class="text-sm text-gray-600">
+                        提携する大手人材会社のノウハウに基づき、企業が求める正確なスキルを把握。事務全般、営業アシスタント、経理、総務など、未経験から安定した専門スキルを身につけられる求人を紹介します。
+                    </p>
+                </div>
+
+                <!-- 福祉・医療 -->
+                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-purple-500 w-full sm-w-calc-50-percent lg-w-30-percent">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl font-extrabold text-purple-600 mr-2">福祉・医療</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M12 2a4 4 0 0 1 4 4v14H8V6a4 4 0 0 1 4-4z"/><path d="M12 18v-4"/><path d="M10 16h4"/></svg>
+                    </div>
+                    <p class="text-lg font-semibold text-gray-800 mb-2">安心して働ける職場の見極め方</p>
+                    <p class="text-sm text-gray-600">
+                        介護施設や病院（特養、老健など）の採用コンサル経験に基づき、離職率の低い法人、安定した福利厚生、良好な職場の雰囲気など、20代が長く活躍できる求人を見極めてご紹介します。
+                    </p>
+                </div>
+
+                <!-- グローバル人材 (以前の外国人材) -->
+                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-yellow-600 w-full sm-w-calc-50-percent lg-w-30-percent">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl font-extrabold text-yellow-700 mr-2">グローバル人材</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <p class="text-lg font-semibold text-gray-800 mb-2">日本人と対等に評価される転職</p>
+                    <p class="text-sm text-gray-600">
+                        単なる「外国人OK求人」ではなく、本質的なキャリアアップに繋がる企業を厳選。日本のビジネス文化に特化したコーチングで、入社後の活躍を見据えて支援。ビザ手続きサポートなどは別途費用で対応可能です。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Block 5.5: Jobs Feature (求人の特徴を強調) -->
+    <section id="sec-jobs" class="scroll-offset py-16 md:py-24 bg-teal-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900">
+                ご紹介求人の特徴
+            </h3>
+            
+            <div class="space-y-12">
+                <!-- Point 1: 未経験から挑戦できる求人が多数 -->
+                <div class="flex flex-col lg:flex-row items-center lg:items-start bg-white p-8 rounded-2xl shadow-2xl border-l-8 border-orange-500">
+                    <div class="w-full lg:w-3/5 lg:pr-8 mb-6 lg:mb-0">
+                        <p class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                            未経験から<br class="lg:inline">挑戦できる求人が多数
+                        </p>
+                        <p class="text-lg text-gray-700 mb-4">
+                            幅広く業界・職種の求人をご用意しています。その中から、キャリアゴールに合わせた未経験OKの求人を厳選してご紹介します。
+                        </p>
+                        <p class="text-lg text-gray-700 font-semibold">
+                            これにより、あなたの強みとキャリアゴールに合った求人を幅広くご紹介できます。
+                        </p>
+                    </div>
+                    
+                    <div class="w-full lg:w-2/5 flex justify-center items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500 drop-shadow-xl">
+                            <rect x="2" y="7" width="20" height="15" rx="4" ry="4"></rect>
+                            <path d="M16 2l-4 4-4-4"></path>
+                            <path d="M12 11v4"></path>
+                            <path d="M10 13h4"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Point 2: 20代の育成に力を入れている企業が多い -->
+                <div class="flex flex-col-reverse lg:flex-row items-center lg:items-start bg-white p-8 rounded-2xl shadow-2xl border-r-8 border-teal-500">
+                    <div class="w-full lg:w-2/5 flex justify-center items-center lg:pr-8 mb-6 lg:mb-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-teal-500 drop-shadow-xl">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 17v-2a4 4 0 0 0-4-4H12"/></svg>
+                    </div>
+                    
+                    <div class="w-full lg:w-3/5">
+                        <p class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                            20代の育成に<br>
+                            力を入れている<br>
+                            企業の求人が多い
+                        </p>
+                        <p class="text-lg text-gray-700 mb-4">
+                            20代の育成に力を入れている企業が多く、研修や資格取得支援などが充実していることが特徴です！
+                        </p>
+                        <p class="text-lg text-gray-700 font-semibold">
+                            長期的な成長を見据えた環境で、安心してスキルアップできる企業をご紹介します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- その他の特徴をシンプルにリスト化 -->
+            <div class="mt-12">
+                <h4 class="text-2xl font-bold text-teal-800 mb-6 text-center">その他の求人ラインナップ</h4>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="bg-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 shadow-md">成長ベンチャー企業多数</span>
+                    <span class="bg-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 shadow-md">IT/Web系、営業職、事務職が豊富</span>
+                    <span class="bg-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 shadow-md">福祉職・医療系求人あり</span>
+                    <span class="bg-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 shadow-md">独自の採用基準を持つ優良求人を厳選</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Block 6: How It Works (フロー) - プラン選択式に変更 -->
+    <section id="sec-plan" class="scroll-offset py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl sm:text-4xl lg:text-3xl font-bold text-center mb-16 text-gray-900">
+                あなたの希望に合わせた2つのサポートプラン
+            </h3>
+            
+            <div class="flex flex-col lg:flex-row justify-center items-stretch space-y-8 lg:space-y-0 lg:space-x-12">
+                
+                <!-- Plan 1: キャリア本質追求プラン (おすすめ) -->
+                <div class="relative w-full lg:w-1/2 bg-teal-50 p-8 rounded-xl shadow-2xl border-t-8 border-teal-600 plan-card-height flex flex-col">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white font-extrabold py-1 px-4 rounded-full text-sm shadow-md">
+                        <span class="inline-block animate-pulse mr-1">⭐</span> 一番人気
+                    </div>
+                    
+                    <h4 class="text-3xl font-extrabold text-teal-800 mb-4 text-center mt-4">キャリア本質追求プラン</h4>
+                    <p class="text-gray-600 mb-6 text-center text-sm">【転職の「軸」を見つけ、入社後の活躍まで見据えたい方へ】</p>
+                    
+                    <div class="flex-grow space-y-4">
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 text-teal-600 font-extrabold text-2xl mr-3">1.</span>
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">徹底した自己分析とキャリアプラン設計</p>
+                                <p class="text-sm text-gray-700">認知科学コーチングに基づき、無意識の強みを特定。最低8回以上の面談で、本質的なゴールを可視化します。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 text-teal-600 font-extrabold text-2xl mr-3">2.</span>
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">納得感のある求人紹介</p>
+                                <p class="text-sm text-gray-700">設計したキャリアプランに沿った求人のみを厳選してご紹介します。（2営業日以内）</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 text-teal-600 font-extrabold text-2xl mr-3">3.</span>
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">トップセールス直伝の面接対策</p>
+                                <p class="text-sm text-gray-700">成果を出すメソッドを応用した面接対策で、魅力を最大限に伝えます。（希望により回数無制限）</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 text-teal-600 font-extrabold text-2xl mr-3">4.</span>
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">入社後の継続伴走支援</p>
+                                <p class="text-sm text-gray-700">転職をゴールとせず、入社後の活躍まで見据えたフォローアップを継続します。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Plan 2: 転職集中サポートプラン -->
+                <div class="relative w-full lg:w-1/2 bg-white p-8 rounded-xl shadow-2xl border-t-8 border-gray-400 plan-card-height flex flex-col">
+                    <div class="bg-gray-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-extrabold text-xl absolute -top-5 left-1/2 transform -translate-x-1/2"></div>
+                    
+                    <h4 class="text-3xl font-extrabold text-gray-800 mb-4 text-center mt-4">転職集中サポートプラン</h4>
+                    <p class="text-gray-600 mb-6 text-center text-sm">【すでに転職の軸が明確で、すぐに内定を目指したい方へ】</p>
+                    
+                    <div class="flex-grow space-y-4">
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 text-gray-600 font-extrabold text-2xl mr-3">1.</span>
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">クイックなキャリアの整理</p>
+                                <p class="text-sm text-gray-700">初回面談でキャリアの軸と希望を整理。最短で求人紹介に進みます。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 text-gray-600 font-extrabold text-2xl mr-3">2.</span>
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">徹底的な面接対策の実施</p>
+                                <p class="text-sm text-gray-700">面接対策に比重を置き、内定獲得にコミットします。（回数制限なし）</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 text-gray-600 font-extrabold text-2xl mr-3">3.</span>
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">厳選された求人紹介</p>
+                                <p class="text-sm text-gray-700">あなたの希望に沿った求人を厳選し、2営業日以内にご紹介します。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="flex-shrink-0 text-gray-600 font-extrabold text-2xl mr-3">4.</span>
+                            <div>
+                                <p class="font-bold text-lg text-gray-800">各種書類作成のサポート</p>
+                                <p class="text-sm text-gray-700">応募書類のブラッシュアップを集中して行い、選考通過率を高めます。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-12 text-center text-xl font-bold text-teal-700">
+                ⭐ 迷ったら、まずはキャリア本質追求プランをご検討ください。
+            </p>
+            <!-- 追加した無料のメッセージ -->
+            <p class="mt-4 text-center text-xl font-bold text-teal-700 bg-teal-100 p-3 rounded-lg">
+                ✅ もちろん、全てのプランは完全無料でご利用いただけます。
+            </p>
+            <!-- 面談回数の柔軟性に関する注釈 -->
+            <p class="mt-4 text-center text-sm text-gray-500">
+                ※面談回数（最低8回）は、キャリアの進捗やご希望に応じて柔軟に調整可能です。
+            </p>
+        </div>
+    </section>
+
+    <!-- Block 7: Social Proof/Trust (信頼) -->
+    <section id="sec-metrics" class="scroll-offset metrics-section py-16 md:py-24 bg-teal-600 text-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-3xl sm:text-4xl font-bold mb-12">
+                数字でわかる、あなたのキャリアへの本気度
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                <!-- Metric 1 -->
+                <div class="bg-teal-700 p-6 rounded-2xl shadow-xl">
+                    <p class="text-5xl font-extrabold mb-1" data-target="96" data-unit="%">0<span class="text-3xl">%</span></p>
+                    <p class="text-lg font-semibold border-t border-teal-500 pt-3 mt-3">相談者満足度</p>
+                    <p class="text-sm opacity-75">（当社アンケート結果より）</p>
+                </div>
+                <!-- Metric 2 -->
+                <div class="bg-teal-700 p-6 rounded-2xl shadow-xl">
+                    <p class="text-5xl font-extrabold mb-1" data-target="10" data-unit="名/日">0<span class="text-3xl">名/日</span></p>
+                    <p class="text-lg font-semibold border-t border-teal-500 pt-3 mt-3">平均問い合わせ件数</p>
+                    <p class="text-sm opacity-75">（多くの方が行動を始めています）</p>
+                </div>
+                <!-- Metric 3 -->
+                <div class="bg-teal-700 p-6 rounded-2xl shadow-xl">
+                    <p class="text-5xl font-extrabold mb-1" data-target="8" data-unit="回〜">0<span class="text-3xl">回〜</span></p>
+                    <p class="text-lg font-semibold border-t border-teal-500 pt-3 mt-3">プラン最低面談回数</p>
+                    <p class="text-sm opacity-75">（あなたの納得いくまで徹底的に）</p>
+                </div>
+            </div>
+
+            <p class="mt-12 text-xl font-semibold bg-white text-teal-600 p-4 rounded-lg">
+                ※当サービスにおいて
+                求職者様は一切費用がかかりません。安心してご利用ください。
+            </p>
+        </div>
+    </section>
+
+    <!-- Block 8: Closing/Final CTA -->
+    <section id="sec-cta" class="scroll-offset py-16 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+                「このままでいいのか」という不安を、<br>
+                理想のキャリア設計への第一歩に
+            </h3>
+            <p class="text-xl text-gray-600 mb-10">
+                理想のキャリア・ゴールを実現するための、<br>
+                目の前の選択を最高の未来にしませんか？
+            </p>
+            
+            <!-- 追加された身体サポートの付加価値ブロック -->
+            <div class="bg-teal-50 p-6 rounded-xl shadow-inner mb-10 border border-teal-200">
+                <h4 class="text-xl font-bold text-teal-800 mb-3">
+                    心身の土台作りもサポート（オプション）
+                </h4>
+                <p class="text-md text-gray-700 mb-4">
+                    キャリアを成功させるには、活力のある「健康な身体」が不可欠です。本質的なキャリア支援に加え、日常を前向きに送るための栄養・運動・睡眠のノウハウ提供や、ドーパミン中毒を抜け出すためのルーティン構築サポートなども提供可能です。
+                </p>
+                <p class="text-sm font-semibold text-teal-600">
+                    *詳しいサポート内容にご興味がある方は、初回面談の際にご相談ください。
+                </p>
+            </div>
+
+            <!-- LINE QRコードとリンクの追加 -->
+            <div class="mb-10 p-6 bg-white rounded-xl shadow-lg border border-teal-300">
+                <p class="text-xl font-bold text-teal-700 mb-4">
+                    または <span class="text-green-500">LINE</span> でお気軽にご相談ください
+                </p>
+                <!-- QRコード画像を新しいURLに置き換え -->
+                <img src="https://qr-official.line.me/gs/M_697fjulu_GW.png?oat_content=qr" alt="公式LINE QRコード" class="mx-auto rounded-lg mb-4 shadow-md border-4 border-teal-100 w-[180px] h-[180px]">
+                <!-- LINEリンク -->
+                <a href="https://lin.ee/LCVmpf6" target="_blank" rel="noopener noreferrer" class="inline-block text-lg font-bold text-white bg-green-500 hover:bg-green-600 py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 cta-shadow">
+                    LINEで無料相談を開始する
+                </a>
+            </div>
+
+            <!-- Final CTA Button (Timerex) -->
+            <!-- リンクをTimerex URLに修正 -->
+            <a href="https://timerex.net/s/daiki.imahara_af3d/99581b91" target="_blank" rel="noopener noreferrer" class="inline-block bg-teal-600 text-white font-extrabold py-5 px-12 rounded-xl text-2xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
+                【完全無料】面談予約に進む（Timerex）
+            </a>
+            <p class="mt-4 text-lg text-gray-500">
+                オンラインで15〜20分のお悩み整理からスタートできます。
+            </p>
+        </div>
+    </section>
+    
+    <!-- Block 9: Company Info (運営元情報) - 修正: 黒背景、文字白、コンパクトに -->
+    <section class="py-6 bg-gray-800 text-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-xs opacity-75">
+            
+            <p class="text-sm font-bold text-teal-400 mb-2">運営会社：株式会社GOOYA</p>
+
+            <div class="space-y-1">
+                <!-- 住所1 -->
+                <div class="flex items-start">
+                    <span class="flex-shrink-0 w-12 font-bold">TOKYO:</span>
+                    <span class="flex-grow ml-2">東京都渋谷区渋谷1-17-4 PMO渋谷 10F</span>
+                </div>
+                <!-- 住所2 -->
+                <div class="flex items-start">
+                    <span class="flex-shrink-0 w-12 font-bold">TOKYO:</span>
+                    <span class="ml-2 flex-grow">東京都台東区台東1-3-5 反町商事ビルディング3F</span>
+                </div>
+                <!-- 住所3 -->
+                <div class="flex items-start">
+                    <span class="flex-shrink-0 w-12 font-bold">OSAKA:</span>
+                    <span class="ml-2 flex-grow">大阪府大阪市北区梅田1-1-3 大阪駅前第3ビル25F</span>
+                </div>
+            </div>
+            
+            <!-- 事業許可番号リスト -->
+            <div class="mt-4 text-xs space-y-1">
+                <p>事業者番号 プライバシーマーク認定 ：10822998</p>
+                <p>派遣事業許可番号 ：派 13-311580</p>
+                <p>有料職業紹介事業許可番号 ：13-ユ-309877</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm opacity-75">© 2025 CAREER Re:Design All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript for Count Up Animation and Fixed Navigation and Scroll Animations -->
+    <script>
+        // スムーズスクロール機能
+        document.querySelectorAll('#global-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // スクロール先の要素のY座標を計算し、ヘッダーとナビゲーションの高さ分オフセットを適用
+                    const headerHeight = 60; // ヘッダーの固定高さ
+                    const navHeight = 40; // ナビゲーションの固定高さ (py-2 * 2 + font-size くらいを概算)
+                    const offset = headerHeight + navHeight + 10; // 少し余裕を持たせる
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Count Up Animation Logic (Intersection Observer)
+        function animateValue(obj, start, end, duration, unit) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = Math.floor(progress * (end - start) + start);
+                
+                obj.innerHTML = currentValue + `<span class="text-3xl">${unit}</span>`;
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    obj.innerHTML = end + `<span class="text-3xl">${unit}</span>`;
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const metricsSection = document.querySelector('.metrics-section');
+        if (metricsSection) {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animation runs every time the section enters the viewport
+                        const elements = entry.target.querySelectorAll('p[data-target]');
+                        elements.forEach(el => {
+                            const target = parseInt(el.getAttribute('data-target'));
+                            const unit = el.getAttribute('data-unit');
+                            // Reset to 0 before starting the count up animation
+                            el.innerHTML = '0' + `<span class="text-3xl">${unit}</span>`; 
+                            animateValue(el, 0, target, 2000, unit); // 2000ms = 2 seconds
+                        });
+                        // Do NOT unobserve, allowing the animation to run again on re-entry.
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+            observer.observe(metricsSection);
+        }
+
+        // --- New: スクロールで要素を表示するアニメーション ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null, // ビューポートをルートとして使用
+                rootMargin: '0px',
+                threshold: 0.1 // 要素が10%見えたらトリガー
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const delay = parseInt(target.getAttribute('data-delay') || 0);
+
+                        setTimeout(() => {
+                            target.classList.add('is-visible');
+                            observer.unobserve(target); // 一度実行したら監視を停止
+                        }, delay);
+                    }
+                });
+            }, observerOptions);
+
+            // 担当者紹介セクション内の全てのアニメーション対象要素を監視
+            document.querySelectorAll('#sec-proof .scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+        });
+        // --- End New ---
+    </script>
+</body>
+</html>
