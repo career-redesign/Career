@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FV画像にrel="preload"を追加し、最優先で読み込みを指示 -->
+    <link rel="preload" as="image" href="https://i.ibb.co/chJpNdW6/20-1-1-1-1-1-1.jpg">
+    <!-- タイトルは元のままを維持 -->
     <title>【20代特化】キャリアコーチング×転職エージェント | 転職をゴールにしない本質支援</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -12,20 +15,22 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* bg-slate-500 */
             /* 固定ナビゲーションバーの高さを確保 */
-            padding-top: 80px; 
+            padding-top: 80px;
             padding-bottom: 0;
         }
 
-        /* FVの背景スタイル - 【新しい画像URLに更新】 */
+        /* FVの背景スタイル */
         .fv-background {
-            /* ユーザーから提供された圧縮画像URLに更新 */
-            background-image: url('https://i.ibb.co/kVbFdzt9/Image-5-1.jpg'); 
-            background-color: #f8fafc; 
+            /* 修正済み: 新しい圧縮画像を適用 */
+            background-image: url('https://i.ibb.co/chJpNdW6/20-1-1-1-1-1-1.jpg');
+            background-color: #f8fafc;
             background-size: cover;
             background-position: center;
             position: relative;
+            transform: translateZ(0); /* GPUアクセラレーションのヒント */
+            will-change: transform, background-image; /* 高速化のヒント */
         }
-        
+
         /* FVのオーバーレイ（背景画像が見えるように調整） */
         .fv-background::before {
             content: "";
@@ -34,7 +39,6 @@
             left: 0;
             right: 0;
             bottom: 0;
-            /* 背景画像が見えるよう透明度を調整 (0.40 ~ 0.70) */
             background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.40), rgba(255, 255, 255, 0.70));
             z-index: 0;
         }
@@ -52,7 +56,7 @@
         .animate-cta {
             animation: pulse-cta 1.5s infinite;
         }
-        
+
         /* FVタイトルアニメーションは削除済み */
         .animate-fv-title {
             animation: none;
@@ -84,11 +88,6 @@
         }
 
         /* --- New: スクロールアニメーションの定義 --- */
-        @keyframes fade-in-up {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
         .scroll-animate {
             opacity: 0;
             transform: translateY(20px);
@@ -109,14 +108,14 @@
         .lg-w-30-percent {
             width: 100%;
         }
-        
+
         @media (min-width: 640px) {
             .sm-w-calc-50-percent {
                 /* 2つのカードを並べるためにgapを考慮した幅 */
                 width: calc(50% - 1rem);
             }
         }
-        
+
         @media (min-width: 1024px) {
             .lg-w-30-percent {
                 /* 3つのカードを並べるためにgapを考慮した幅 */
@@ -128,7 +127,7 @@
         .plan-card-height {
             min-height: 500px;
         }
-        
+
         /* 固定ナビゲーションバーのスタイル */
         #global-nav {
             position: fixed;
@@ -148,10 +147,101 @@
             height: 100px; /* Header + Nav の高さに合わせて調整 */
             margin: -100px 0 0;
         }
-        
+
         /* FVタイトルフォントサイズを以前の調整済みの値に戻す */
         .fv-title-adjusted {
             font-size: 1.4rem; /* 22.4px - モバイル2行固定用 */
+        }
+
+        /* NEW: 右下固定キャンペーンバナーのスタイル */
+        #fixed-campaign-cta {
+            position: fixed;
+            bottom: 1rem; /* 画面下部に配置 */
+            right: 1rem;
+            z-index: 1001; /* 最前面に表示 */
+            width: 150px; /* 幅を固定 */
+            height: 150px; /* 高さを固定 */
+            background: linear-gradient(145deg, #f97316, #ef4444); /* orange-500 to red-600 */
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex; /* Flexboxを適用 */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: pulse-cta 2s infinite; /* アニメーションを適用 */
+        }
+        @media (max-width: 767px) {
+            #fixed-campaign-cta {
+                bottom: 0.5rem; /* モバイルでの配置調整 */
+                right: 0.5rem;
+                width: 110px;
+                height: 110px;
+            }
+        }
+        #fixed-campaign-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* NEW: クイックフォームセクションのスタイル */
+        .quick-form-card {
+            background: #fff8e1; /* 淡い黄色系 */
+            border: 4px solid #f97316; /* オレンジの枠線 */
+            /* 修正点2-1: フォームの最大幅を広げ、モバイルで100%幅に近づける */
+            max-width: 100%; 
+            width: 100%;
+        }
+        @media (min-width: 640px) {
+             .quick-form-card {
+                max-width: 600px; /* PCでは少し広めに */
+            }
+        }
+        
+        /* NEW: ステップインジケーターのスタイル */
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .step-item {
+            width: 25%; /* 4ステップなので25%ずつ */
+            text-align: center;
+            position: relative;
+        }
+        .step-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #f97316; /* Inactive color */
+            color: white;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 0.25rem;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .step-item.active .step-circle {
+            background-color: #ef4444; /* Active color */
+            transform: scale(1.1);
+        }
+        .step-line {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            right: -50%;
+            height: 4px;
+            background-color: #f97316; /* Line color */
+            z-index: -1;
+        }
+        .step-item:last-child .step-line {
+            display: none;
         }
     </style>
 </head>
@@ -163,12 +253,12 @@
             <h1 class="text-xl font-bold text-teal-600">
                 <span class="text-2xl font-extrabold tracking-tight">CAREER</span> Re:Design
             </h1>
-            <a href="#sec-cta" class="bg-orange-500 text-white font-bold py-2 px-5 rounded-lg hover:bg-orange-600 transition duration-300 transform hover:scale-105 hidden sm:block">
+            <a href="#sec-quick-form" class="bg-orange-500 text-white font-bold py-2 px-5 rounded-lg hover:bg-orange-600 transition duration-300 transform hover:scale-105 hidden sm:block">
                 今すぐ相談する
             </a>
         </div>
     </header>
-    
+
     <!-- Global Navigation (目次) - Fixed right below the header -->
     <nav id="global-nav" class="border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6 py-2">
@@ -179,21 +269,20 @@
             <a href="#sec-jobs" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">求人の特徴</a>
             <a href="#sec-plan" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">2つのプラン</a>
             <a href="#sec-metrics" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">信頼の数字</a>
-            <a href="#sec-cta" class="text-sm font-semibold text-red-500 hover:text-red-600 transition duration-150">無料相談へ</a>
+            <a href="#sec-quick-form" class="text-sm font-semibold text-red-500 hover:text-red-600 transition duration-150">無料相談へ</a>
         </div>
     </nav>
-    
+
     <!-- ======================= Content Starts Here ======================= -->
 
     <!-- Block 1: First View (FV) -->
     <section id="sec-fv" class="fv-background py-12 md:py-24">
-        
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <div class="inline-block bg-white/90 text-teal-700 font-extrabold px-4 py-2 rounded-full text-lg sm:text-xl mb-4 border border-teal-300">
                 20代・社会人5年未満の方へ
             </div>
-            
-            <!-- アニメーションを削除し、モバイルで強制改行を削除しました -->
+
             <h2 class="text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6 animate-fv-title opacity-100">
                 「転職」をゴールにしない、
                 <span class="text-teal-700 block sm:inline-block">すべての人に夢中になれるキャリアを</span>
@@ -203,14 +292,14 @@
                 20代でキャリアを駆け抜けるプロと一緒に明確化し、<br>
                 キャリアのゴールから逆算した、最適な選択を選びませんか？
             </p>
-
-            <!-- Main CTA Button -->
+            
+            <!-- Main CTA Button - Quick Formへ誘導 -->
             <div class="mt-10">
-                <a href="#sec-cta" class="inline-block bg-teal-600 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
-                    【完全無料】カジュアル相談を予約する
+                <a href="#sec-quick-form" class="inline-block bg-teal-600 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
+                    【完全無料】キャリア相談を予約する
                 </a>
             </div>
-            
+
             <!-- CTAボタンの下にある小さめの LINE QRコード -->
             <div class="mt-4 inline-flex flex-col items-center p-3 bg-white/80 rounded-lg shadow-md border border-teal-200">
                 <p class="text-sm font-bold text-teal-700 mb-2">LINEで相談も可能です</p>
@@ -258,7 +347,7 @@
             <h3 class="text-2xl sm:text-3xl lg:text-3xl font-bold text-center mb-16 text-gray-900">
                 私たちは、一般的な転職相談支援とどう違うのか？
             </h3>
-            
+
             <!-- 比較表 (Table) -->
             <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-4 border-teal-600">
                 <!-- Table Header -->
@@ -267,7 +356,7 @@
                     <div>CAREER Re:Design</div>
                     <div>一般的な転職エージェント</div>
                 </div>
-                
+
                 <!-- Table Row 1: 面談回数・期間 -->
                 <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
                     <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">面談回数・期間</div>
@@ -295,7 +384,7 @@
                     <div class="text-teal-700 font-bold text-base lg:text-lg text-center">認知科学コーチングによる本質理解</div>
                     <div class="text-gray-700 text-sm lg:text-base text-center">多数の求人情報、業界知識</div>
                 </div>
-                
+
                 <!-- Table Row 5: 入社後の支援 -->
                 <div class="grid grid-cols-2 lg:grid-cols-3 items-center py-4 px-4 gap-y-2">
                     <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">入社後の支援</div>
@@ -318,13 +407,13 @@
             </h3>
 
             <div class="space-y-12">
-                <!-- Consultant 1 (最速内定獲得 & キャリア再生のプロ) -->
-                <!-- クラス: scroll-animate を追加 -->
+                <!-- Consultant 1 (最速内定獲得 & キャリア再生のプロ) - 修正済み: 画像URLをA (スーツ)の軽量版に更新 -->
+                <!-- loading="lazy"を追加 -->
                 <div class="bg-teal-50 p-6 rounded-2xl shadow-lg consultant-container scroll-animate" data-delay="0">
-                    
+
                     <!-- 担当者Aの画像コンテナ -->
                     <div class="flex-shrink-0">
-                        <img src="https://i.ibb.co/v404vZ21/Image-4.jpg" alt="キャリアアドバイザーAの顔写真" class="consultant-photo" width="120" height="120" loading="lazy">
+                        <img src="https://i.ibb.co/qLYS6C9g/Image-4-1.jpg" alt="キャリアアドバイザーAの顔写真" class="consultant-photo" width="120" height="120" loading="lazy">
                     </div>
 
                     <div class="consultant-info">
@@ -332,7 +421,7 @@
                             <p class="text-2xl font-extrabold text-teal-700">最速内定獲得 &<br class="md:hidden"> キャリア再生のプロ</p>
                             <!-- 削除対象: <p class="text-sm text-gray-500">（キャリアアドバイザーA）</p> -->
                         </div>
-                        
+
                         <!-- 追記: 求職者向けのメッセージ -->
                         <div class="bg-white p-4 rounded-xl shadow-inner mb-4 border border-teal-300">
                             <p class="text-sm font-medium text-gray-800">
@@ -355,13 +444,13 @@
                     </div>
                 </div>
 
-                <!-- Consultant 2 (メソッド構築 & 累計40名育成のプロ) -->
-                <!-- クラス: scroll-animate と data-delay を追加 -->
+                <!-- Consultant 2 (メソッド構築 & 累計40名育成のプロ) - 修正済み: 画像URLをB (カラフルネクタイ)の軽量版に更新 -->
+                <!-- loading="lazy"を追加 -->
                 <div class="bg-teal-50 p-6 rounded-2xl shadow-lg consultant-container scroll-animate" data-delay="200">
-                    
+
                     <!-- 担当者Bの画像コンテナ -->
                     <div class="flex-shrink-0">
-                        <img src="https://i.ibb.co/Fk7FjR9f/1.png" alt="キャリアアドバイザーBの顔写真" class="consultant-photo" width="120" height="120" loading="lazy">
+                        <img src="https://i.ibb.co/fGxNZSyS/1-1.png" alt="キャリアアドバイザーBの顔写真" class="consultant-photo" width="120" height="120" loading="lazy">
                     </div>
 
                     <div class="consultant-info">
@@ -382,7 +471,7 @@
                                 好きなこと：筋トレ・健康、旅行
                             </p>
                         </div>
-                        
+
                         <ul class="list-disc list-inside space-y-2 text-gray-700">
                             <li>入社以来、社内成約件数トップを維持し、全社MVPを3回受賞。（成果の再現性を担保）</li>
                             <li>累計40名のマネジメント実績を持つ、個人の強みを引き出す育成の専門家。</li>
@@ -390,18 +479,6 @@
                             <li>営業スペシャリストとして社内最大手企業開拓を担当。</li>
                         </ul>
                     </div>
-                </div>
-                
-                <!-- Sales Method Feature (修正箇所) -->
-                <!-- クラス: scroll-animate と data-delay を追加 -->
-                <div class="text-center bg-teal-100 p-6 rounded-2xl shadow-lg border-t-4 border-teal-600 scroll-animate" data-delay="400">
-                    <h4 class="text-2xl font-extrabold text-teal-800 mb-2">
-                        💡 入社後も通用する「成果を出す再現メソッド」を伝授
-                    </h4>
-                    <p class="text-xl text-gray-700 mt-4">
-                        この「感覚論ではない、本質的なビジネススキル」は、日々の仕事だけでなく、<br>
-                        面接であなた自身を市場価値の高い人材として売り込むための最強の武器になります。
-                    </p>
                 </div>
             </div>
         </div>
@@ -413,7 +490,7 @@
             <h3 class="text-3xl sm:text-4xl font-bold text-center mb-16 text-gray-900">
                 「軸がない」を「確信」に変える、あなたのための5つの専門領域
             </h3>
-            
+
             <!-- 5つの要素を中央揃えにするためのFlexboxに変更 -->
             <div class="flex flex-wrap justify-center gap-8">
                 <!-- IT -->
@@ -485,7 +562,7 @@
             <h3 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900">
                 ご紹介求人の特徴
             </h3>
-            
+
             <div class="space-y-12">
                 <!-- Point 1: 未経験から挑戦できる求人が多数 -->
                 <div class="flex flex-col lg:flex-row items-center lg:items-start bg-white p-8 rounded-2xl shadow-2xl border-l-8 border-orange-500">
@@ -500,7 +577,7 @@
                             これにより、あなたの強みとキャリアゴールに合った求人を幅広くご紹介できます。
                         </p>
                     </div>
-                    
+
                     <div class="w-full lg:w-2/5 flex justify-center items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-orange-500 drop-shadow-xl">
                             <rect x="2" y="7" width="20" height="15" rx="4" ry="4"></rect>
@@ -517,7 +594,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-teal-500 drop-shadow-xl">
                             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 17v-2a4 4 0 0 0-4-4H12"/></svg>
                     </div>
-                    
+
                     <div class="w-full lg:w-3/5">
                         <p class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
                             20代の育成に<br>
@@ -553,18 +630,18 @@
             <h3 class="text-3xl sm:text-4xl lg:text-3xl font-bold text-center mb-16 text-gray-900">
                 あなたの希望に合わせた2つのサポートプラン
             </h3>
-            
+
             <div class="flex flex-col lg:flex-row justify-center items-stretch space-y-8 lg:space-y-0 lg:space-x-12">
-                
+
                 <!-- Plan 1: キャリア本質追求プラン (おすすめ) -->
                 <div class="relative w-full lg:w-1/2 bg-teal-50 p-8 rounded-xl shadow-2xl border-t-8 border-teal-600 plan-card-height flex flex-col">
                     <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white font-extrabold py-1 px-4 rounded-full text-sm shadow-md">
                         <span class="inline-block animate-pulse mr-1">⭐</span> 一番人気
                     </div>
-                    
+
                     <h4 class="text-3xl font-extrabold text-teal-800 mb-4 text-center mt-4">キャリア本質追求プラン</h4>
                     <p class="text-gray-600 mb-6 text-center text-sm">【転職の「軸」を見つけ、入社後の活躍まで見据えたい方へ】</p>
-                    
+
                     <div class="flex-grow space-y-4">
                         <div class="flex items-start">
                             <span class="flex-shrink-0 text-teal-600 font-extrabold text-2xl mr-3">1.</span>
@@ -600,10 +677,10 @@
                 <!-- Plan 2: 転職集中サポートプラン -->
                 <div class="relative w-full lg:w-1/2 bg-white p-8 rounded-xl shadow-2xl border-t-8 border-gray-400 plan-card-height flex flex-col">
                     <div class="bg-gray-500 w-10 h-10 rounded-full flex items-center justify-center text-white font-extrabold text-xl absolute -top-5 left-1/2 transform -translate-x-1/2"></div>
-                    
+
                     <h4 class="text-3xl font-extrabold text-gray-800 mb-4 text-center mt-4">転職集中サポートプラン</h4>
                     <p class="text-gray-600 mb-6 text-center text-sm">【すでに転職の軸が明確で、すぐに内定を目指したい方へ】</p>
-                    
+
                     <div class="flex-grow space-y-4">
                         <div class="flex items-start">
                             <span class="flex-shrink-0 text-gray-600 font-extrabold text-2xl mr-3">1.</span>
@@ -636,7 +713,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <p class="mt-12 text-center text-xl font-bold text-teal-700">
                 ⭐ 迷ったら、まずはキャリア本質追求プランをご検討ください。
             </p>
@@ -651,28 +728,28 @@
         </div>
     </section>
 
-    <!-- Block 7: Social Proof/Trust (信頼) -->
+    <!-- Block 7: Social Proof/Trust (信頼) - 【修正済み】 -->
     <section id="sec-metrics" class="scroll-offset metrics-section py-16 md:py-24 bg-teal-600 text-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="text-3xl sm:text-4xl font-bold mb-12">
                 数字でわかる、あなたのキャリアへの本気度
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
-                <!-- Metric 1 -->
+                <!-- Metric 1: 相談者満足度 (0から具体的な数字に修正) -->
                 <div class="bg-teal-700 p-6 rounded-2xl shadow-xl">
-                    <p class="text-5xl font-extrabold mb-1" data-target="96" data-unit="%">0<span class="text-3xl">%</span></p>
+                    <p class="text-5xl font-extrabold mb-1" data-target="96" data-unit="%">96<span class="text-3xl">%</span></p>
                     <p class="text-lg font-semibold border-t border-teal-500 pt-3 mt-3">相談者満足度</p>
                     <p class="text-sm opacity-75">（当社アンケート結果より）</p>
                 </div>
-                <!-- Metric 2 -->
+                <!-- Metric 2: 平均問い合わせ件数 (0から具体的な数字に修正) -->
                 <div class="bg-teal-700 p-6 rounded-2xl shadow-xl">
-                    <p class="text-5xl font-extrabold mb-1" data-target="10" data-unit="名/日">0<span class="text-3xl">名/日</span></p>
+                    <p class="text-5xl font-extrabold mb-1" data-target="10" data-unit="名/日">10<span class="text-3xl">名/日</span></p>
                     <p class="text-lg font-semibold border-t border-teal-500 pt-3 mt-3">平均問い合わせ件数</p>
                     <p class="text-sm opacity-75">（多くの方が行動を始めています）</p>
                 </div>
-                <!-- Metric 3 -->
+                <!-- Metric 3: プラン最低面談回数 (0から具体的な数字に修正) -->
                 <div class="bg-teal-700 p-6 rounded-2xl shadow-xl">
-                    <p class="text-5xl font-extrabold mb-1" data-target="8" data-unit="回〜">0<span class="text-3xl">回〜</span></p>
+                    <p class="text-5xl font-extrabold mb-1" data-target="8" data-unit="回〜">8<span class="text-3xl">回〜</span></p>
                     <p class="text-lg font-semibold border-t border-teal-500 pt-3 mt-3">プラン最低面談回数</p>
                     <p class="text-sm opacity-75">（あなたの納得いくまで徹底的に）</p>
                 </div>
@@ -680,12 +757,120 @@
 
             <p class="mt-12 text-xl font-semibold bg-white text-teal-600 p-4 rounded-lg">
                 ※当サービスにおいて
-                求職者様は一切費用がかかりません。「まずは相談だけでもOK」。
+                求職者様は一切費用がかかりません。安心してご利用ください。
             </p>
         </div>
     </section>
 
-    <!-- Block 8: Closing/Final CTA -->
+    <!-- NEW Block: Quick Form Section (アンケート形式のクイック相談) -->
+    <section id="sec-quick-form" class="scroll-offset py-16 md:py-24 bg-orange-50">
+        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center quick-form-card rounded-3xl shadow-2xl p-8">
+            <h4 class="text-3xl font-extrabold text-gray-900 mb-8">
+                らくらく<span class="text-orange-600">4ステップ</span>で面談予約へ！
+            </h4>
+
+            <!-- ステップインジケーター -->
+            <div class="step-indicator">
+                <div id="step-1-nav" class="step-item active">
+                    <div class="step-circle">1</div>
+                    <span class="text-sm font-semibold text-gray-700">状況</span>
+                    <div class="step-line"></div>
+                </div>
+                <div id="step-2-nav" class="step-item">
+                    <div class="step-circle">2</div>
+                    <span class="text-sm font-semibold text-gray-500">勤務地</span>
+                    <div class="step-line"></div>
+                </div>
+                <div id="step-3-nav" class="step-item">
+                    <div class="step-circle">3</div>
+                    <span class="text-sm font-semibold text-gray-500">お住まい</span>
+                    <div class="step-line"></div>
+                </div>
+                <div id="step-4-nav" class="step-item">
+                    <div class="step-circle">4</div>
+                    <span class="text-sm font-semibold text-gray-500">年齢</span>
+                </div>
+            </div>
+            
+            <div class="inline-block bg-orange-500 text-white font-extrabold px-6 py-2 rounded-full text-lg mb-6 shadow-md">
+                質問に答えて面談予約に進もう！
+            </div>
+            
+            <div id="quick-form-content">
+                <!-- ステップ1: 初期表示 (JSで切り替え) -->
+                <div id="step-1" class="step-content">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-8">現在の状況は？</h4>
+                    <div class="space-y-4">
+                        <button data-value="zaishokuchu" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">
+                            在職中
+                        </button>
+                        <button data-value="rishokuchu" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">
+                            離職中
+                        </button>
+                        <button data-value="free" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">
+                            フリーター<br><span class="text-base font-normal">（アルバイト・パート）</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- ステップ2: 希望勤務地 (非表示) -->
+                <div id="step-2" class="step-content hidden">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-8">希望勤務地（メイン）は？</h4>
+                    <div class="space-y-4">
+                        <button data-value="tokyo" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">東京</button>
+                        <button data-value="osaka" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">大阪</button>
+                        <button data-value="fukuoka" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">福岡</button>
+                        <button data-value="other_kanto" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">その他関東エリア</button>
+                        <button data-value="remote" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">リモート希望</button>
+                    </div>
+                </div>
+
+                <!-- ステップ3: お住まい (非表示) -->
+                <div id="step-3" class="step-content hidden">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-8">お住まいの都道府県は？</h4>
+                    <div class="space-y-4">
+                        <!-- Selectボックスで実装 -->
+                        <select id="residence-select" class="w-full px-4 py-4 border-2 border-orange-400 rounded-xl text-xl text-gray-700 font-medium appearance-none bg-white shadow-inner focus:ring-2 focus:ring-orange-500">
+                            <option value="">-- 選択してください --</option>
+                            <option value="tokyo">東京都</option>
+                            <option value="osaka">大阪府</option>
+                            <option value="fukuoka">福岡県</option>
+                            <option value="aichi">愛知県</option>
+                            <option value="kanagawa">神奈川県</option>
+                            <option value="saitama">埼玉県</option>
+                            <option value="chiba">千葉県</option>
+                            <option value="other">その他</option>
+                        </select>
+                        <button id="next-step-3" class="w-full next-step-button bg-orange-500 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-orange-600 transition duration-300 transform hover:scale-105 cta-shadow">
+                            次へ進む
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ステップ4: 年齢入力 (非表示) -->
+                <div id="step-4" class="step-content hidden">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-8">年齢を入力してください</h4>
+                    <div class="space-y-4">
+                        <!-- Input Boxで実装 -->
+                        <input type="number" id="age-input" placeholder="例: 25" min="18" max="39" class="w-full px-4 py-4 border-2 border-orange-400 rounded-xl text-xl text-gray-700 font-medium shadow-inner focus:ring-2 focus:ring-orange-500 text-center">
+                        <!-- 修正点1: ボタンの背景色をサービスカラーに戻す -->
+                        <button id="final-submit" class="w-full bg-teal-600 text-white font-extrabold py-5 px-10 rounded-xl text-2xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
+                            面談を予約する (Timerexへ)
+                        </button>
+                    </div>
+                    <p class="text-sm text-red-500 mt-4 hidden" id="age-error-message">20代（18〜39歳）の整数を入力してください。</p>
+                </div>
+
+            </div> <!-- /#quick-form-content -->
+
+            <p class="text-sm text-gray-600 mt-6">
+                面倒なフォーム入力は不要です。4つの質問に回答するだけで登録できるため、カンタン30秒で完了！
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Block 8: Closing/Final CTA (Timerexリンクはここに残す) -->
     <section id="sec-cta" class="scroll-offset py-16 md:py-24 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
@@ -696,7 +881,7 @@
                 理想のキャリア・ゴールを実現するための、<br>
                 目の前の選択を最高の未来にしませんか？
             </p>
-            
+
             <!-- 追加された身体サポートの付加価値ブロック -->
             <div class="bg-teal-50 p-6 rounded-xl shadow-inner mb-10 border border-teal-200">
                 <h4 class="text-xl font-bold text-teal-800 mb-3">
@@ -723,21 +908,20 @@
                 </a>
             </div>
 
-            <!-- Final CTA Button (Timerex) -->
-            <!-- リンクをTimerex URLに修正 -->
+            <!-- Final CTA Button (Timerex) - 修正点1: ボタンの背景色をサービスカラーに戻す -->
             <a href="https://timerex.net/s/daiki.imahara_af3d/99581b91" target="_blank" rel="noopener noreferrer" class="inline-block bg-teal-600 text-white font-extrabold py-5 px-12 rounded-xl text-2xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
-                【完全無料】カジュアル面談予約に進む
+                【簡単予約】カジュアル相談をしてみる
             </a>
             <p class="mt-4 text-lg text-gray-500">
                 オンラインで15〜20分のお悩み整理からスタートできます。
             </p>
         </div>
     </section>
-    
+
     <!-- Block 9: Company Info (運営元情報) - 修正: 黒背景、文字白、コンパクトに -->
     <section class="py-6 bg-gray-800 text-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-xs opacity-75">
-            
+
             <p class="text-sm font-bold text-teal-400 mb-2">運営会社：株式会社GOOYA</p>
 
             <div class="space-y-1">
@@ -757,7 +941,7 @@
                     <span class="ml-2 flex-grow">大阪府大阪市北区梅田1-1-3 大阪駅前第3ビル25F</span>
                 </div>
             </div>
-            
+
             <!-- 事業許可番号リスト -->
             <div class="mt-4 text-xs space-y-1">
                 <p>事業者番号 プライバシーマーク認定 ：10822998</p>
@@ -774,40 +958,166 @@
         </div>
     </footer>
 
+    <!-- Fixed Campaign CTA - 【右下に固定されたバナー (PC/タブレット向け) - 特典統合済み】 -->
+    <a href="#sec-quick-form" id="fixed-campaign-cta" class="text-white flex flex-col justify-center items-center">
+        <div class="text-xs font-bold border border-white rounded-full px-2 py-0.5 mb-1 bg-white/20">CAMPAIGN</div>
+        <div class="text-xl font-extrabold leading-tight">サポート</div>
+        <div class="text-xl font-extrabold leading-tight">強化月間</div>
+        <div class="text-xs font-semibold leading-none mt-1">開催中です！</div>
+        <!-- 特典内容をバナー内に統合 -->
+        <div class="text-sm font-extrabold mt-2 leading-none text-yellow-200">
+            自己分析シート<br>プレゼント中！
+        </div>
+    </a>
+
 
     <!-- JavaScript for Count Up Animation and Fixed Navigation and Scroll Animations -->
     <script>
-        // スムーズスクロール機能
-        document.querySelectorAll('#global-nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    // スクロール先の要素のY座標を計算し、ヘッダーとナビゲーションの高さ分オフセットを適用
-                    const headerHeight = 60; // ヘッダーの固定高さ
-                    const navHeight = 40; // ナビゲーションの固定高さ (py-2 * 2 + font-size くらいを概算)
-                    const offset = headerHeight + navHeight + 10; // 少し余裕を持たせる
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - offset,
-                        behavior: 'smooth'
-                    });
+        const TIMBREX_URL = "https://timerex.net/s/daiki.imahara_af3d/99581b91";
+        let currentStep = 1;
+        const totalSteps = 4;
+        let formData = {};
+
+        const residenceMap = {
+            tokyo: "東京都", osaka: "大阪府", fukuoka: "福岡県", aichi: "愛知県",
+            kanagawa: "神奈川県", saitama: "埼玉県", chiba: "千葉県", other: "その他"
+        };
+        
+        // --- ステップレンダリング/遷移ロジック ---
+        
+        function updateStepIndicator() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const navElement = document.getElementById(`step-${i}-nav`);
+                const stepNameElement = navElement.querySelector('span');
+
+                if (i <= currentStep) {
+                    navElement.classList.add('active');
+                } else {
+                    navElement.classList.remove('active');
+                }
+
+                if (i === currentStep) {
+                    stepNameElement.classList.remove('text-gray-500');
+                    stepNameElement.classList.add('text-gray-700');
+                } else {
+                    stepNameElement.classList.remove('text-gray-700');
+                    stepNameElement.classList.add('text-gray-500');
+                }
+            }
+        }
+
+        function renderStep(step) {
+            document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
+            const currentStepEl = document.getElementById(`step-${step}`);
+            if (currentStepEl) {
+                currentStepEl.classList.remove('hidden');
+                updateStepIndicator();
+            }
+        }
+
+        function nextStep(answerKey, answerValue) {
+            // 回答をformDataに保存
+            formData[answerKey] = answerValue;
+
+            currentStep++;
+            if (currentStep <= totalSteps) {
+                renderStep(currentStep);
+            }
+            
+            // クイックフォームセクションまでスクロール
+            const formSection = document.getElementById('sec-quick-form');
+            const offset = 100; 
+            window.scrollTo({
+                top: formSection.offsetTop - offset,
+                behavior: 'smooth'
+            });
+        }
+
+        function buildFinalUrl(baseUrl) {
+            const params = new URLSearchParams();
+            
+            // 回答内容をパラメーターに追加
+            if (formData.status) params.append('status', formData.status);
+            if (formData.workplace) params.append('workplace', formData.workplace);
+            // お住まいは日本語名に変換して追加
+            if (formData.residence) {
+                params.append('residence', residenceMap[formData.residence] || formData.residence);
+            }
+            if (formData.age) params.append('age', formData.age);
+
+            // 担当者が見やすいように、回答をまとめて一つのパラメーターに追加する
+            const statusLabel = {zaishokuchu: "在職中", rishokuchu: "離職中", free: "フリーター"}[formData.status] || formData.status;
+            const workplaceLabel = {tokyo: "東京", osaka: "大阪", fukuoka: "福岡", other_kanto: "その他関東", remote: "リモート希望"}[formData.workplace] || formData.workplace;
+            const residenceLabel = residenceMap[formData.residence] || formData.residence;
+
+            const summary = `【クイック回答】状況:${statusLabel}, 勤務地:${workplaceLabel}, お住まい:${residenceLabel}, 年齢:${formData.age}`;
+            params.append('quick_summary', summary);
+
+
+            const queryString = params.toString();
+            // クイックフォームの回答を付けてTimerexに遷移
+            return queryString ? `${baseUrl}?${queryString}` : baseUrl;
+        }
+
+        // --- イベントリスナー設定 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderStep(currentStep); // ページ読み込み時にステップ1を表示
+
+            // ステップ1, 2のボタンクリック処理 (data-valueを持つボタン)
+            document.getElementById('step-1').querySelectorAll('.quick-form-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const status = button.getAttribute('data-value');
+                    nextStep('status', status);
+                });
+            });
+            document.getElementById('step-2').querySelectorAll('.quick-form-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const workplace = button.getAttribute('data-value');
+                    nextStep('workplace', workplace);
+                });
+            });
+
+            // ステップ3のドロップダウン + 次へボタンの処理
+            document.getElementById('next-step-3').addEventListener('click', () => {
+                const selectEl = document.getElementById('residence-select');
+                const residence = selectEl.value;
+                if (residence) {
+                    nextStep('residence', residence);
+                } else {
+                    // alert()は使えないので、コンソールと簡易的な通知を想定
+                    console.error('お住まいの都道府県を選択してください。');
                 }
             });
+
+            // ステップ4の最終送信処理
+            document.getElementById('final-submit').addEventListener('click', () => {
+                const ageInput = document.getElementById('age-input');
+                const ageError = document.getElementById('age-error-message');
+                const age = parseInt(ageInput.value);
+
+                if (isNaN(age) || age < 18 || age > 39) {
+                    ageError.classList.remove('hidden');
+                    return;
+                }
+                ageError.classList.add('hidden');
+                formData.age = age;
+                
+                // 最終URLを構築してリダイレクト
+                const finalUrl = buildFinalUrl(TIMBREX_URL);
+                window.open(finalUrl, '_blank'); // 新しいタブで予約画面を開く
+            });
         });
-        
-        // Count Up Animation Logic (Intersection Observer)
+
+        // Count Up Animation Logic (既存)
         function animateValue(obj, start, end, duration, unit) {
             let startTimestamp = null;
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                 const currentValue = Math.floor(progress * (end - start) + start);
-                
+
                 obj.innerHTML = currentValue + `<span class="text-3xl">${unit}</span>`;
-                
+
                 if (progress < 1) {
                     window.requestAnimationFrame(step);
                 } else {
@@ -822,29 +1132,25 @@
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Animation runs every time the section enters the viewport
                         const elements = entry.target.querySelectorAll('p[data-target]');
                         elements.forEach(el => {
                             const target = parseInt(el.getAttribute('data-target'));
                             const unit = el.getAttribute('data-unit');
-                            // Reset to 0 before starting the count up animation
-                            el.innerHTML = '0' + `<span class="text-3xl">${unit}</span>`; 
-                            animateValue(el, 0, target, 2000, unit); // 2000ms = 2 seconds
+                            animateValue(el, 0, target, 2000, unit);
                         });
-                        // Do NOT unobserve, allowing the animation to run again on re-entry.
                     }
                 });
-            }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+            }, { threshold: 0.5 });
 
             observer.observe(metricsSection);
         }
 
-        // --- New: スクロールで要素を表示するアニメーション ---
+        // スクロールで要素を表示するアニメーション (既存)
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = {
-                root: null, // ビューポートをルートとして使用
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // 要素が10%見えたらトリガー
+                threshold: 0.1
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
@@ -855,19 +1161,18 @@
 
                         setTimeout(() => {
                             target.classList.add('is-visible');
-                            observer.unobserve(target); // 一度実行したら監視を停止
+                            observer.unobserve(target);
                         }, delay);
                     }
                 });
             }, observerOptions);
 
-            // 担当者紹介セクション内の全てのアニメーション対象要素を監視
             document.querySelectorAll('#sec-proof .scroll-animate').forEach(el => {
                 observer.observe(el);
             });
         });
-        // --- End New ---
     </script>
 </body>
 </html>
 
+   
