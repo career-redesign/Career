@@ -243,6 +243,50 @@
         .step-item:last-child .step-line {
             display: none;
         }
+
+        /* NEW: QAアコーディオン用CSS */
+        .faq-q-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-bottom: 1px solid #e5e7eb; /* gray-200 */
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            padding: 0 1rem;
+            background-color: #f9fafb; /* gray-50 */
+        }
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+        .faq-q-button[aria-expanded="true"] .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-q-button[aria-expanded="true"] + .faq-answer {
+            padding: 1rem;
+        }
+        /* NEW: 目次のデザインをボタン風にするためのCSS */
+        .nav-link-item {
+            /* 修正点3: 縦の仕切り線を表現 */
+            border-right: 1px solid #e5e7eb; /* gray-200 */
+        }
+        .nav-link-item:last-child {
+            border-right: none;
+        }
+        .nav-link-button {
+            display: inline-block;
+            padding: 0.25rem 0.5rem; /* py-1 px-2 */
+            border-radius: 0.375rem; /* rounded-md */
+            transition: background-color 0.15s;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -261,15 +305,36 @@
 
     <!-- Global Navigation (目次) - Fixed right below the header -->
     <nav id="global-nav" class="border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6 py-2">
-            <a href="#sec-pain" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">当サポートを受ける方の特徴</a>
-            <a href="#sec-compare" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">他社との違い</a>
-            <a href="#sec-proof" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">担当者紹介</a>
-            <a href="#sec-specialty" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">専門領域</a>
-            <a href="#sec-jobs" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">求人の特徴</a>
-            <a href="#sec-plan" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">2つのプラン</a>
-            <a href="#sec-metrics" class="text-sm font-semibold text-gray-700 hover:text-teal-600 transition duration-150">信頼の数字</a>
-            <a href="#sec-quick-form" class="text-sm font-semibold text-red-500 hover:text-red-600 transition duration-150">無料相談へ</a>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-0 py-2">
+            <!-- 修正点3: 目次を縦線で区切り、ボタン風のデザインに変更 -->
+            <!-- flex space-x-0 に変更し、代わりに nav-link-item に border-right を設定 -->
+            <div class="nav-link-item">
+                <a href="#sec-pain" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">当サポートを受ける方の特徴</a>
+            </div>
+            <div class="nav-link-item">
+                <a href="#sec-compare" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">他社との違い</a>
+            </div>
+            <div class="nav-link-item">
+                <a href="#sec-proof" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">担当者紹介</a>
+            </div>
+            <div class="nav-link-item">
+                <a href="#sec-specialty" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">専門領域</a>
+            </div>
+            <div class="nav-link-item">
+                <a href="#sec-jobs" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">求人の特徴</a>
+            </div>
+            <div class="nav-link-item">
+                <a href="#sec-plan" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">2つのプラン</a>
+            </div>
+            <div class="nav-link-item">
+                <a href="#sec-metrics" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">信頼の数字</a>
+            </div>
+            <div class="nav-link-item">
+                <a href="#sec-faq" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">よくある質問</a> 
+            </div>
+            <div class="nav-link-item">
+                <a href="#sec-quick-form" class="text-sm font-semibold text-red-500 hover:text-red-600 hover:bg-red-50 transition duration-150 nav-link-button">無料相談へ</a>
+            </div>
         </div>
     </nav>
 
@@ -871,7 +936,8 @@
 
 
     <!-- Block 8: Closing/Final CTA (Timerexリンクはここに残す) -->
-    <section id="sec-cta" class="scroll-offset py-16 md:py-24 bg-white">
+    <!-- 修正点2: paddingを削減し、FAQセクションとの余白を詰める -->
+    <section id="sec-cta" class="scroll-offset py-12 md:py-16 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
                 「このままでいいのか」という不安を、<br>
@@ -915,6 +981,103 @@
             <p class="mt-4 text-lg text-gray-500">
                 オンラインで15〜20分のお悩み整理からスタートできます。
             </p>
+        </div>
+    </section>
+    
+    <!-- NEW Block: FAQ Section (よくある質問) - 修正点1: 新規追加 -->
+    <section id="sec-faq" class="scroll-offset py-16 md:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-10">
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-900">
+                    よくある質問 <span class="text-orange-500 text-xl font-semibold ml-2">FAQ</span>
+                </h3>
+            </div>
+            
+            <div class="border border-gray-200 rounded-xl overflow-hidden shadow-lg">
+                
+                <!-- QA Item 1: 費用 -->
+                <div class="faq-item">
+                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-1">
+                        <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
+                        転職サービスを利用するにあたって、費用はかかりますか？
+                        <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-1" class="faq-answer">
+                        <p class="text-gray-700 pb-4">
+                            サービスを利用していただくにあたって費用を請求する事はございません。<br>
+                            <span class="font-bold text-teal-600">完全無料でカジュアル相談～サポートまで対応しております。</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- QA Item 2: 地方在住 -->
+                <div class="faq-item">
+                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-2">
+                        <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
+                        地方在住ですが転職サービスを利用できますか？
+                        <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-2" class="faq-answer">
+                        <p class="text-gray-700 pb-4">
+                            可能でございます。地域によってはお取り扱いできる求人数は変わりますが、どの地域の方でもキャリア変革のご支援を行っております。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- QA Item 3: リモート対応 (新規追加) -->
+                <div class="faq-item">
+                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-4">
+                        <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
+                        サービスを受ける際にリモートで対応していただく事は可能ですか？
+                        <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-4" class="faq-answer">
+                        <p class="text-gray-700 pb-4">
+                            可能です。面談方法は対面だけでなく、ZOOM、Google Meet、電話など幅広く対応しておりますので、面談前にご希望の方法をお知らせください。お客様に合わせてご面談いたします。
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- QA Item 4: 高卒の可能性 -->
+                <div class="faq-item">
+                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-3">
+                        <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
+                        最終学歴が高卒ですが就職する事は可能ですか？
+                        <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-3" class="faq-answer">
+                        <p class="text-gray-700 pb-4">
+                            弊社のサービスを受けられる方は高卒の方はもちろん、<br>
+                            フリーターの方や社会人経験のない方の相談も多数ありますのでご安心ください。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- QA Item 5: 20代以外 (新規追加) -->
+                <div class="faq-item">
+                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-5">
+                        <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
+                        20代以外でもサービスを受ける事は可能ですか？
+                        <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-5" class="faq-answer">
+                        <p class="text-gray-700 pb-4">
+                            可能です。実際に、20代以外の方の転職支援実績もありますので、お気軽にご相談ください。
+                        </p>
+                    </div>
+                </div>
+
+            </div> <!-- /FAQ List -->
         </div>
     </section>
 
@@ -971,7 +1134,7 @@
     </a>
 
 
-    <!-- JavaScript for Count Up Animation and Fixed Navigation and Scroll Animations -->
+    <!-- JavaScript for All Functions -->
     <script>
         const TIMBREX_URL = "https://timerex.net/s/daiki.imahara_af3d/99581b91";
         let currentStep = 1;
@@ -983,7 +1146,26 @@
             kanagawa: "神奈川県", saitama: "埼玉県", chiba: "千葉県", other: "その他"
         };
         
-        // --- ステップレンダリング/遷移ロジック ---
+        // --- スムーズスクロール機能 (既存) ---
+        function applySmoothScroll(selector) {
+            document.querySelectorAll(selector).forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const offset = 100; // Header + Nav の高さ分
+                        window.scrollTo({
+                            top: targetElement.offsetTop - offset,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // --- ステップレンダリング/遷移ロジック (既存) ---
         
         function updateStepIndicator() {
             for (let i = 1; i <= totalSteps; i++) {
@@ -1016,15 +1198,12 @@
         }
 
         function nextStep(answerKey, answerValue) {
-            // 回答をformDataに保存
             formData[answerKey] = answerValue;
-
             currentStep++;
             if (currentStep <= totalSteps) {
                 renderStep(currentStep);
             }
             
-            // クイックフォームセクションまでスクロール
             const formSection = document.getElementById('sec-quick-form');
             const offset = 100; 
             window.scrollTo({
@@ -1036,16 +1215,13 @@
         function buildFinalUrl(baseUrl) {
             const params = new URLSearchParams();
             
-            // 回答内容をパラメーターに追加
             if (formData.status) params.append('status', formData.status);
             if (formData.workplace) params.append('workplace', formData.workplace);
-            // お住まいは日本語名に変換して追加
             if (formData.residence) {
                 params.append('residence', residenceMap[formData.residence] || formData.residence);
             }
             if (formData.age) params.append('age', formData.age);
 
-            // 担当者が見やすいように、回答をまとめて一つのパラメーターに追加する
             const statusLabel = {zaishokuchu: "在職中", rishokuchu: "離職中", free: "フリーター"}[formData.status] || formData.status;
             const workplaceLabel = {tokyo: "東京", osaka: "大阪", fukuoka: "福岡", other_kanto: "その他関東", remote: "リモート希望"}[formData.workplace] || formData.workplace;
             const residenceLabel = residenceMap[formData.residence] || formData.residence;
@@ -1055,13 +1231,52 @@
 
 
             const queryString = params.toString();
-            // クイックフォームの回答を付けてTimerexに遷移
             return queryString ? `${baseUrl}?${queryString}` : baseUrl;
         }
 
-        // --- イベントリスナー設定 ---
+        // --- Q&A アコーディオン機能 (新規追加) ---
+        function setupFAQAccordion() {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const button = item.querySelector('.faq-q-button');
+                const answer = item.querySelector('.faq-answer');
+
+                button.addEventListener('click', () => {
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+                    // すべてのアコーディオンを閉じる
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        const otherButton = otherItem.querySelector('.faq-q-button');
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        if (otherButton !== button && otherButton.getAttribute('aria-expanded') === 'true') {
+                            otherButton.setAttribute('aria-expanded', 'false');
+                            otherAnswer.style.maxHeight = null;
+                        }
+                    });
+
+                    // クリックされたアコーディオンを開閉する
+                    if (!isExpanded) {
+                        button.setAttribute('aria-expanded', 'true');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    } else {
+                        button.setAttribute('aria-expanded', 'false');
+                        answer.style.maxHeight = null;
+                    }
+                });
+            });
+        }
+        
+        // --- 初期設定とイベントリスナー設定 ---
         document.addEventListener('DOMContentLoaded', () => {
-            renderStep(currentStep); // ページ読み込み時にステップ1を表示
+            // スムーズスクロール設定
+            applySmoothScroll('#global-nav a');
+            applySmoothScroll('#fixed-campaign-cta');
+
+            // クイックフォームの初期表示
+            renderStep(currentStep);
+
+            // Q&Aアコーディオン設定
+            setupFAQAccordion();
+
 
             // ステップ1, 2のボタンクリック処理 (data-valueを持つボタン)
             document.getElementById('step-1').querySelectorAll('.quick-form-button').forEach(button => {
@@ -1084,7 +1299,6 @@
                 if (residence) {
                     nextStep('residence', residence);
                 } else {
-                    // alert()は使えないので、コンソールと簡易的な通知を想定
                     console.error('お住まいの都道府県を選択してください。');
                 }
             });
@@ -1102,9 +1316,8 @@
                 ageError.classList.add('hidden');
                 formData.age = age;
                 
-                // 最終URLを構築してリダイレクト
                 const finalUrl = buildFinalUrl(TIMBREX_URL);
-                window.open(finalUrl, '_blank'); // 新しいタブで予約画面を開く
+                window.open(finalUrl, '_blank');
             });
         });
 
@@ -1175,4 +1388,3 @@
 </body>
 </html>
 
-   
