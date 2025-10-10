@@ -179,8 +179,8 @@
                 bottom: 0.5rem; /* モバイルでの配置調整 */
                 right: 0.5rem;
                 /* ★★★ 修正: スマホ時の幅を少し広げ、テキストが収まるように調整 ★★★ */
-                width: 120px; 
-                height: 120px;
+                width: 130px; 
+                height: 130px;
             }
         }
         #fixed-campaign-cta:hover {
@@ -430,10 +430,20 @@
         .benefit-list-wrapper .benefit-card p {
             font-size: 1.125rem; /* text-lg */
             font-weight: 700; /* font-extraboldは維持 */
-            /* ★★★ 修正: テキストを一行で表示するためのCSSを追加 ★★★ */
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            /* ★★★ 修正: スマホでは折り返しを許可し、PCでは一行を強制する ★★★ */
+            white-space: normal; /* スマホでは折り返す */
+            overflow: visible;
+            text-overflow: clip;
+        }
+
+        /* PC (>=768px) でのメリットテキスト調整 */
+        @media (min-width: 768px) {
+             /* PCで一行表示を強制 */
+             .benefit-list-wrapper .benefit-card p {
+                white-space: nowrap; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+             }
         }
         
         /* フォームのフリーターのサブテキストを調整 */
@@ -521,7 +531,7 @@
                 <a href="#sec-metrics" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">信頼の数字</a>
             </div>
             <div class="nav-link-item">
-                <!-- ★★★ 修正: よくある質問の文字色を黒字に変更 ★★★ -->
+                <!-- ★★★ 修正: よくある質問の文字色を黒字に変更済み ★★★ -->
                 <a href="#sec-faq" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">よくある質問</a> 
             </div>
             <div class="nav-link-item">
