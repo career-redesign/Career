@@ -159,8 +159,8 @@
             bottom: 1rem; /* 画面下部に配置 */
             right: 1rem;
             z-index: 1001; /* 最前面に表示 */
-            width: 150px; /* 幅を固定 */
-            height: 150px; /* 高さを固定 */
+            width: 150px; /* PC/タブレットの幅を固定 */
+            height: 150px; /* PC/タブレットの高さを固定 */
             background: linear-gradient(145deg, #f97316, #ef4444); /* orange-500 to red-600 */
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -178,8 +178,9 @@
             #fixed-campaign-cta {
                 bottom: 0.5rem; /* モバイルでの配置調整 */
                 right: 0.5rem;
-                width: 110px;
-                height: 110px;
+                /* ★★★ 修正: スマホ時の幅を少し広げ、テキストが収まるように調整 ★★★ */
+                width: 120px; 
+                height: 120px;
             }
         }
         #fixed-campaign-cta:hover {
@@ -257,6 +258,10 @@
             border-bottom: 1px solid #e5e7eb; /* gray-200 */
             cursor: pointer;
         }
+        /* ご要望に基づき、質問文の色を黒系に変更 (text-teal-700 -> text-gray-900) */
+        .faq-q-button {
+            color: #111827; /* text-gray-900 */
+        }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
@@ -273,7 +278,7 @@
         .faq-q-button[aria-expanded="true"] + .faq-answer {
             padding: 1rem;
         }
-        /* NEW: 目次のデザインをボタン風にするためのCSS */
+        /* NEW: 目次のデザインをボタン風にするための CSS */
         .nav-link-item {
             /* 修正点3: 縦の仕切り線を表現 */
             border-right: 1px solid #e5e7eb; /* gray-200 */
@@ -281,12 +286,194 @@
         .nav-link-item:last-child {
             border-right: none;
         }
+        /* ★★★ 修正: 目次のリンクの文字色を黒系に変更 ★★★ */
         .nav-link-button {
             display: inline-block;
             padding: 0.25rem 0.5rem; /* py-1 px-2 */
             border-radius: 0.375rem; /* rounded-md */
             transition: background-color 0.15s;
+            color: #4b5563; /* text-gray-600相当 */
         }
+        .nav-link-button:hover {
+            color: #0d9488; /* text-teal-600 */
+        }
+        
+        /* NEW: 最終CTAセクションの横並びレイアウト調整 */
+        @media (min-width: 768px) {
+            .final-cta-flex {
+                display: flex;
+                gap: 2rem;
+                align-items: stretch;
+            }
+            .final-cta-line-block {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+        }
+
+        /* NEW: 無料相談メリットセクションのスタイル */
+        .benefit-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* NEW: メリットとフォームを囲むコンテナの調整 */
+        .combined-cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        /* ★★★ 修正: レイアウトを反転 (フォームが左側) ★★★ */
+        @media (min-width: 768px) {
+            .combined-cta-container {
+                /* 高さを揃えるために align-items: stretch を追加 */
+                flex-direction: row; /* 横並び */
+                gap: 4rem;
+                align-items: stretch; 
+            }
+            /* フォーム（左側）とメリット（右側）の幅を調整 */
+            .combined-cta-container > div:nth-child(1) { /* フォーム */
+                width: 50%;
+                display: flex;
+                flex-direction: column; /* フォームカードの高さをいっぱいに使う */
+            }
+            .combined-cta-container > div:nth-child(2) { /* メリット */
+                width: 50%;
+            }
+        }
+        /* メリット側の装飾 */
+        .benefit-list-wrapper {
+            background-color: #f0fdfa; /* bg-teal-50 */
+            /* ★★★ 修正: 余白（padding）をフォームと揃えるために調整し、縦方向を増やす ★★★ */
+            padding: 2.5rem; /* フォームの p-8 (32px) に合わせて調整 */
+            border-radius: 1rem;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ccfbf1;
+            /* スマホでフォームの上に表示させるため、orderを設定 */
+            order: 1;
+            display: flex; /* Flexboxで内側の要素を配置 */
+            flex-direction: column;
+            justify-content: space-between; /* 要素を上下に引き延ばす */
+        }
+        /* メリットのタイトルとフッターを固定し、カード部分を均等に配置するための設定 */
+        .benefit-list-wrapper > .space-y-6 {
+            flex-grow: 1; 
+            display: flex;
+            flex-direction: column;
+            /* カード間に均等なスペースを設け、カードの高さを揃える */
+            /* gapを減らし、カード自身の高さを増やすことで、左側のボタン群と高さを合わせやすくする */
+            justify-content: space-between; 
+            padding-top: 0.5rem; /* 微調整 */
+            padding-bottom: 0.5rem; /* 微調整 */
+            gap: 0.75rem; /* 隙間を小さくし、カード自体を長くする */
+        }
+
+        /* フォームの order を調整 */
+        @media (min-width: 768px) {
+            .quick-form-wrapper {
+                order: 1; /* PCでは左側にするために1 */
+            }
+            .benefit-list-wrapper {
+                order: 2; /* PCでは右側にするために2 */
+            }
+            /* フォームカード自体も高さを利用するように flex-grow を追加 */
+            .quick-form-card {
+                 flex-grow: 1;
+            }
+        }
+        @media (max-width: 767px) {
+             .quick-form-wrapper {
+                order: 2; /* スマホでは下側にするために2 */
+            }
+             .benefit-list-wrapper {
+                order: 1; /* スマホでは上側にするために1 */
+            }
+             .benefit-list-wrapper {
+                padding: 1.5rem; /* スマホでは少しパディングを減らす */
+            }
+        }
+        
+        /* 各ステップのボタンの高さを調整（縦に伸ばす） */
+        #step-1 .space-y-4 .quick-form-button,
+        #step-2 .space-y-4 .quick-form-button {
+            /* ボタンの高さを均一にするための min-height と padding 調整 */
+            min-height: 80px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* ★★★ 修正: フォントサイズを維持し、高さ合わせのため padding-top/bottom を調整 ★★★ */
+            padding-top: 1.1rem; 
+            padding-bottom: 1.1rem;
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+        }
+
+        /* 個別のメリットカードの余白を調整して高さを稼ぐ */
+        .benefit-list-wrapper .benefit-card {
+            /* カードの縦パディングを増やし、高さを稼ぐ */
+            /* ★★★ 修正: py-4 px-4 に戻し、フォントサイズを text-lg に調整して一行を担保しつつ高さを合わせる ★★★ */
+            padding: 1rem; /* py-4 px-4 に相当 */
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* メリットのテキストのフォントサイズ調整 */
+        .benefit-list-wrapper .benefit-card p {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 700; /* font-extraboldは維持 */
+            /* ★★★ 修正: テキストを一行で表示するためのCSSを追加 ★★★ */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* フォームのフリーターのサブテキストを調整 */
+        .quick-form-button span.text-base {
+             font-size: 0.95rem;
+        }
+
+        /* ステップのコンテンツの縦方向マージンを減らす（ステップ間の隙間を詰める） */
+        .quick-form-card .space-y-4 {
+            /* ステップ内のボタン間のマージンを調整 */
+             --tw-space-y-reverse: 0;
+             margin-top: 1rem;
+             margin-bottom: 1rem;
+        }
+        .quick-form-card .space-y-4 > * + * {
+            margin-top: 1rem !important; /* 隙間を 1rem に固定 */
+        }
+        /* メリットカードをフォーム回答欄のように見せるための調整 */
+        .benefit-list-wrapper .benefit-card {
+            border: 2px solid #6ee7b7; /* teal-300 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        /* メリットカードのホバーエフェクトを調整 */
+        .benefit-card:hover {
+             transform: scale(1.02);
+             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ★★★ NEW: メリットセクションのカジュアルメッセージのスタイルを調整 ★★★ */
+        .casual-message {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            color: #4b5563; /* text-gray-700 */
+            text-align: center;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 0;
+        }
+
+
     </style>
 </head>
 <body class="text-gray-800">
@@ -306,34 +493,39 @@
     <!-- Global Navigation (目次) - Fixed right below the header -->
     <nav id="global-nav" class="border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-0 py-2">
-            <!-- 修正点3: 目次を縦線で区切り、ボタン風のデザインに変更 -->
-            <!-- flex space-x-0 に変更し、代わりに nav-link-item に border-right を設定 -->
+            <!-- 修正点: 目次のリンクの色を黒字（text-gray-700）に変更 -->
+            
             <div class="nav-link-item">
-                <a href="#sec-pain" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">当サポートを受ける方の特徴</a>
+                <a href="#sec-pain" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">当サポートを受ける方の特徴</a>
             </div>
             <div class="nav-link-item">
-                <a href="#sec-compare" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">他社との違い</a>
+                <a href="#sec-compare" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">他社との違い</a>
             </div>
             <div class="nav-link-item">
-                <a href="#sec-proof" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">担当者紹介</a>
+                <a href="#sec-proof" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">担当者紹介</a>
             </div>
             <div class="nav-link-item">
-                <a href="#sec-specialty" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">専門領域</a>
+                <a href="#sec-cases" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">事例紹介</a>
             </div>
             <div class="nav-link-item">
-                <a href="#sec-jobs" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">求人の特徴</a>
+                <a href="#sec-specialty" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">専門領域</a>
             </div>
             <div class="nav-link-item">
-                <a href="#sec-plan" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">2つのプラン</a>
+                <a href="#sec-jobs" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">求人の特徴</a>
             </div>
             <div class="nav-link-item">
-                <a href="#sec-metrics" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">信頼の数字</a>
+                <a href="#sec-plan" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">2つのプラン</a>
             </div>
             <div class="nav-link-item">
-                <a href="#sec-faq" class="text-sm font-semibold text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition duration-150 nav-link-button">よくある質問</a> 
+                <!-- ★★★ 修正: 目次に「信頼の数字」を追加 ★★★ -->
+                <a href="#sec-metrics" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">信頼の数字</a>
             </div>
             <div class="nav-link-item">
-                <a href="#sec-quick-form" class="text-sm font-semibold text-red-500 hover:text-red-600 hover:bg-red-50 transition duration-150 nav-link-button">無料相談へ</a>
+                <!-- ★★★ 修正: よくある質問の文字色を黒字に変更 ★★★ -->
+                <a href="#sec-faq" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">よくある質問</a> 
+            </div>
+            <div class="nav-link-item">
+                <a href="#sec-quick-form" class="nav-link-button text-sm font-semibold text-red-500 hover:text-red-600 hover:bg-red-50 transition duration-150">無料相談へ</a>
             </div>
         </div>
     </nav>
@@ -511,7 +703,7 @@
 
                 <!-- Consultant 2 (メソッド構築 & 累計40名育成のプロ) - 修正済み: 画像URLをB (カラフルネクタイ)の軽量版に更新 -->
                 <!-- loading="lazy"を追加 -->
-                <div class="bg-teal-50 p-6 rounded-2xl shadow-lg consultant-container scroll-animate" data-delay="200">
+                <div class="bg-teal-50 p-6 rounded-2xl shadow-lg consultant-container select-none scroll-animate" data-delay="200">
 
                     <!-- 担当者Bの画像コンテナ -->
                     <div class="flex-shrink-0">
@@ -543,6 +735,61 @@
                             <li>本業外でプロ選手輩出実績のあるスポーツチーム指導者を兼任。</li>
                             <li>営業スペシャリストとして社内最大手企業開拓を担当。</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ★★★ 修正 Block 4.5: Coaching Cases/Success Stories -> キャリア変革事例に変更 ★★★ -->
+    <section id="sec-cases" class="scroll-offset py-16 md:py-24 bg-orange-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900">
+                担当者との本質的な対話で実現した<br class="sm:hidden"><span class="text-orange-600">キャリア変革事例</span>
+            </h3>
+            <!-- ★★★ 修正: 注釈を削除 ★★★ -->
+            <!-- <p class="text-center text-lg text-gray-700 mb-10">
+                （当サービス開始前のマネジメント・育成経験に基づく、本質的な変化の事例です）
+            </p> -->
+
+            <!-- ★★★ 修正: カードデザインとレイアウトを添付画像風に変更 ★★★ -->
+            <div class="flex flex-col lg:flex-row justify-center gap-8">
+                
+                <!-- Card 1: H・Tさん - 本質的な自己理解と自信の獲得 -->
+                <div class="w-full lg:w-1/2 bg-white p-8 rounded-3xl shadow-2xl border-t-8 border-red-500 scroll-animate">
+                    <div class="flex justify-between items-start mb-4">
+                        <!-- 人物イラストアイコン（赤） -->
+                        <svg class="w-12 h-12 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <div class="text-sm font-extrabold bg-red-100 text-red-700 px-3 py-1 rounded-full">#キャリアの軸発見</div>
+                    </div>
+                    
+                    <h4 class="text-xl font-extrabold text-gray-900 mb-2">本質的な自己理解で迷走から脱出</h4>
+                    <p class="text-sm text-gray-600 mb-4">H・Tさん（20代・営業職）</p>
+                    
+                    <!-- 引用フィードバック -->
+                    <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-red-300">
+                        <p class="text-lg text-gray-800 italic leading-relaxed">
+                            「今までにない自己分析のやり方で、正直驚きの連続と自分に自信が持てる感覚がありました！」
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2: U・Mさん - パフォーマンス向上と仕事への夢中 -->
+                <div class="w-full lg:w-1/2 bg-white p-8 rounded-3xl shadow-2xl border-t-8 border-teal-500 scroll-animate" data-delay="200">
+                    <div class="flex justify-between items-start mb-4">
+                        <!-- 人物イラストアイコン（青緑） -->
+                        <svg class="w-12 h-12 text-teal-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <div class="text-sm font-extrabold bg-teal-100 text-teal-700 px-3 py-1 rounded-full">#社内トップ達成</div>
+                    </div>
+                    
+                    <h4 class="text-xl font-extrabold text-gray-900 mb-2">得意領域を明確化し、社内トップの成績へ</h4>
+                    <p class="text-sm text-gray-600 mb-4">U・Mさん（20代・営業職）</p>
+                    
+                    <!-- 引用フィードバック -->
+                    <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-teal-300">
+                        <p class="text-lg text-gray-800 italic leading-relaxed">
+                            「自分の得意領域を本質的に理解することで、今では社内トップの成績も出せるようになり、夢中になって仕事に取り組めてる感覚があります！」
+                        </p>
                     </div>
                 </div>
             </div>
@@ -802,19 +1049,20 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
                 <!-- Metric 1: 相談者満足度 (0から具体的な数字に修正) -->
                 <div class="bg-teal-700 p-6 rounded-2xl shadow-xl">
-                    <p class="text-5xl font-extrabold mb-1" data-target="96" data-unit="%">96<span class="text-3xl">%</span></p>
+                    <p class="text-5xl font-extrabold mb-1" data-target="96" data-unit="%">0<span class="text-3xl">%</span></p>
                     <p class="text-lg font-semibold border-t border-teal-500 pt-3 mt-3">相談者満足度</p>
                     <p class="text-sm opacity-75">（当社アンケート結果より）</p>
                 </div>
-                <!-- Metric 2: 平均問い合わせ件数 (0から具体的な数字に修正) -->
+                <!-- Metric 2: 平均問い合わせ件数 (7件に修正) -->
                 <div class="bg-teal-700 p-6 rounded-2xl shadow-xl">
-                    <p class="text-5xl font-extrabold mb-1" data-target="10" data-unit="名/日">10<span class="text-3xl">名/日</span></p>
+                    <!-- ★★★ 修正: data-targetを7に修正 ★★★ -->
+                    <p class="text-5xl font-extrabold mb-1" data-target="7" data-unit="名/日">0<span class="text-3xl">名/日</span></p>
                     <p class="text-lg font-semibold border-t border-teal-500 pt-3 mt-3">平均問い合わせ件数</p>
                     <p class="text-sm opacity-75">（多くの方が行動を始めています）</p>
                 </div>
                 <!-- Metric 3: プラン最低面談回数 (0から具体的な数字に修正) -->
                 <div class="bg-teal-700 p-6 rounded-2xl shadow-xl">
-                    <p class="text-5xl font-extrabold mb-1" data-target="8" data-unit="回〜">8<span class="text-3xl">回〜</span></p>
+                    <p class="text-5xl font-extrabold mb-1" data-target="8" data-unit="回〜">0<span class="text-3xl">回〜</span></p>
                     <p class="text-lg font-semibold border-t border-teal-500 pt-3 mt-3">プラン最低面談回数</p>
                     <p class="text-sm opacity-75">（あなたの納得いくまで徹底的に）</p>
                 </div>
@@ -826,111 +1074,160 @@
             </p>
         </div>
     </section>
-
-    <!-- NEW Block: Quick Form Section (アンケート形式のクイック相談) -->
+    
+    <!-- ★★★ NEW Block: Combined CTA and Quick Form (横並び、フォーム左側) ★★★ -->
     <section id="sec-quick-form" class="scroll-offset py-16 md:py-24 bg-orange-50">
-        <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 text-center quick-form-card rounded-3xl shadow-2xl p-8">
-            <h4 class="text-3xl font-extrabold text-gray-900 mb-8">
-                らくらく<span class="text-orange-600">4ステップ</span>で面談予約へ！
-            </h4>
-
-            <!-- ステップインジケーター -->
-            <div class="step-indicator">
-                <div id="step-1-nav" class="step-item active">
-                    <div class="step-circle">1</div>
-                    <span class="text-sm font-semibold text-gray-700">状況</span>
-                    <div class="step-line"></div>
-                </div>
-                <div id="step-2-nav" class="step-item">
-                    <div class="step-circle">2</div>
-                    <span class="text-sm font-semibold text-gray-500">勤務地</span>
-                    <div class="step-line"></div>
-                </div>
-                <div id="step-3-nav" class="step-item">
-                    <div class="step-circle">3</div>
-                    <span class="text-sm font-semibold text-gray-500">お住まい</span>
-                    <div class="step-line"></div>
-                </div>
-                <div id="step-4-nav" class="step-item">
-                    <div class="step-circle">4</div>
-                    <span class="text-sm font-semibold text-gray-500">年齢</span>
-                </div>
-            </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
+                まずは【無料相談】で得られる<span class="text-orange-600">3つの確信</span>と面談予約
+            </h3>
             
-            <div class="inline-block bg-orange-500 text-white font-extrabold px-6 py-2 rounded-full text-lg mb-6 shadow-md">
-                質問に答えて面談予約に進もう！
-            </div>
-            
-            <div id="quick-form-content">
-                <!-- ステップ1: 初期表示 (JSで切り替え) -->
-                <div id="step-1" class="step-content">
-                    <h4 class="text-2xl font-bold text-gray-900 mb-8">現在の状況は？</h4>
-                    <div class="space-y-4">
-                        <button data-value="zaishokuchu" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">
-                            在職中
-                        </button>
-                        <button data-value="rishokuchu" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">
-                            離職中
-                        </button>
-                        <button data-value="free" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">
-                            フリーター<br><span class="text-base font-normal">（アルバイト・パート）</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- ステップ2: 希望勤務地 (非表示) -->
-                <div id="step-2" class="step-content hidden">
-                    <h4 class="text-2xl font-bold text-gray-900 mb-8">希望勤務地（メイン）は？</h4>
-                    <div class="space-y-4">
-                        <button data-value="tokyo" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">東京</button>
-                        <button data-value="osaka" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">大阪</button>
-                        <button data-value="fukuoka" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">福岡</button>
-                        <button data-value="other_kanto" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">その他関東エリア</button>
-                        <button data-value="remote" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">リモート希望</button>
+            <!-- メリットとフォームを横並びにするコンテナ -->
+            <div class="combined-cta-container">
+
+                <!-- 左側: 4ステップフォーム (既存の #sec-quick-form の中身) -->
+                <div class="w-full md:w-1/2 quick-form-wrapper">
+                    <div class="quick-form-card rounded-3xl shadow-2xl p-8 text-center" id="form-card-content">
+                        
+                        <div class="inline-block bg-orange-500 text-white font-extrabold px-6 py-2 rounded-full text-lg mb-6 shadow-md">
+                            質問に答えて面談予約に進もう！
+                        </div>
+                        
+                        <!-- ステップインジケーター -->
+                        <div class="step-indicator">
+                            <div id="step-1-nav" class="step-item active">
+                                <div class="step-circle">1</div>
+                                <span class="text-sm font-semibold text-gray-700">状況</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div id="step-2-nav" class="step-item">
+                                <div class="step-circle">2</div>
+                                <span class="text-sm font-semibold text-gray-500">勤務地</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div id="step-3-nav" class="step-item">
+                                <div class="step-circle">3</div>
+                                <span class="text-sm font-semibold text-gray-500">お住まい</span>
+                                <div class="step-line"></div>
+                            </div>
+                            <div id="step-4-nav" class="step-item">
+                                <div class="step-circle">4</div>
+                                <span class="text-sm font-semibold text-gray-500">年齢</span>
+                            </div>
+                        </div>
+
+                        <div id="quick-form-content">
+                            <!-- ステップ1: 初期表示 (JSで切り替え) -->
+                            <div id="step-1" class="step-content">
+                                <h4 class="text-2xl font-bold text-gray-900 mb-8">現在の状況は？</h4>
+                                <div class="space-y-4">
+                                    <!-- ★★★ 修正: ボタンの高さを均一にするため、flex-growは維持し、padding-top/bottomを調整 ★★★ -->
+                                    <button data-value="zaishokuchu" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">
+                                        在職中
+                                    </button>
+                                    <button data-value="rishokuchu" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">
+                                        離職中
+                                    </button>
+                                    <button data-value="free" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">
+                                        フリーター<br><span class="text-base font-normal">（アルバイト・パート）</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- ステップ2: 希望勤務地 (非表示) -->
+                            <div id="step-2" class="step-content hidden">
+                                <h4 class="text-2xl font-bold text-gray-900 mb-8">希望勤務地（メイン）は？</h4>
+                                <div class="space-y-4">
+                                    <button data-value="tokyo" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">東京</button>
+                                    <button data-value="osaka" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">大阪</button>
+                                    <button data-value="fukuoka" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">福岡</button>
+                                    <button data-value="other_kanto" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">その他関東エリア</button>
+                                    <button data-value="remote" class="w-full quick-form-button block bg-white hover:bg-orange-50 border-2 border-orange-400 text-orange-500 font-bold py-4 rounded-xl text-xl transition duration-200 shadow-md">リモート希望</button>
+                                </div>
+                            </div>
+
+                            <!-- ステップ3: お住まい (非表示) -->
+                            <div id="step-3" class="step-content hidden">
+                                <h4 class="text-2xl font-bold text-gray-900 mb-8">お住まいの都道府県は？</h4>
+                                <div class="space-y-4">
+                                    <!-- Selectボックスで実装 -->
+                                    <select id="residence-select" class="w-full px-4 py-4 border-2 border-orange-400 rounded-xl text-xl text-gray-700 font-medium appearance-none bg-white shadow-inner focus:ring-2 focus:ring-orange-500">
+                                        <option value="">-- 選択してください --</option>
+                                        <option value="tokyo">東京都</option>
+                                        <option value="osaka">大阪府</option>
+                                        <option value="fukuoka">福岡県</option>
+                                        <option value="aichi">愛知県</option>
+                                        <option value="kanagawa">神奈川県</option>
+                                        <option value="saitama">埼玉県</option>
+                                        <option value="chiba">千葉県</option>
+                                        <option value="other">その他</option>
+                                    </select>
+                                    <button id="next-step-3" class="w-full next-step-button bg-orange-500 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-orange-600 transition duration-300 transform hover:scale-105 cta-shadow">
+                                        次へ進む
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- ステップ4: 年齢入力 (非表示) -->
+                            <div id="step-4" class="step-content hidden">
+                                <h4 class="text-2xl font-bold text-gray-900 mb-8">年齢を入力してください</h4>
+                                <div class="space-y-4">
+                                    <!-- Input Boxで実装 -->
+                                    <input type="number" id="age-input" placeholder="例: 25" min="18" max="39" class="w-full px-4 py-4 border-2 border-orange-400 rounded-xl text-xl text-gray-700 font-medium shadow-inner focus:ring-2 focus:ring-orange-500 text-center">
+                                    <!-- 修正点1: ボタンの背景色をサービスカラーに戻す -->
+                                    <button id="final-submit" class="w-full bg-teal-600 text-white font-extrabold py-5 px-10 rounded-xl text-2xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
+                                        面談を予約する (Timerexへ)
+                                    </button>
+                                </div>
+                                <p class="text-sm text-red-500 mt-4 hidden" id="age-error-message">20代（18〜39歳）の整数を入力してください。</p>
+                            </div>
+
+                        </div> <!-- /#quick-form-content -->
+
+                        <p class="text-sm text-gray-600 mt-6">
+                            面倒なフォーム入力は不要です。4つの質問に回答するだけで登録できるため、カンタン30秒で完了！
+                        </p>
                     </div>
                 </div>
 
-                <!-- ステップ3: お住まい (非表示) -->
-                <div id="step-3" class="step-content hidden">
-                    <h4 class="text-2xl font-bold text-gray-900 mb-8">お住まいの都道府県は？</h4>
-                    <div class="space-y-4">
-                        <!-- Selectボックスで実装 -->
-                        <select id="residence-select" class="w-full px-4 py-4 border-2 border-orange-400 rounded-xl text-xl text-gray-700 font-medium appearance-none bg-white shadow-inner focus:ring-2 focus:ring-orange-500">
-                            <option value="">-- 選択してください --</option>
-                            <option value="tokyo">東京都</option>
-                            <option value="osaka">大阪府</option>
-                            <option value="fukuoka">福岡県</option>
-                            <option value="aichi">愛知県</option>
-                            <option value="kanagawa">神奈川県</option>
-                            <option value="saitama">埼玉県</option>
-                            <option value="chiba">千葉県</option>
-                            <option value="other">その他</option>
-                        </select>
-                        <button id="next-step-3" class="w-full next-step-button bg-orange-500 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-orange-600 transition duration-300 transform hover:scale-105 cta-shadow">
-                            次へ進む
-                        </button>
+
+                <!-- 右側: 3つのメリットリスト -->
+                <div class="w-full md:w-1/2 benefit-list-wrapper">
+                    <h4 class="text-2xl font-extrabold text-gray-900 border-b-2 border-orange-300 pb-2 mb-6">
+                        堅苦しさゼロ！カジュアル相談でわかること
+                    </h4>
+                    
+                    <!-- ★★★ 修正: カジュアルメッセージをタイトル直下に移動 ★★★ -->
+                    <p class="casual-message">
+                        ご相談だけでも、ラフな会話だけでもOKです！
+                    </p>
+
+                    <!-- ★★★ 修正: 余白のバランス調整のため space-y-6 に変更 ★★★ -->
+                    <div class="space-y-6 flex flex-col justify-between flex-grow">
+                        <!-- Benefit 1: 市場価値 -->
+                        <!-- ★★★ 修正: py-4 px-4 に調整し、フォントサイズを text-lg に変更 ★★★ -->
+                        <div class="bg-white px-4 py-4 rounded-xl shadow-lg border-l-4 border-teal-500 benefit-card flex-grow flex items-center justify-center">
+                            <p class="font-extrabold text-teal-800 text-center">
+                                モヤモヤ解消！最短15分で強み・価値を発見
+                            </p>
+                        </div>
+
+                        <!-- Benefit 2: やりたいこと -->
+                        <div class="bg-white px-4 py-4 rounded-xl shadow-lg border-l-4 border-teal-500 benefit-card flex-grow flex items-center justify-center">
+                            <p class="font-extrabold text-teal-800 text-center">
+                                「本当に夢中なれること」の正体を一緒に言語化
+                            </p>
+                        </div>
+
+                        <!-- Benefit 3: 次の行動 -->
+                        <div class="bg-white px-4 py-4 rounded-xl shadow-lg border-l-4 border-teal-500 benefit-card flex-grow flex items-center justify-center">
+                            <p class="font-extrabold text-teal-800 text-center">
+                                次の行動が明確になる「キャリア逆算設計」の初動
+                            </p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- ステップ4: 年齢入力 (非表示) -->
-                <div id="step-4" class="step-content hidden">
-                    <h4 class="text-2xl font-bold text-gray-900 mb-8">年齢を入力してください</h4>
-                    <div class="space-y-4">
-                        <!-- Input Boxで実装 -->
-                        <input type="number" id="age-input" placeholder="例: 25" min="18" max="39" class="w-full px-4 py-4 border-2 border-orange-400 rounded-xl text-xl text-gray-700 font-medium shadow-inner focus:ring-2 focus:ring-orange-500 text-center">
-                        <!-- 修正点1: ボタンの背景色をサービスカラーに戻す -->
-                        <button id="final-submit" class="w-full bg-teal-600 text-white font-extrabold py-5 px-10 rounded-xl text-2xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
-                            面談を予約する (Timerexへ)
-                        </button>
-                    </div>
-                    <p class="text-sm text-red-500 mt-4 hidden" id="age-error-message">20代（18〜39歳）の整数を入力してください。</p>
-                </div>
-
-            </div> <!-- /#quick-form-content -->
-
-            <p class="text-sm text-gray-600 mt-6">
-                面倒なフォーム入力は不要です。4つの質問に回答するだけで登録できるため、カンタン30秒で完了！
-            </p>
+            </div> <!-- /combined-cta-container -->
         </div>
     </section>
 
@@ -947,35 +1244,43 @@
                 理想のキャリア・ゴールを実現するための、<br>
                 目の前の選択を最高の未来にしませんか？
             </p>
+            
+            <!-- ★★★ 修正: 心身サポートとLINE案内を横並びにする（final-cta-flex クラスを追加） ★★★ -->
+            <div class="final-cta-flex">
+                
+                <!-- 追加された身体サポートの付加価値ブロック (左側/上部) -->
+                <div class="bg-teal-50 p-6 rounded-xl shadow-inner mb-8 md:mb-0 border border-teal-200 final-cta-line-block">
+                    <h4 class="text-xl font-bold text-teal-800 mb-3">
+                        <!-- ★★★ 修正: 2行に分けるための <br> タグを追加 ★★★ -->
+                        心身の土台作りもサポート<br>
+                        （オプション）
+                    </h4>
+                    <!-- ★★★ 修正: 改行をきれいに調整（テキストの塊を自然な折り返しに） ★★★ -->
+                    <p class="text-md text-gray-700 mb-4 text-left">
+                        キャリアを成功させるには、活力のある「健康な身体」が不可欠です。本質的なキャリア支援に加え、日常を前向きに送るための栄養・運動・睡眠のノウハウ提供や、ドーパミン中毒を抜け出すためのルーティン構築サポートなども提供可能です。
+                    </p>
+                    <p class="text-sm font-semibold text-teal-600 mt-auto text-left">
+                        *詳しいサポート内容にご興味がある方は、初回面談の際にご相談ください。
+                    </p>
+                </div>
+    
+                <!-- LINE QRコードとリンクの追加 (右側/下部) -->
+                <div class="p-6 bg-white rounded-xl shadow-lg border border-teal-300 final-cta-line-block flex flex-col items-center">
+                    <p class="text-xl font-bold text-teal-700 mb-4">
+                        または <span class="text-green-500">LINE</span> でお気軽にご相談ください
+                    </p>
+                    <!-- QRコード画像を新しいURLに置き換え -->
+                    <img src="https://qr-official.line.me/gs/M_697fjulu_GW.png?oat_content=qr" alt="公式LINE QRコード" class="mx-auto rounded-lg mb-4 shadow-md border-4 border-teal-100 w-[150px] h-[150px]">
+                    <!-- LINEリンク -->
+                    <a href="https://lin.ee/LCVmpf6" target="_blank" rel="noopener noreferrer" class="inline-block text-lg font-bold text-white bg-green-500 hover:bg-green-600 py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 cta-shadow mt-auto">
+                        LINEで無料相談を開始する
+                    </a>
+                </div>
+            </div> <!-- /final-cta-flex -->
 
-            <!-- 追加された身体サポートの付加価値ブロック -->
-            <div class="bg-teal-50 p-6 rounded-xl shadow-inner mb-10 border border-teal-200">
-                <h4 class="text-xl font-bold text-teal-800 mb-3">
-                    心身の土台作りもサポート（オプション）
-                </h4>
-                <p class="text-md text-gray-700 mb-4">
-                    キャリアを成功させるには、活力のある「健康な身体」が不可欠です。本質的なキャリア支援に加え、日常を前向きに送るための栄養・運動・睡眠のノウハウ提供や、ドーパミン中毒を抜け出すためのルーティン構築サポートなども提供可能です。
-                </p>
-                <p class="text-sm font-semibold text-teal-600">
-                    *詳しいサポート内容にご興味がある方は、初回面談の際にご相談ください。
-                </p>
-            </div>
-
-            <!-- LINE QRコードとリンクの追加 -->
-            <div class="mb-10 p-6 bg-white rounded-xl shadow-lg border border-teal-300">
-                <p class="text-xl font-bold text-teal-700 mb-4">
-                    または <span class="text-green-500">LINE</span> でお気軽にご相談ください
-                </p>
-                <!-- QRコード画像を新しいURLに置き換え -->
-                <img src="https://qr-official.line.me/gs/M_697fjulu_GW.png?oat_content=qr" alt="公式LINE QRコード" class="mx-auto rounded-lg mb-4 shadow-md border-4 border-teal-100 w-[180px] h-[180px]">
-                <!-- LINEリンク -->
-                <a href="https://lin.ee/LCVmpf6" target="_blank" rel="noopener noreferrer" class="inline-block text-lg font-bold text-white bg-green-500 hover:bg-green-600 py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 cta-shadow">
-                    LINEで無料相談を開始する
-                </a>
-            </div>
 
             <!-- Final CTA Button (Timerex) - 修正点1: ボタンの背景色をサービスカラーに戻す -->
-            <a href="https://timerex.net/s/daiki.imahara_af3d/99581b91" target="_blank" rel="noopener noreferrer" class="inline-block bg-teal-600 text-white font-extrabold py-5 px-12 rounded-xl text-2xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
+            <a href="https://timerex.net/s/daiki.imahara_af3d/99581b91" target="_blank" rel="noopener noreferrer" class="inline-block bg-teal-600 text-white font-extrabold py-5 px-12 rounded-xl text-2xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta mt-10">
                 【簡単予約】カジュアル相談をしてみる
             </a>
             <p class="mt-4 text-lg text-gray-500">
@@ -997,7 +1302,8 @@
                 
                 <!-- QA Item 1: 費用 -->
                 <div class="faq-item">
-                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-1">
+                    <!-- ★★★ 修正: 質問文の色を text-gray-900 に変更済み ★★★ -->
+                    <button class="faq-q-button bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-1">
                         <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
                         転職サービスを利用するにあたって、費用はかかりますか？
                         <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
@@ -1014,7 +1320,8 @@
 
                 <!-- QA Item 2: 地方在住 -->
                 <div class="faq-item">
-                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-2">
+                    <!-- ★★★ 修正: 質問文の色を text-gray-900 に変更済み ★★★ -->
+                    <button class="faq-q-button bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-2">
                         <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
                         地方在住ですが転職サービスを利用できますか？
                         <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
@@ -1030,7 +1337,8 @@
 
                 <!-- QA Item 3: リモート対応 (新規追加) -->
                 <div class="faq-item">
-                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-4">
+                    <!-- ★★★ 修正: 質問文の色を text-gray-900 に変更済み ★★★ -->
+                    <button class="faq-q-button bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-4">
                         <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
                         サービスを受ける際にリモートで対応していただく事は可能ですか？
                         <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
@@ -1046,7 +1354,8 @@
                 
                 <!-- QA Item 4: 高卒の可能性 -->
                 <div class="faq-item">
-                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-3">
+                    <!-- ★★★ 修正: 質問文の色を text-gray-900 に変更済み ★★★ -->
+                    <button class="faq-q-button bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-3">
                         <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
                         最終学歴が高卒ですが就職する事は可能ですか？
                         <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
@@ -1063,7 +1372,8 @@
 
                 <!-- QA Item 5: 20代以外 (新規追加) -->
                 <div class="faq-item">
-                    <button class="faq-q-button text-teal-700 bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-5">
+                    <!-- ★★★ 修正: 質問文の色を text-gray-900 に変更済み ★★★ -->
+                    <button class="faq-q-button bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-5">
                         <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
                         20代以外でもサービスを受ける事は可能ですか？
                         <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
@@ -1234,7 +1544,7 @@
             return queryString ? `${baseUrl}?${queryString}` : baseUrl;
         }
 
-        // --- Q&A アコーディオン機能 (新規追加) ---
+        // --- Q&A アコーディオン機能 (既存) ---
         function setupFAQAccordion() {
             document.querySelectorAll('.faq-item').forEach(item => {
                 const button = item.querySelector('.faq-q-button');
@@ -1270,6 +1580,8 @@
             // スムーズスクロール設定
             applySmoothScroll('#global-nav a');
             applySmoothScroll('#fixed-campaign-cta');
+            applySmoothScroll('#sec-cta a'); // Final CTA section links
+            applySmoothScroll('#sec-quick-form a'); // Benefit section links
 
             // クイックフォームの初期表示
             renderStep(currentStep);
@@ -1327,7 +1639,8 @@
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const currentValue = Math.floor(progress * (end - start) + start);
+                // 問い合わせ件数は整数なのでMath.roundではなくMath.floorを使用
+                const currentValue = Math.floor(progress * (end - start) + start); 
 
                 obj.innerHTML = currentValue + `<span class="text-3xl">${unit}</span>`;
 
@@ -1349,7 +1662,15 @@
                         elements.forEach(el => {
                             const target = parseInt(el.getAttribute('data-target'));
                             const unit = el.getAttribute('data-unit');
-                            animateValue(el, 0, target, 2000, unit);
+                            // ★★★ 修正: アニメーションを再実行するために、毎回 0 から開始するように変更 ★★★
+                            animateValue(el, 0, target, 2000, unit); 
+                        });
+                        // observer.unobserve(entry.target); // コメントアウト: 常にアニメーションを有効にするため
+                    } else {
+                        // セクションが画面外に出たら、数字を初期値（0またはデータターゲット値）に戻す（オプション）
+                        // 今回はページをリロードしない限りアニメーションは再実行されないため、この処理は不要
+                        elements.forEach(el => {
+                             // el.innerHTML = el.getAttribute('data-target') + `<span class="text-3xl">${el.getAttribute('data-unit')}</span>`;
                         });
                     }
                 });
@@ -1380,12 +1701,10 @@
                 });
             }, observerOptions);
 
-            document.querySelectorAll('#sec-proof .scroll-animate').forEach(el => {
+            document.querySelectorAll('#sec-proof .scroll-animate, #sec-cases .scroll-animate, #sec-quick-form .benefit-card').forEach(el => {
                 observer.observe(el);
             });
         });
     </script>
 </body>
 </html>
-
-
