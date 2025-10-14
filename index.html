@@ -179,7 +179,7 @@
                 bottom: 0.5rem; /* モバイルでの配置調整 */
                 right: 0.5rem;
                 /* ★★★ 修正: スマホ時の幅を少し広げ、テキストが収まるように調整 ★★★ */
-                width: 130px; 
+                width: 130px;
                 height: 130px;
             }
         }
@@ -192,11 +192,11 @@
             background: #fff8e1; /* 淡い黄色系 */
             border: 4px solid #f97316; /* オレンジの枠線 */
             /* 修正点2-1: フォームの最大幅を広げ、モバイルで100%幅に近づける */
-            max-width: 100%; 
+            max-width: 100%;
             width: 100%;
         }
         @media (min-width: 640px) {
-             .quick-form-card {
+            .quick-form-card {
                 max-width: 600px; /* PCでは少し広めに */
             }
         }
@@ -334,7 +334,7 @@
                 /* 高さを揃えるために align-items: stretch を追加 */
                 flex-direction: row; /* 横並び */
                 gap: 4rem;
-                align-items: stretch; 
+                align-items: stretch;  
             }
             /* フォーム（左側）とメリット（右側）の幅を調整 */
             .combined-cta-container > div:nth-child(1) { /* フォーム */
@@ -362,12 +362,12 @@
         }
         /* メリットのタイトルとフッターを固定し、カード部分を均等に配置するための設定 */
         .benefit-list-wrapper > .space-y-6 {
-            flex-grow: 1; 
+            flex-grow: 1;  
             display: flex;
             flex-direction: column;
             /* カード間に均等なスペースを設け、カードの高さを揃える */
             /* gapを減らし、カード自身の高さを増やすことで、左側のボタン群と高さを合わせやすくする */
-            justify-content: space-between; 
+            justify-content: space-between;  
             padding-top: 0.5rem; /* 微調整 */
             padding-bottom: 0.5rem; /* 微調整 */
             gap: 0.75rem; /* 隙間を小さくし、カード自体を長くする */
@@ -383,17 +383,17 @@
             }
             /* フォームカード自体も高さを利用するように flex-grow を追加 */
             .quick-form-card {
-                 flex-grow: 1;
+                flex-grow: 1;
             }
         }
         @media (max-width: 767px) {
-             .quick-form-wrapper {
+            .quick-form-wrapper {
                 order: 2; /* スマホでは下側にするために2 */
             }
-             .benefit-list-wrapper {
+            .benefit-list-wrapper {
                 order: 1; /* スマホでは上側にするために1 */
             }
-             .benefit-list-wrapper {
+            .benefit-list-wrapper {
                 padding: 1.5rem; /* スマホでは少しパディングを減らす */
             }
         }
@@ -402,14 +402,14 @@
         #step-1 .space-y-4 .quick-form-button,
         #step-2 .space-y-4 .quick-form-button {
             /* ボタンの高さを均一にするための min-height と padding 調整 */
-            min-height: 80px; 
+            min-height: 80px;  
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             /* ★★★ 修正: フォントサイズを維持し、高さ合わせのため padding-top/bottom を調整 ★★★ */
-            padding-top: 1.1rem; 
+            padding-top: 1.1rem;  
             padding-bottom: 1.1rem;
             font-size: 1.25rem; /* text-xl */
             font-weight: 700; /* font-bold */
@@ -418,7 +418,7 @@
         /* 個別のメリットカードの余白を調整して高さを稼ぐ */
         .benefit-list-wrapper .benefit-card {
             /* カードの縦パディングを増やし、高さを稼ぐ */
-            /* ★★★ 修正: py-4 px-4 に戻し、フォントサイズを text-lg に調整して一行を担保しつつ高さを合わせる ★★★ */
+            /* ★★★ 修正: py-4 px-4 に戻し、フォントサイズを text-lg に変更して一行を担保しつつ高さを合わせる ★★★ */
             padding: 1rem; /* py-4 px-4 に相当 */
             flex-grow: 1;
             display: flex;
@@ -438,25 +438,25 @@
 
         /* PC (>=768px) でのメリットテキスト調整 */
         @media (min-width: 768px) {
-             /* PCで一行表示を強制 */
-             .benefit-list-wrapper .benefit-card p {
-                white-space: nowrap; 
+            /* PCで一行表示を強制 */
+            .benefit-list-wrapper .benefit-card p {
+                white-space: nowrap;  
                 overflow: hidden;
                 text-overflow: ellipsis;
-             }
+            }
         }
         
         /* フォームのフリーターのサブテキストを調整 */
         .quick-form-button span.text-base {
-             font-size: 0.95rem;
+            font-size: 0.95rem;
         }
 
         /* ステップのコンテンツの縦方向マージンを減らす（ステップ間の隙間を詰める） */
         .quick-form-card .space-y-4 {
             /* ステップ内のボタン間のマージンを調整 */
-             --tw-space-y-reverse: 0;
-             margin-top: 1rem;
-             margin-bottom: 1rem;
+            --tw-space-y-reverse: 0;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
         }
         .quick-form-card .space-y-4 > * + * {
             margin-top: 1rem !important; /* 隙間を 1rem に固定 */
@@ -468,8 +468,8 @@
         }
         /* メリットカードのホバーエフェクトを調整 */
         .benefit-card:hover {
-             transform: scale(1.02);
-             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         /* ★★★ NEW: メリットセクションのカジュアルメッセージのスタイルを調整 ★★★ */
@@ -481,6 +481,187 @@
             margin-top: 1rem;
             margin-bottom: 1.5rem;
             padding: 0.5rem 0;
+        }
+
+        /* ★★★ LINE特典セクションのカスタムスタイル（参考LP風） ★★★ */
+        .line-benefit-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            /* 疑似要素で豪華な枠線を追加 */
+            border: 2px solid #fbd795; /* 参照LPの枠線に近い明るいオレンジ */
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .line-benefit-icon-wrapper {
+            /* 王冠アイコンのデザインを再現 */
+            position: absolute;
+            top: -0.1rem;
+            left: 0.5rem;
+            width: 50px;
+            height: 50px;
+            background-color: #fef3c7; /* yellow-100 */
+            border-radius: 0.5rem;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #713f12; /* amber-900 */
+            border: 1px solid #fbbf24;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px); /* 浮いている感じを出す */
+        }
+        .line-benefit-title-wrapper {
+            padding-top: 3rem; /* 王冠スペースを空ける */
+        }
+        /* 特典のメインタイトルを強調 */
+        .benefit-main-title {
+            /* ★★★ 修正: モバイルで1.3rem (約20.8px) に調整し、2行に収まりやすくする ★★★ */
+            font-size: 1.3rem; 
+            font-weight: 800; /* font-extrabold */
+            line-height: 1.4;
+            color: #1f2937; /* gray-800 */
+        }
+        /* PCサイズに戻す */
+        @media (min-width: 768px) {
+            .benefit-main-title {
+                font-size: 1.5rem;
+            }
+        }
+        /* 特典のサブタイトルを強調 */
+        .benefit-sub-title {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600;
+            color: #4b5563; /* gray-600 */
+            margin-bottom: 0.5rem;
+            padding-top: 0.25rem;
+        }
+        
+        /* ★★★ LINE登録CTAボタンのスタイル（ポップに） - 特典セクション用 ★★★ */
+        /* image_f13c2a.pngのデザインを再現 */
+        #sec-line-benefit .line-cta-button {
+            /* LINEカラーを使用 - 修正: 添付画像の色 (#30c04f) に近い明るいグリーンに調整 */
+            background: linear-gradient(to bottom, #4ade80, #30c04f); /* light green to LINE green */
+            /* サイズと形状を調整 */
+            padding: 1rem 1.5rem; 
+            border-radius: 9999px; /* full rounded */
+            font-size: 1.8rem; /* 大きめのフォント */
+            font-weight: 800; 
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 15px -3px rgba(48, 192, 79, 0.5), 0 4px 6px -2px rgba(48, 192, 79, 0.2); 
+            border: 4px solid #ccfbf1; /* teal-100 の縁取りでポップ感を強調 */
+            width: 100%; 
+            display: inline-block; /* 中央揃えのため */
+            /* Flexbox関連を削除 */
+            display: block; 
+            text-align: center;
+        }
+        /* 特典ボタン内の不要な要素を非表示 */
+        #sec-line-benefit .line-cta-button .text-sub,
+        #sec-line-benefit .line-cta-button .line-icon-wrapper,
+        #sec-line-benefit .line-cta-button .arrow-icon-wrapper {
+             display: none !important;
+        }
+        #sec-line-benefit .line-cta-button .text-main {
+             display: block !important;
+             font-size: 1.6rem; /* スマホで調整 */
+             line-height: 1.2;
+             padding: 0;
+        }
+        @media (min-width: 640px) {
+             #sec-line-benefit .line-cta-button .text-main {
+                font-size: 1.8rem;
+            }
+        }
+
+        
+        /* 特典セクションの全体装飾を強化 */
+        #sec-line-benefit .container-wrapper {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(249, 115, 22, 0.1), 0 10px 10px -5px rgba(249, 115, 22, 0.04);
+            background: #fff;
+            border: 4px solid #f97316; /* オレンジの枠線 */
+        }
+        /* モバイル時の特典タイトル調整 */
+        @media (max-width: 767px) {
+            /* フッターCTAのスマホ調整 */
+            .line-cta-button {
+                flex-direction: row; /* スマホでも横並びを維持 */
+                padding: 1rem;
+            }
+            /* 他のモバイル調整は省略 */
+        }
+        /* モバイルでの職務経歴書と事例のタイトル調整 */
+        .title-responsive {
+            font-size: 1.7rem; /* h3のフォントサイズをスマホ向けに調整 */
+        }
+        @media (min-width: 640px) {
+            .title-responsive {
+                font-size: 2rem;
+            }
+        }
+        @media (min-width: 768px) {
+            .title-responsive {
+                font-size: 2.25rem;
+            }
+        }
+
+        /* 添付画像に合わせて、フッターのLINEボタンを修正 */
+        .final-cta-line-block .line-cta-button {
+            background: linear-gradient(to bottom, #4ade80, #30c04f); /* light green to LINE green */
+            box-shadow: 0 10px 15px -3px rgba(48, 192, 79, 0.5), 0 4px 6px -2px rgba(48, 192, 79, 0.2); 
+            border: none; /* 下のボタンは縁取りをなくす */
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 700; /* font-bold */
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            /* Flexbox設定を解除して通常のボタンサイズに戻す */
+            display: inline-block;
+            width: auto;
+            min-width: 250px;
+        }
+        
+        /* ★★★ 求人ラインナップのバブルスタイル (新規追加) ★★★ */
+        .job-bubble-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem; /* gap-3 */
+            margin-top: 1rem;
+        }
+        .job-bubble {
+            background-color: #ffffff; /* bg-white */
+            color: #0d9488; /* text-teal-600 */
+            border: 2px solid #2dd4bf; /* border-teal-400 */
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 1rem; /* text-base */
+            font-weight: 700; /* font-bold */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+            cursor: default;
+        }
+        .job-bubble:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        }
+        /* 追加のキーワードのバブルカラー調整 */
+        /* ★★★ 修正：オレンジ色を削除し、全てサービスカラーに統一 ★★★ */
+        .job-bubble.keyword {
+            background-color: #2dd4bf; /* bg-teal-400 */
+            color: white;
+            border-color: #2dd4bf; /* border-teal-400 */
+        }
+        /* 補足テキストのスタイル */
+        .job-supplement {
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563; /* text-gray-600 */
+            margin-top: 1rem;
         }
 
 
@@ -517,8 +698,9 @@
             <div class="nav-link-item">
                 <a href="#sec-cases" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">事例紹介</a>
             </div>
+            <!-- ★★★ 修正: 目次「LINE特典」を黒字に変更 ★★★ -->
             <div class="nav-link-item">
-                <a href="#sec-specialty" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">専門領域</a>
+                <a href="#sec-line-benefit" class="nav-link-button text-sm font-semibold text-gray-600 hover:text-teal-600 hover:bg-teal-50 transition duration-150">LINE特典</a>
             </div>
             <div class="nav-link-item">
                 <a href="#sec-jobs" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">求人の特徴</a>
@@ -551,12 +733,13 @@
             </div>
 
             <h2 class="text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6 animate-fv-title opacity-100">
-                「転職」をゴールにしない、
+                「転職」をゴールにしない、<br class="sm:hidden">
                 <span class="text-teal-700 block sm:inline-block">すべての人に夢中になれるキャリアを</span>
             </h2>
+            <!-- ★★★ モバイル改行調整 ★★★ -->
             <p class="mt-4 text-lg sm:text-2xl text-gray-700 max-w-3xl mx-auto font-medium">
                 「自分の市場価値がわからない」「本当にやりたいこと」を、<br>
-                20代でキャリアを駆け抜けるプロと一緒に明確化し、<br>
+                20代でキャリアを駆け抜けるプロと一緒に明確化し、<br class="sm:hidden">
                 キャリアのゴールから逆算した、最適な選択を選びませんか？
             </p>
             
@@ -569,8 +752,10 @@
 
             <!-- CTAボタンの下にある小さめの LINE QRコード -->
             <div class="mt-4 inline-flex flex-col items-center p-3 bg-white/80 rounded-lg shadow-md border border-teal-200">
-                <p class="text-sm font-bold text-teal-700 mb-2">LINEで相談も可能です</p>
-                <a href="https://lin.ee/LCVmpf6" target="_blank" rel="noopener noreferrer">
+                <!-- ★★★ 修正: 「LINEで無料相談を」→「LINEで適職診断」に変更 ★★★ -->
+                <p class="text-sm font-bold text-teal-700 mb-2">LINEで適職診断</p>
+                <!-- ★★★ 修正: LINEリンクのURLを更新 ★★★ -->
+                <a href="https://lin.ee/ab8S6ma" target="_blank" rel="noopener noreferrer">
                     <img src="https://qr-official.line.me/gs/M_697fjulu_GW.png?oat_content=qr" alt="公式LINE QRコード" class="w-[60px] h-[60px] rounded-md border-2 border-teal-300">
                 </a>
             </div>
@@ -586,7 +771,7 @@
     <section id="sec-pain" class="scroll-offset py-16 md:py-24 bg-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900">
-                こんな漠然とした不安を抱えていませんか？
+                こんな漠然とした不安を<br class="sm:hidden">抱えていませんか？
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Pain Point 1 -->
@@ -612,7 +797,7 @@
     <section id="sec-compare" class="scroll-offset py-16 md:py-24 bg-gray-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-2xl sm:text-3xl lg:text-3xl font-bold text-center mb-16 text-gray-900">
-                私たちは、一般的な転職相談支援とどう違うのか？
+                私たちは、一般的な転職相談支援と<br class="sm:hidden">どう違うのか？
             </h3>
 
             <!-- 比較表 (Table) -->
@@ -661,7 +846,7 @@
             </div>
 
             <p class="mt-8 text-center text-xl text-teal-700 font-semibold">
-                当サービスは、「転職」をゴールとせず、長期的なキャリアのゴールを実現するために、入社後活躍できることを見据えた支援を軸にサポートします。
+                当サービスは、「転職」をゴールとせず、長期的なキャリアのゴールを<br class="sm:hidden">実現するために、入社後活躍できることを見据えた支援を軸にサポートします。
             </p>
         </div>
     </section>
@@ -670,7 +855,7 @@
     <section id="sec-proof" class="scroll-offset py-16 md:py-24 bg-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="title-responsive font-bold text-center mb-12 text-gray-900">
-                担当者紹介：成功へと導くメソッドを確立したキャリアプロ
+                担当者紹介：成功へと導くメソッドを<br class="sm:hidden">確立したキャリアプロ
             </h3>
 
             <div class="space-y-12">
@@ -754,7 +939,7 @@
     <!-- ★★★ 修正 Block 4.5: Coaching Cases/Success Stories -> キャリア変革事例に変更 ★★★ -->
     <section id="sec-cases" class="scroll-offset py-16 md:py-24 bg-orange-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-900">
+            <h3 class="title-responsive font-bold text-center mb-12 text-gray-900">
                 担当者との本質的な対話で実現した<br class="sm:hidden"><span class="text-orange-600">キャリア変革事例</span>
             </h3>
             <!-- ★★★ 修正: 注釈を削除 ★★★ -->
@@ -806,75 +991,76 @@
         </div>
     </section>
 
-    <!-- Block 5: 5 Specialized Areas (専門性) -->
-    <section id="sec-specialty" class="scroll-offset py-16 md:py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl sm:text-4xl font-bold text-center mb-16 text-gray-900">
-                「軸がない」を「確信」に変える、あなたのための5つの専門領域
+    <!-- Block 5: 公式LINE登録特典 (専門領域セクションと入れ替え) -->
+    <section id="sec-line-benefit" class="scroll-offset py-16 md:py-24 bg-red-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center container-wrapper bg-white shadow-2xl border-orange-500">
+            <!-- タイトル周りを調整 -->
+            <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+                LINE公式アカウント
             </h3>
+            <p class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-12 inline-block py-1 px-4 bg-yellow-200/50">
+                友だち限定 3大特典
+            </p>
 
-            <!-- 5つの要素を中央揃えにするためのFlexboxに変更 -->
-            <div class="flex flex-wrap justify-center gap-8">
-                <!-- IT -->
-                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-blue-500 w-full sm-w-calc-50-percent lg-w-30-percent">
-                    <div class="flex items-center mb-3">
-                        <span class="text-2xl font-extrabold text-blue-600 mr-2">IT業界</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-500"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/><path d="M12 15L6 9h12z"/></svg>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- 特典1: 職務経歴書＆履歴書をアドバイザーが無料作成 -->
+                <div class="line-benefit-card transform hover:scale-[1.02] transition duration-300">
+                    <div class="line-benefit-icon-wrapper" style="background-color: #fef3c7;">
+                         <!-- 王冠SVGアイコン(特典1) -->
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FBBF24" opacity="0.5"/><text x="12" y="16" font-size="8" font-weight="bold" fill="#713F12" text-anchor="middle">01</text></svg>
                     </div>
-                    <p class="text-lg font-semibold text-gray-800 mb-2">未経験からのエンジニア採用に特化</p>
-                    <p class="text-sm text-gray-600">
-                        年間140名のエンジニア採用実績からノウハウを共有。未経験から本質的なスキルが身につく優良な開発・インフラ企業を紹介。
-                    </p>
+                    <div class="line-benefit-title-wrapper text-left">
+                        <p class="benefit-sub-title font-bold text-lg text-gray-800">特典 01</p>
+                        <!-- ★★★ モバイルで2行になるよう再調整済み ★★★ -->
+                        <p class="benefit-main-title text-gray-900">
+                            職務経歴書 & 履歴書を<br class="sm:hidden">アドバイザーが無料作成
+                        </p>
+                    </div>
                 </div>
 
-                <!-- 営業職 -->
-                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-red-500 w-full sm-w-calc-50-percent lg-w-30-percent">
-                    <div class="flex items-center mb-3">
-                        <span class="text-2xl font-extrabold text-red-600 mr-2">営業職</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-500"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 12h.01"/><path d="M12 16h.01"/><path d="M12 20h.01"/></svg>
+                <!-- 特典2: 適職診断に回答完了で面談対策シートをプレゼント -->
+                <div class="line-benefit-card transform hover:scale-[1.02] transition duration-300">
+                     <div class="line-benefit-icon-wrapper" style="background-color: #d1d5db; border-color: #6b7280;">
+                         <!-- 王冠SVGアイコン(特典2) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-500"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#9CA3AF" opacity="0.5"/><text x="12" y="16" font-size="8" font-weight="bold" fill="#1F2937" text-anchor="middle">02</text></svg>
                     </div>
-                    <p class="text-lg font-semibold text-gray-800 mb-2">売れる営業の無形商材ノウハウ</p>
-                    <p class="text-sm text-gray-600">
-                        難易度の高い無形商材営業のキャリア形成に強み。トップ経験を活かした面接対策で、あなたのポテンシャルを最大限に引き出します。
-                    </p>
+                    <div class="line-benefit-title-wrapper text-left">
+                        <p class="benefit-sub-title font-bold text-lg text-gray-800">特典 02</p>
+                        <!-- ★★★ モバイルで2行になるよう再調整済み ★★★ -->
+                        <p class="benefit-main-title text-gray-900">
+                            適職診断に回答完了で<br class="sm:hidden">面談対策シートをプレゼント
+                        </p>
+                    </div>
                 </div>
 
-                <!-- バックオフィス -->
-                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-green-500 w-full sm-w-calc-50-percent lg-w-30-percent">
-                    <div class="flex items-center mb-3">
-                        <span class="text-2xl font-extrabold text-green-600 mr-2">バックオフィス</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 10s-2.2 2-2 5-3 2-3 2H5s-3 0-3-2c0-3 .2-5 2-5h5"/><path d="M19 19V7l-7 3 7 3"/></svg>
+                <!-- 特典3: ツナグバ所属の転職アドバイザーにLINEチャットで気軽に相談 -->
+                <div class="line-benefit-card transform hover:scale-[1.02] transition duration-300">
+                    <div class="line-benefit-icon-wrapper" style="background-color: #fbd795; border-color: #f59e0b;">
+                         <!-- 王冠SVGアイコン(特典3) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-orange-600"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#F97316" opacity="0.5"/><text x="12" y="16" font-size="8" font-weight="bold" fill="#7C2D12" text-anchor="middle">03</text></svg>
                     </div>
-                    <p class="text-lg font-semibold text-gray-800 mb-2">長年の提携実績による確かなパイプ</p>
-                    <p class="text-sm text-gray-600">
-                        提携する大手人材会社のノウハウに基づき、企業が求める正確なスキルを把握。事務全般、営業アシスタント、経理、総務など、未経験から安定した専門スキルを身につけられる求人を紹介します。
-                    </p>
-                </div>
-
-                <!-- 福祉・医療 -->
-                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-purple-500 w-full sm-w-calc-50-percent lg-w-30-percent">
-                    <div class="flex items-center mb-3">
-                        <span class="text-2xl font-extrabold text-purple-600 mr-2">福祉・医療</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-500"><path d="M12 2a4 4 0 0 1 4 4v14H8V6a4 4 0 0 1 4-4z"/><path d="M12 18v-4"/><path d="M10 16h4"/></svg>
+                    <div class="line-benefit-title-wrapper text-left">
+                        <p class="benefit-sub-title font-bold text-lg text-gray-800">特典 03</p>
+                        <!-- ★★★ モバイルで2行になるよう再調整済み ★★★ -->
+                        <p class="benefit-main-title text-gray-900">
+                            LINEチャットで<br class="sm:hidden">気軽に相談
+                        </p>
                     </div>
-                    <p class="text-lg font-semibold text-gray-800 mb-2">安心して働ける職場の見極め方</p>
-                    <p class="text-sm text-gray-600">
-                        介護施設や病院（特養、老健など）の採用コンサル経験に基づき、離職率の低い法人、安定した福利厚生、良好な職場の雰囲気など、20代が長く活躍できる求人を見極めてご紹介します。
-                    </p>
-                </div>
-
-                <!-- グローバル人材 (以前の外国人材) -->
-                <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-yellow-600 w-full sm-w-calc-50-percent lg-w-30-percent">
-                    <div class="flex items-center mb-3">
-                        <span class="text-2xl font-extrabold text-yellow-700 mr-2">グローバル人材</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <p class="text-lg font-semibold text-gray-800 mb-2">日本人と対等に評価される転職</p>
-                    <p class="text-sm text-gray-600">
-                        単なる「外国人OK求人」ではなく、本質的なキャリアアップに繋がる企業を厳選。日本のビジネス文化に特化したコーチングで、入社後の活躍を見据えて支援。ビザ手続きサポートなどは別途費用で対応可能です。
-                    </p>
                 </div>
             </div>
+
+            <!-- 登録して特典を受け取るボタン (ポップなデザインに変更) -->
+            <!-- ★★★ 修正: アイコン前の装飾を削除 ★★★ -->
+            <p class="text-xl font-extrabold text-green-700 mb-4 inline-block px-4 py-2 bg-green-100 rounded-lg border border-green-300">
+                まずはLINEでかんたん登録！
+            </p>
+            <!-- ★★★ 修正: LINEリンクのURLを更新し、画像に合わせたデザイン（アイコンなし）に変更 ★★★ -->
+            <a href="https://lin.ee/ab8S6ma" target="_blank" rel="noopener noreferrer" class="line-cta-button text-white transform hover:scale-105 transition duration-300 animate-cta">
+                <span class="text-main">LINEで適職診断を開始する</span>
+            </a>
+            <p class="mt-4 text-sm text-gray-600">
+               LINE登録後、すぐに特典をご利用いただけます。
+            </p>
         </div>
     </section>
 
@@ -885,18 +1071,19 @@
                 ご紹介求人の特徴
             </h3>
 
-            <div class="space-y-12">
+            <!-- 画像のデザインに戻した実績ボックス -->
+            <div class="space-y-12 mb-12">
                 <!-- Point 1: 未経験から挑戦できる求人が多数 -->
                 <div class="flex flex-col lg:flex-row items-center lg:items-start bg-white p-8 rounded-2xl shadow-2xl border-l-8 border-orange-500">
                     <div class="w-full lg:w-3/5 lg:pr-8 mb-6 lg:mb-0">
                         <p class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
-                            未経験から<br class="lg:inline">挑戦できる求人が多数
+                            未経験から<br class="sm:hidden">挑戦できる求人が多数
                         </p>
                         <p class="text-lg text-gray-700 mb-4">
                             幅広く業界・職種の求人をご用意しています。その中から、キャリアゴールに合わせた未経験OKの求人を厳選してご紹介します。
                         </p>
                         <p class="text-lg text-gray-700 font-semibold">
-                            これにより、あなたの強みとキャリアゴールに合った求人を幅広くご紹介できます。
+                            これにより、あなたの強みとキャリアゴールに合った求人を<br class="sm:hidden">幅広くご紹介できます。
                         </p>
                     </div>
 
@@ -919,30 +1106,44 @@
 
                     <div class="w-full lg:w-3/5">
                         <p class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
-                            20代の育成に<br>
-                            力を入れている<br>
+                            20代の育成に<br class="sm:hidden">
+                            力を入れている<br class="sm:hidden">
                             企業の求人が多い
                         </p>
                         <p class="text-lg text-gray-700 mb-4">
                             20代の育成に力を入れている企業が多く、研修や資格取得支援などが充実していることが特徴です！
                         </p>
                         <p class="text-lg text-gray-700 font-semibold">
-                            長期的な成長を見据えた環境で、安心してスキルアップできる企業をご紹介します。
+                            長期的な成長を見据えた環境で、<br class="sm:hidden">安心してスキルアップできる企業をご紹介します。
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- その他の特徴をシンプルにリスト化 -->
+            <!-- ★★★ 修正: 職種例をポップなバブルリストに変更 ★★★ -->
             <div class="mt-12">
-                <h4 class="text-2xl font-bold text-teal-800 mb-6 text-center">その他の求人ラインナップ</h4>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <span class="bg-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 shadow-md">成長ベンチャー企業多数</span>
-                    <span class="bg-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 shadow-md">IT/Web系、営業職、事務職が豊富</span>
-                    <span class="bg-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 shadow-md">福祉職・医療系求人あり</span>
-                    <span class="bg-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 shadow-md">独自の採用基準を持つ優良求人を厳選</span>
+                <h4 class="text-2xl font-bold text-teal-800 mb-8 text-center">
+                    主なご紹介職種例
+                </h4>
+                <div class="job-bubble-list">
+                    <!-- ★★★ 修正: 全てエメラルドグリーン系のカラーに統一 ★★★ -->
+                    <div class="job-bubble">IT/Web系</div>
+                    <div class="job-bubble keyword">営業職</div>
+                    <div class="job-bubble">事務・アシスタント</div>
+                    <div class="job-bubble keyword">マーケティング</div>
+                    <div class="job-bubble">コンサルティング</div>
+                    <div class="job-bubble keyword">人事・労務</div>
+                    <div class="job-bubble">福祉・医療系</div>
+                    <div class="job-bubble">グローバル人材向け</div>
+                    <div class="job-bubble">多業界に対応</div>
                 </div>
+                <!-- ★★★ 修正: 補足テキストを追加 ★★★ -->
+                <p class="text-center job-supplement">
+                    ほかにも幅広い業種紹介可能
+                </p>
             </div>
+            <!-- ★★★ 修正終わり ★★★ -->
+
         </div>
     </section>
 
@@ -950,7 +1151,7 @@
     <section id="sec-plan" class="scroll-offset py-16 md:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-3xl sm:text-4xl lg:text-3xl font-bold text-center mb-16 text-gray-900">
-                あなたの希望に合わせた2つのサポートプラン
+                あなたの希望に合わせた2つの<br class="sm:hidden">サポートプラン
             </h3>
 
             <div class="flex flex-col lg:flex-row justify-center items-stretch space-y-8 lg:space-y-0 lg:space-x-12">
@@ -1089,7 +1290,7 @@
     <section id="sec-quick-form" class="scroll-offset py-16 md:py-24 bg-orange-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
-                まずは【無料相談】で得られる<span class="text-orange-600">3つの確信</span>と面談予約
+                まずは【無料相談】で得られる<br class="sm:hidden"><span class="text-orange-600">3つの確信</span>と面談予約
             </h3>
             
             <!-- メリットとフォームを横並びにするコンテナ -->
@@ -1247,7 +1448,7 @@
     <section id="sec-cta" class="scroll-offset py-12 md:py-16 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-                「このままでいいのか」という不安を、<br>
+                「このままでいいのか」という不安を、<br class="sm:hidden">
                 理想のキャリア設計への第一歩に
             </h3>
             <p class="text-xl text-gray-600 mb-10">
@@ -1280,16 +1481,18 @@
                         または <span class="text-green-500">LINE</span> でお気軽にご相談ください
                     </p>
                     <!-- QRコード画像を新しいURLに置き換え -->
+                    <!-- ★★★ 修正: LINEリンクのURLを更新 ★★★ -->
                     <img src="https://qr-official.line.me/gs/M_697fjulu_GW.png?oat_content=qr" alt="公式LINE QRコード" class="mx-auto rounded-lg mb-4 shadow-md border-4 border-teal-100 w-[150px] h-[150px]">
                     <!-- LINEリンク -->
-                    <a href="https://lin.ee/LCVmpf6" target="_blank" rel="noopener noreferrer" class="inline-block text-lg font-bold text-white bg-green-500 hover:bg-green-600 py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 cta-shadow mt-auto">
-                        LINEで無料相談を開始する
+                    <!-- ★★★ 修正: LINEリンクのURLを更新し、デザインを調整 ★★★ -->
+                    <a href="https://lin.ee/ab8S6ma" target="_blank" rel="noopener noreferrer" class="line-cta-button text-white font-extrabold text-xl py-3 px-8 rounded-lg hover:opacity-90 transition duration-300 cta-shadow mt-auto">
+                        LINEで適職診断を開始する
                     </a>
                 </div>
             </div> <!-- /final-cta-flex -->
 
 
-            <!-- Final CTA Button (Timerex) - 修正点1: ボタンの背景色をサービスカラーに戻す -->
+            <!-- Final CTA Button (Timerex) - ★★★ 修正: リンクを埋め込み直す (hrefを確実に設定) ★★★ -->
             <a href="https://timerex.net/s/daiki.imahara_af3d/99581b91" target="_blank" rel="noopener noreferrer" class="inline-block bg-teal-600 text-white font-extrabold py-5 px-12 rounded-xl text-2xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta mt-10">
                 【簡単予約】カジュアル相談をしてみる
             </a>
@@ -1310,6 +1513,22 @@
             
             <div class="border border-gray-200 rounded-xl overflow-hidden shadow-lg">
                 
+                <!-- QA Item 6: 面談時間調整 (新規追加) -->
+                <div class="faq-item">
+                    <button class="faq-q-button bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-6">
+                        <span class="mr-3 text-orange-500 font-extrabold text-2xl">Q</span>
+                        現在の仕事の兼ね合いから面談時間が朝早くか夜遅くとなります。面談の時間調整は可能でしょうか。
+                        <svg class="faq-icon w-5 h-5 flex-shrink-0 text-orange-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="faq-answer-6" class="faq-answer">
+                        <p class="text-gray-700 pb-4">
+                            調整可能です。その場合はLINEからご相談ください。
+                        </p>
+                    </div>
+                </div>
+
                 <!-- QA Item 1: 費用 -->
                 <div class="faq-item">
                     <!-- ★★★ 修正: 質問文の色を text-gray-900 に変更済み ★★★ -->
@@ -1361,7 +1580,7 @@
                         </p>
                     </div>
                 </div>
-                
+
                 <!-- QA Item 4: 高卒の可能性 -->
                 <div class="faq-item">
                     <!-- ★★★ 修正: 質問文の色を text-gray-900 に変更済み ★★★ -->
@@ -1456,7 +1675,11 @@
 
     <!-- JavaScript for All Functions -->
     <script>
+        // TimerexのURLを定数として定義
         const TIMBREX_URL = "https://timerex.net/s/daiki.imahara_af3d/99581b91";
+        // LINEのURLを定数として定義
+        const LINE_URL = "https://lin.ee/ab8S6ma";
+
         let currentStep = 1;
         const totalSteps = 4;
         let formData = {};
@@ -1470,17 +1693,21 @@
         function applySmoothScroll(selector) {
             document.querySelectorAll(selector).forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        const offset = 100; // Header + Nav の高さ分
-                        window.scrollTo({
-                            top: targetElement.offsetTop - offset,
-                            behavior: 'smooth'
-                        });
+                    // hrefが#sec-quick-formなどのアンカーの場合のみスムーズスクロールを適用
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            const offset = 100; // Header + Nav の高さ分
+                            window.scrollTo({
+                                top: targetElement.offsetTop - offset,
+                                behavior: 'smooth'
+                            });
+                        }
                     }
+                    // LINEやTimerexのURLの場合は、デフォルトの動作（別タブで開く）に任せる
                 });
             });
         }
@@ -1592,6 +1819,7 @@
             applySmoothScroll('#fixed-campaign-cta');
             applySmoothScroll('#sec-cta a'); // Final CTA section links
             applySmoothScroll('#sec-quick-form a'); // Benefit section links
+            applySmoothScroll('#sec-line-benefit a'); // NEW LINE benefit section links
 
             // クイックフォームの初期表示
             renderStep(currentStep);
@@ -1680,7 +1908,7 @@
                         // セクションが画面外に出たら、数字を初期値（0またはデータターゲット値）に戻す（オプション）
                         // 今回はページをリロードしない限りアニメーションは再実行されないため、この処理は不要
                         elements.forEach(el => {
-                             // el.innerHTML = el.getAttribute('data-target') + `<span class="text-3xl">${el.getAttribute('data-unit')}</span>`;
+                            // el.innerHTML = el.getAttribute('data-target') + `<span class="text-3xl">${el.getAttribute('data-unit')}</span>`;
                         });
                     }
                 });
