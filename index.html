@@ -764,7 +764,7 @@
         }
         /* ★★★ 修正: 質問文のフォントサイズをスマホで小さく ★★★ */
         .mbti-question p.text-xl {
-            font-size: 1.15rem; /* 18.4px */
+            font-size: 1.1rem; /* 17.6px */
         }
         .mbti-answer-button {
             transition: all 0.2s;
@@ -772,8 +772,8 @@
             border: 2px solid #2dd4bf; /* Teal-400 */
             font-weight: 700;
             /* ★★★ 修正: ボタンの縦パディングを縮小 ★★★ */
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
+            padding: 0.6rem 1rem; /* さらに縮小 */
+            font-size: 0.95rem; /* 文字サイズをさらに縮小 */
         }
         .mbti-answer-button:hover {
             background-color: #99f6e4; /* Teal-200 */
@@ -799,13 +799,15 @@
             flex-direction: column; 
             align-items: center;
             justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            /* ★★★ 修正: マージンを調整し、コンパクトに ★★★ */
+            gap: 0.75rem;
+            margin-bottom: 1rem;
             position: relative;
         }
         #mbti-result .type-image-placeholder {
-            width: 100px;
-            height: 100px;
+            /* ★★★ 修正: サイズを縮小し、コンパクトに ★★★ */
+            width: 80px;
+            height: 80px;
             background-color: #ccfbf1; /* Teal-100 */
             border-radius: 50%;
             border: 3px solid #0d9488;
@@ -815,29 +817,32 @@
         }
         /* ★★★ 修正: 画像を配置するために img タグのスタイルを定義 ★★★ */
         #mbti-result .type-image-placeholder img {
-            width: 60px; /* 画像サイズを調整 */
-            height: 60px;
+            width: 50px; /* 画像サイズを調整 */
+            height: 50px;
             object-fit: contain;
         }
         
         #mbti-result #result-type-name {
             /* ★★★ 修正: スマホでの文字の大きさを調整（圧迫感軽減） ★★★ */
-            font-size: 1.8rem; 
+            font-size: 1.4rem; /* 修正: 1.6rem -> 1.4rem */
             font-weight: 800;
             color: #111827; /* gray-900 */
             line-height: 1.4;
-        }
-        #mbti-result #result-type-nickname {
-            /* ★★★ 修正: スマホでの文字の大きさを調整（圧迫感軽減） ★★★ */
-            font-size: 1.5rem; 
-            font-weight: 800;
-            color: #0d9488; /* Teal-600 */
-            margin-top: 0.5rem;
         }
         @media (min-width: 640px) {
              #mbti-result #result-type-name {
                 font-size: 2.25rem; 
             }
+        }
+
+        #mbti-result #result-type-nickname {
+            /* ★★★ 修正: スマホでの文字の大きさを調整（圧迫感軽減） ★★★ */
+            font-size: 1.15rem; /* 修正: 1.3rem -> 1.15rem */
+            font-weight: 800;
+            color: #0d9488; /* Teal-600 */
+            margin-top: 0.25rem;
+        }
+        @media (min-width: 640px) {
             #mbti-result #result-type-nickname {
                 font-size: 1.8rem; 
             }
@@ -860,10 +865,17 @@
             display: inline-block;
             margin-bottom: 0.75rem;
         }
-        /* ★★★ 修正: 結果テキストのフォントサイズを調整 ★★★ */
+        /* ★★★ 修正: 結果テキストのフォントサイズとラインハイトを調整 ★★★ */
         #mbti-result #result-career-match {
-            font-size: 1.15rem;
+            font-size: 0.95rem; /* 修正: 1rem -> 0.95rem */
+            line-height: 1.4;
+            padding: 0 0.5rem;
         }
+        /* CTA誘導文の文字サイズも調整 */
+        #mbti-result .text-xl.font-bold.text-red-500 {
+            font-size: 1.05rem; /* 修正: 1.15rem -> 1.05rem */
+        }
+
         
         /* ★★★ NEW: ローディングオーバーレイのスタイル ★★★ */
         .loading-overlay {
@@ -1025,11 +1037,11 @@
                 「転職」をゴールにしない、<br class="sm:hidden">
                 <span class="text-teal-700 block sm:inline-block">すべての人に夢中になれるキャリアを</span>
             </h2>
-            <!-- ★★★ 修正: 文言を新しいものに変更 ★★★ -->
+            <!-- ★★★ 修正: 文言を新しいものに変更し、PCで2行、スマホで3行改行を適用 ★★★ -->
             <p class="mt-4 text-lg sm:text-2xl text-gray-700 max-w-3xl mx-auto font-medium">
-                **変えたい方、変わりたい方**、<br>
-                20代でキャリアを駆け抜けるプロと一緒に明確化し、<br class="sm:hidden">
-                キャリアのゴールから逆算した、最適な選択を選びませんか？
+                変えたい方、変わりたい方<br class="hidden sm:block">
+                キャリアのゴールから逆算した、<br class="sm:hidden">
+                最適な選択を選びませんか？
             </p>
             
             <!-- Main CTA Button - Quick Formへ誘導 -->
@@ -1159,7 +1171,8 @@
                         </div>
                         <div>
                             <!-- 傾向タイトルのみを大きく表示 -->
-                            <h4 class="text-4xl sm:text-5xl font-extrabold tracking-wider text-teal-600 mb-1" id="result-type-name">もしかしたら、こんな職業が向いているかも！？</h4>
+                            <!-- ★★★ 修正: 「もしかしたら、」を削除しました ★★★ -->
+                            <h4 class="text-4xl sm:text-5xl font-extrabold tracking-wider text-teal-600 mb-1" id="result-type-name">こんな職業が向いているかも！？</h4>
                             <p class="text-xl font-extrabold text-gray-900" id="result-type-nickname"></p>
                         </div>
                     </div>
@@ -1176,7 +1189,7 @@
                         <p class="text-xl font-bold text-red-500 mb-4">
                             より具体的に、あなたに合った業務内容、職種、業界、環境を知りたい方へ
                         </p>
-                        <!-- ★★★ 修正: id="cta-to-quick-form" を追加しました ★★★ -->
+                        <!-- ★★★ 修正: id="cta-to-quick-form" のリンクを #sec-quick-form に戻しました ★★★ -->
                         <a href="#sec-quick-form" id="cta-to-quick-form" class="inline-block bg-teal-600 text-white font-extrabold py-3 px-8 rounded-lg hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow w-full sm:w-auto">
                             プロに相談して最適なキャリアを設計する
                         </a>
@@ -2151,27 +2164,27 @@
             // 傾向1: 外向的 (E) かつ 協調的 (F) な行動派
             if (E_I === 'E' && T_F === 'F') {
                 nickname = "社交的リーダー・共感型";
-                career = "カスタマーサクセス、人材コンサルタント、広報・PR、チームマネージャー、ホスピタリティ産業（人との繋がりが重要）";
+                career = "人と関わる仕事全般（カスタマーサクセス、人材コンサルタント、広報・PR、チームマネージャー）";
             }
             // 傾向2: 内向的 (I) かつ 論理的 (T) な分析家
             else if (E_I === 'I' && T_F === 'T') {
                 nickname = "内省的専門家・分析型";
-                career = "データサイエンティスト、ITエンジニア、経理・財務、研究職、技術職、専門性の高い事務職（論理的な思考と深い集中が必要）";
+                career = "論理的な思考が必要な職種（データサイエンティスト、ITエンジニア、経理・財務、研究職、専門性の高い事務職）";
             }
             // 傾向3: 実践的 (S) かつ 計画的 (J) な実務家
             else if (S_N === 'S' && J_P === 'J') {
                 nickname = "現実的・実行型";
-                career = "プロジェクト管理、品質管理、公務員、目標達成重視の営業職、製造業（安定性と確実な実行力が強み）";
+                career = "確実な実行力が求められる職種（プロジェクト管理、品質管理、公務員、目標達成重視の営業職、製造業）";
             }
             // 傾向4: 理想的 (N) かつ 柔軟 (P) な創造主
             else if (S_N === 'N' && J_P === 'P') {
                 nickname = "アイデア・創造型";
-                career = "マーケティング、ウェブデザイナー、企画・プロデューサー、新規事業開発、クリエイティブ職（自由な発想と変化への対応力）";
+                career = "自由な発想が活きる職種（マーケティング、ウェブデザイナー、企画・プロデューサー、新規事業開発、クリエイティブ職）";
             }
             // 傾向5: 行動重視かつ結果重視 (E, T, J の組み合わせが多い)
             else if (E_I === 'E' && T_F === 'T' && J_P === 'J') {
                 nickname = "目標達成型のエグゼクティブ";
-                career = "営業リーダー、経営管理、コンサルタント、スタートアップの幹部候補、高インセンティブの営業職（高い目標設定と実行力）";
+                career = "成果を出すことに特化した職種（営業リーダー、経営管理、コンサルタント、スタートアップの幹部候補、高インセンティブの営業職）";
             }
             // その他のバランス型や不明確な場合はデフォルト値を返す
             
