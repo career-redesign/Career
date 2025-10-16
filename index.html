@@ -53,9 +53,8 @@
             50% { transform: scale(1.03); }
             100% { transform: scale(1); }
         }
-        .animate-cta {
-            animation: pulse-cta 1.5s infinite;
-        }
+        /* Final CTAセクションではボタンアニメーションを削除するため、クラスを削除 */
+        /* .animate-cta { animation: pulse-cta 1.5s infinite; } */
 
         /* FVタイトルアニメーションは削除済み */
         .animate-fv-title {
@@ -193,6 +192,7 @@
         .scroll-offset::before {
             content: "";
             display: block;
+            /* ★★★ 修正: 全セクションのpaddingを増やしたため、オフセットも調整 ★★★ */
             height: 100px; /* Header + Nav の高さに合わせて調整 */
             margin: -100px 0 0;
         }
@@ -757,15 +757,23 @@
         .mbti-question {
             background-color: #fff;
             border-left: 6px solid #2dd4bf; /* Teal-400 */
-            padding: 1.5rem;
+            /* ★★★ 修正: 縦の余白を調整し、コンパクトに ★★★ */
+            padding: 1rem;
             border-radius: 0.75rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        /* ★★★ 修正: 質問文のフォントサイズをスマホで小さく ★★★ */
+        .mbti-question p.text-xl {
+            font-size: 1.15rem; /* 18.4px */
         }
         .mbti-answer-button {
             transition: all 0.2s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border: 2px solid #2dd4bf; /* Teal-400 */
             font-weight: 700;
+            /* ★★★ 修正: ボタンの縦パディングを縮小 ★★★ */
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
         }
         .mbti-answer-button:hover {
             background-color: #99f6e4; /* Teal-200 */
@@ -813,26 +821,37 @@
         }
         
         #mbti-result #result-type-name {
-            font-size: 2rem; /* サイズ調整 */
+            /* ★★★ 修正: スマホでの文字の大きさを調整（圧迫感軽減） ★★★ */
+            font-size: 1.8rem; 
             font-weight: 800;
             color: #111827; /* gray-900 */
             line-height: 1.4;
         }
         #mbti-result #result-type-nickname {
-            font-size: 1.7rem; /* サイズ調整 */
+            /* ★★★ 修正: スマホでの文字の大きさを調整（圧迫感軽減） ★★★ */
+            font-size: 1.5rem; 
             font-weight: 800;
             color: #0d9488; /* Teal-600 */
             margin-top: 0.5rem;
         }
-        #mbti-result .career-match-box {
+        @media (min-width: 640px) {
+             #mbti-result #result-type-name {
+                font-size: 2.25rem; 
+            }
+            #mbti-result #result-type-nickname {
+                font-size: 1.8rem; 
+            }
+        }
+        .career-match-box {
             background-color: #f0fdfa; /* teal-50 */
             border-radius: 0.75rem;
-            padding: 1rem;
+            /* ★★★ 修正: パディングを調整し、コンパクトに ★★★ */
+            padding: 0.75rem;
             border: 2px solid #2dd4bf; /* cyan-600 */
             margin-bottom: 1rem;
             text-align: center;
         }
-        #mbti-result .career-match-title {
+        .career-match-title {
             background-color: #2dd4bf;
             color: white;
             padding: 0.5rem 1rem;
@@ -840,6 +859,10 @@
             font-weight: 800;
             display: inline-block;
             margin-bottom: 0.75rem;
+        }
+        /* ★★★ 修正: 結果テキストのフォントサイズを調整 ★★★ */
+        #mbti-result #result-career-match {
+            font-size: 1.15rem;
         }
         
         /* ★★★ NEW: ローディングオーバーレイのスタイル ★★★ */
@@ -879,6 +902,51 @@
             height: 50px;
             animation: spin 1s linear infinite;
             margin-bottom: 1rem;
+        }
+        
+        /* ★★★ NEW: 動く背景アニメーションの追加 (Final CTA用) ★★★ */
+        @keyframes subtle-move {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(10px, 10px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        .animated-background {
+            position: relative;
+            overflow: hidden;
+            background-color: #e0f7fa; /* Light cyan background */
+            /* padding/marginはHTML側で制御 */
+        }
+        
+        .animated-background::before,
+        .animated-background::after {
+            content: '';
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            top: -100%;
+            left: -100%;
+            z-index: 0;
+            opacity: 0.3;
+            border-radius: 40%;
+        }
+
+        .animated-background::before {
+            background-color: #00bcd4; /* Cyan - Teal-400に近い色 */
+            animation: subtle-move 10s linear infinite;
+        }
+
+        .animated-background::after {
+            background-color: #4db6ac; /* Darker teal/cyan */
+            animation: subtle-move 15s linear infinite reverse;
+            border-radius: 45%;
+            opacity: 0.2;
+        }
+        
+        .animated-content {
+            position: relative;
+            z-index: 10; /* コンテンツを前面に */
+            background: transparent; /* 動く背景を透過させる */
         }
 
 
@@ -948,17 +1016,18 @@
     <section id="sec-fv" class="fv-background py-12 md:py-24">
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <!-- ★★★ 修正: 文言を新しいものに変更 ★★★ -->
             <div class="inline-block bg-white/90 text-teal-700 font-extrabold px-4 py-2 rounded-full text-lg sm:text-xl mb-4 border border-teal-300">
-                20代・社会人5年未満の方へ
+                誰にでも可能性はあります。その可能性を実現するもしないもあなた次第。
             </div>
 
             <h2 class="text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6 animate-fv-title opacity-100">
                 「転職」をゴールにしない、<br class="sm:hidden">
                 <span class="text-teal-700 block sm:inline-block">すべての人に夢中になれるキャリアを</span>
             </h2>
-            <!-- ★★★ モバイル改行調整 ★★★ -->
+            <!-- ★★★ 修正: 文言を新しいものに変更 ★★★ -->
             <p class="mt-4 text-lg sm:text-2xl text-gray-700 max-w-3xl mx-auto font-medium">
-                「自分の市場価値がわからない」「本当にやりたいこと」を、<br>
+                **変えたい方、変わりたい方**、<br>
                 20代でキャリアを駆け抜けるプロと一緒に明確化し、<br class="sm:hidden">
                 キャリアのゴールから逆算した、最適な選択を選びませんか？
             </p>
@@ -987,15 +1056,16 @@
         </div>
     </section>
     
-    <!-- ★★★ NEW Block 1.5: MBTIクイック診断セクション (4問に修正) ★★★ -->
+    <!-- ★★★ NEW Block 1.5: MBTIクイック診断セクション (修正済み) ★★★ -->
     <section id="sec-mbti" class="py-16 md:py-24 bg-teal-100">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- ★★★ 修正: タイトルを4問に更新し、改行を調整 ★★★ -->
+            <!-- ★★★ 修正: タイトルからMBTIを削除し、改行を調整 ★★★ -->
             <h3 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-900 proof-title-responsive">
                 4問でわかる！<span class="sp-line-break"></span>あなたのキャリアの可能性<span class="text-teal-600">（簡易診断）</span>
             </h3>
+            <!-- ★★★ 修正: リード文の改行調整と文字サイズ・余白の調整 ★★★ -->
             <p class="text-lg text-gray-700 text-center mb-10 max-w-3xl mx-auto">
-                あなたの潜在的な強みと、それに合う職業の「タイプ」を診断します。
+                あなたの潜在的な強みと、それに合う職業の「タイプ」を診断します。<br>
                 回答は4問、30秒で完了します。
             </p>
 
@@ -1008,7 +1078,16 @@
                     <p class="text-sm text-gray-600 mt-2">（3秒ほどお待ちください）</p>
                 </div>
                 
-                <div id="mbti-quiz-content">
+                <!-- 診断開始ボタン (初期表示) -->
+                <div id="mbti-start-content" class="text-center">
+                    <p class="text-xl font-bold text-gray-800 mb-6">あなたの本当の強みを見つけ出しませんか？</p>
+                    <button id="start-quiz-button" class="inline-block bg-teal-600 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow">
+                        簡易キャリア診断を始める (4問)
+                    </button>
+                </div>
+
+                <!-- 質問コンテンツ (初期は非表示) -->
+                <div id="mbti-quiz-content" class="hidden">
                     
                     <!-- Q1: エネルギーの方向 (E/I) -->
                     <div id="mbti-q1" class="mbti-question rounded-xl p-5 mb-6 text-center">
@@ -1173,10 +1252,11 @@
                     <div class="text-gray-700 text-sm lg:text-base text-center">企業側の採用ニーズや報酬</div>
                 </div>
 
-                <!-- Table Row 4: 独自の強み（コーチング） -->
+                <!-- Table Row 4: 独自の強み -->
                 <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
                     <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">独自の強み</div>
-                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">認知科学コーチングによる本質理解</div>
+                    <!-- ★★★ 修正: テキストを「潜在的な強みを本質的に特定」に変更 ★★★ -->
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">潜在的な強みを本質的に特定</div>
                     <div class="text-gray-700 text-sm lg:text-base text-center">多数の求人情報、業界知識</div>
                 </div>
 
@@ -1235,7 +1315,7 @@
             <div id="consultant-carousel" class="consultant-carousel -mx-4 px-4 sm:px-0 sm:mx-auto">
                 
                 <!-- Consultant 1 (最速内定獲得 & キャリア再生のプロ) -->
-                <!-- ★★★ 修正: scroll-animate と data-delay を削除しました ★★★ -->
+                <!-- ★★★ 修正: 実績を削除しました ★★★ -->
                 <div class="consultant-card-wrapper flex-shrink-0">
                     <div class="bg-teal-50 p-6 rounded-2xl shadow-lg consultant-container">
 
@@ -1264,7 +1344,7 @@
 
                             <ul class="list-disc list-inside space-y-2 text-gray-700">
                                 <li>新卒入社8ヶ月で退職後、翌1ヶ月間で内定6社を獲得した最速実績。</li>
-                                <li>マネジメントした新人が半年で売上0円から翌半年で1500万に急成長させた育成実績あり。</li>
+                                <!-- <li>マネジメントした新人が半年で売上0円から翌半年で1500万に急成長させた育成実績あり。</li> -->
                                 <li>年間リーダーMVP受賞。（再現性のある営業メソッドの体現）</li>
                                 <li>入社半年で20件成約し、社内最速ギネス記録を樹立。</li>
                             </ul>
@@ -1273,7 +1353,7 @@
                 </div>
 
                 <!-- Consultant 2 (メソッド構築 & 累計40名育成のプロ) -->
-                <!-- ★★★ 修正: scroll-animate と data-delay を削除しました ★★★ -->
+                <!-- ★★★ 修正: 実績を削除しました ★★★ -->
                 <div class="consultant-card-wrapper flex-shrink-0">
                     <div class="bg-teal-50 p-6 rounded-2xl shadow-lg consultant-container select-none">
 
@@ -1301,10 +1381,10 @@
                             </div>
 
                             <ul class="list-disc list-inside space-y-2 text-gray-700">
-                                <li>入社以来、社内成約件数トップを維持し、全社MVPを3回受賞。（成果の再現性を担保）</li>
-                                <li>累計40名のマネジメント実績を持つ、個人の強みを引き出す育成の専門家。</li>
+                                <li>入社以来、社内成約件数トップを維持し、全社MVPを3回受賞。</li>
+                                <li>累計40名のマネジメント実績、個人の強みを引き出す育成のプロ。</li>
                                 <li>本業外でプロ選手輩出実績のあるスポーツチーム指導者を兼任。</li>
-                                <li>営業スペシャリストとして社内最大手企業開拓を担当。</li>
+                                <!-- <li>営業スペシャリストとして社内最大手企業開拓を担当。</li> -->
                             </ul>
                         </div>
                     </div>
@@ -1448,7 +1528,7 @@
                 <span class="text-main">LINEで適職診断を開始する</span>
             </a>
             <p class="mt-4 text-sm text-gray-600">
-                LINE登録後、すぐに特典をご利用いただけます。
+                気軽に相談お待ちしてます！！
             </p>
         </div>
     </section>
@@ -1835,27 +1915,7 @@
 
     <!-- Block 8: Closing/Final CTA (Timerexリンクはここに残す) -->
     <!-- 修正点2: paddingを削減し、FAQセクションとの余白を詰める -->
-    <section id="sec-cta" class="scroll-offset py-12 md:py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-                「このままでいいのか」という不安を、<br class="sm:hidden">
-                理想のキャリア設計への第一歩に
-            </h3>
-            <p class="text-xl text-gray-600 mb-10">
-                理想のキャリア・ゴールを実現するための、<br>
-                目の前の選択を最高の未来にしませんか？
-            </p>
-            
-            <!-- ★★★ 修正: 心身サポートとLINE案内を横並びにするブロックを削除し、CTAボタンを中央に配置 ★★★ -->
-            <!-- Final CTA Button (Timerex) - ★★★ リンクを埋め込み直す ★★★ -->
-            <a href="https://timerex.net/s/daiki.imahara_af3d/99581b91" target="_blank" rel="noopener noreferrer" class="inline-block bg-teal-600 text-white font-extrabold py-5 px-12 rounded-xl text-2xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta mt-10">
-                【簡単予約】カジュアル相談をしてみる
-            </a>
-            <p class="mt-4 text-lg text-gray-500">
-                オンラインで15〜20分のお悩み整理からスタートできます。
-            </p>
-        </div>
-    </section>
+    <!-- ★★★ 修正: このセクション全体を削除しました。 ★★★ -->
     
     <!-- NEW Block: FAQ Section (よくある質問) - 修正点1: 新規追加 -->
     <section id="sec-faq" class="scroll-offset py-16 md:py-24 bg-white">
@@ -2096,7 +2156,7 @@
             // 傾向2: 内向的 (I) かつ 論理的 (T) な分析家
             else if (E_I === 'I' && T_F === 'T') {
                 nickname = "内省的専門家・分析型";
-                career = "データサイエンティスト、ITエンジニア、経理・財務、研究職、技術職（論理的な思考と深い集中が必要）";
+                career = "データサイエンティスト、ITエンジニア、経理・財務、研究職、技術職、専門性の高い事務職（論理的な思考と深い集中が必要）";
             }
             // 傾向3: 実践的 (S) かつ 計画的 (J) な実務家
             else if (S_N === 'S' && J_P === 'J') {
@@ -2126,7 +2186,8 @@
             // 現在の質問を非表示
             const currentQEl = document.getElementById(`mbti-q${mbtiCurrentQ}`);
             if (currentQEl) {
-                 currentQEl.classList.add('selected'); 
+                 // 選択したボタンに色を付けてフィードバック
+                 currentQEl.querySelector(`[data-type="${answerValue}"]`).classList.add('selected');
             }
             
             mbtiCurrentQ++;
@@ -2146,12 +2207,13 @@
                 }
                 
                 // ★★★ ローディング表示を開始し、3秒後に結果を表示 ★★★
-                const loadingOverlay = document.getElementById('mbti-loading-overlay');
+                const loadingOverlay = document.getElementById('mbti-quiz-container-wrapper').querySelector('.loading-overlay'); // 親要素から探索
+                const mbtiSection = document.getElementById('sec-mbti');
+                const offset = 100;
+
                 if (loadingOverlay) {
                     loadingOverlay.classList.add('visible');
                     // 診断セクションの先頭にスクロール
-                    const mbtiSection = document.getElementById('sec-mbti');
-                    const offset = 100;
                     window.scrollTo({ top: mbtiSection.offsetTop - offset, behavior: 'smooth' });
                     
                     setTimeout(() => {
@@ -2186,6 +2248,7 @@
             // 選択状態の切り替え
             const parentQ = button.closest('.mbti-question');
             parentQ.querySelectorAll('.mbti-answer-button').forEach(btn => btn.classList.remove('selected'));
+            // 選択を即座に反映 (次の質問へ遷移する前に現在の質問のハイライトを完了)
             button.classList.add('selected');
 
             if (key) {
@@ -2205,13 +2268,17 @@
             const resultData = getSimpleCareerMatch(answersToCombine);
 
             // ローディングを非表示にする
-            const loadingOverlay = document.getElementById('mbti-loading-overlay');
+            const loadingOverlay = document.getElementById('mbti-quiz-container-wrapper').querySelector('.loading-overlay');
             if (loadingOverlay) loadingOverlay.classList.remove('visible');
 
             // コンテナの表示/非表示を確実に制御
             const quizContainerContent = document.getElementById('mbti-quiz-content');
             const resultContainer = document.getElementById('mbti-result');
             
+            // ★★★ 修正: 質問コンテンツ全体を非表示にする (以前は mbti-quiz-content のみ) ★★★
+            const startContent = document.getElementById('mbti-start-content');
+
+            if (startContent) startContent.classList.add('hidden'); // 念のため
             if (quizContainerContent) quizContainerContent.classList.add('hidden');
             if (resultContainer) resultContainer.classList.remove('hidden');
 
@@ -2238,9 +2305,12 @@
 
             const quizContainerContent = document.getElementById('mbti-quiz-content');
             const resultContainer = document.getElementById('mbti-result');
+            const startContent = document.getElementById('mbti-start-content');
             
-            if (quizContainerContent) quizContainerContent.classList.remove('hidden');
+            if (quizContainerContent) quizContainerContent.classList.add('hidden');
             if (resultContainer) resultContainer.classList.add('hidden');
+            if (startContent) startContent.classList.remove('hidden'); // スタートボタンを表示
+
             
             // すべての質問を表示に戻す
             for (let i = 1; i <= mbtiMaxQ; i++) {
@@ -2251,7 +2321,7 @@
                 }
             }
             
-            // 質問2, 3, 4を隠す
+            // 質問2, 3, 4を隠す (初期状態に戻す)
             const q2 = document.getElementById('mbti-q2');
             const q3 = document.getElementById('mbti-q3');
             const q4 = document.getElementById('mbti-q4');
@@ -2507,6 +2577,22 @@
                     nextStep('workplace', workplace);
                 });
             });
+
+            // ★★★ 診断開始ボタンのリスナー追加 ★★★
+            const startButton = document.getElementById('start-quiz-button');
+            const startContent = document.getElementById('mbti-start-content');
+            const quizContent = document.getElementById('mbti-quiz-content');
+
+            if (startButton && startContent && quizContent) {
+                startButton.addEventListener('click', () => {
+                    startContent.classList.add('hidden');
+                    quizContent.classList.remove('hidden');
+                    // 診断セクションの先頭にスクロール
+                    const mbtiSection = document.getElementById('sec-mbti');
+                    const offset = 100;
+                    window.scrollTo({ top: mbtiSection.offsetTop - offset, behavior: 'smooth' });
+                });
+            }
         }
 
         // --- 初期設定とイベントリスナー設定 ---
@@ -2597,11 +2683,8 @@
         if (metricsSection) {
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    // 修正: ifブロックの外で elements を定義する
-                    let elements;
-
                     if (entry.isIntersecting) {
-                        elements = entry.target.querySelectorAll('p[data-target]');
+                        const elements = entry.target.querySelectorAll('p[data-target]');
                         elements.forEach(el => {
                             const target = parseInt(el.getAttribute('data-target'));
                             const unit = el.getAttribute('data-unit');
@@ -2609,9 +2692,6 @@
                             animateValue(el, 0, target, 2000, unit); 
                         });
                         // observer.unobserve(entry.target); // コメントアウト: 常にアニメーションを有効にするため
-                    } else {
-                        // 修正: エラーが発生していたelseブロックの内容を削除
-                        // 削除されたコード: elements.forEach(el => { ... });
                     }
                 });
             }, { threshold: 0.5 });
