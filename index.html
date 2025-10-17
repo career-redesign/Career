@@ -112,7 +112,7 @@
             transform: translateY(0);
         }
         /* --- End New --- */
-        
+
         /* ★★★ 新規追加: カルーセル/横スクロールのスタイル ★★★ */
         .consultant-carousel {
             display: flex;
@@ -250,7 +250,7 @@
                 max-width: 600px; /* PCでは少し広めに */
             }
         }
-        
+
         /* NEW: ステップインジケーターのスタイル */
         .step-indicator {
             display: flex;
@@ -347,7 +347,7 @@
         .nav-link-button:hover {
             color: #0d9488; /* text-teal-600 */
         }
-        
+
         /* NEW: 最終CTAセクションの横並びレイアウト調整 */
         @media (min-width: 768px) {
             .final-cta-flex {
@@ -384,7 +384,7 @@
                 /* 高さを揃えるために align-items: stretch を追加 */
                 flex-direction: row; /* 横並び */
                 gap: 4rem;
-                align-items: stretch;  
+                align-items: stretch;
             }
             /* フォーム（左側）とメリット（右側）の幅を調整 */
             .combined-cta-container > div:nth-child(1) { /* フォーム */
@@ -412,12 +412,12 @@
         }
         /* メリットのタイトルとフッターを固定し、カード部分を均等に配置するための設定 */
         .benefit-list-wrapper > .space-y-6 {
-            flex-grow: 1;  
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             /* カード間に均等なスペースを設け、カードの高さを揃える */
             /* gapを減らし、カード自身の高さを増やすことで、左側のボタン群と高さを合わせやすくする */
-            justify-content: space-between;  
+            justify-content: space-between;
             padding-top: 0.5rem; /* 微調整 */
             padding-bottom: 0.5rem; /* 微調整 */
             gap: 0.75rem; /* 隙間を小さくし、カード自体を長くする */
@@ -447,19 +447,19 @@
                 padding: 1.5rem; /* スマホでは少しパディングを減らす */
             }
         }
-        
+
         /* 各ステップのボタンの高さを調整（縦に伸ばす） */
         #step-1 .space-y-4 .quick-form-button,
         #step-2 .space-y-4 .quick-form-button {
             /* ボタンの高さを均一にするための min-height と padding 調整 */
-            min-height: 80px;  
+            min-height: 80px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             /* ★★★ 修正: フォントサイズを維持し、高さ合わせのため padding-top/bottom を調整 ★★★ */
-            padding-top: 1.1rem;  
+            padding-top: 1.1rem;
             padding-bottom: 1.1rem;
             font-size: 1.25rem; /* text-xl */
             font-weight: 700; /* font-bold */
@@ -480,7 +480,7 @@
         .benefit-list-wrapper .benefit-card p {
             font-size: 1.125rem; /* text-lg */
             font-weight: 700; /* font-extraboldは維持 */
-            /* ★★★ 修正: スマホでは折り返しを許可し、PCでは一行を強制する ★★★ */
+            /* ★★★ 修正: スマホでは折り返しを許可し, PCでは一行を強制する ★★★ */
             white-space: normal; /* スマホでは折り返す */
             overflow: visible;
             text-overflow: clip;
@@ -490,12 +490,12 @@
         @media (min-width: 768px) {
             /* PCで一行表示を強制 */
             .benefit-list-wrapper .benefit-card p {
-                white-space: nowrap;  
+                white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
         }
-        
+
         /* フォームのフリーターのサブテキストを調整 */
         .quick-form-button span.text-base {
             font-size: 0.95rem;
@@ -571,7 +571,7 @@
         /* 特典のメインタイトルを強調 */
         .benefit-main-title {
             /* ★★★ 修正: モバイルで1.3rem (約20.8px) に調整し、2行に収まりやすくする ★★★ */
-            font-size: 1.3rem; 
+            font-size: 1.3rem;
             font-weight: 800; /* font-extrabold */
             line-height: 1.4;
             color: #1f2937; /* gray-800 */
@@ -590,24 +590,24 @@
             margin-bottom: 0.5rem;
             padding-top: 0.25rem;
         }
-        
+
         /* ★★★ LINE登録CTAボタンのスタイル（ポップに） - 特典セクション用 ★★★ */
         /* image_f13c2a.pngのデザインを再現 */
         #sec-line-benefit .line-cta-button {
             /* LINEカラーを使用 - 修正: 添付画像の色 (#30c04f) に近い明るいグリーンに調整 */
             background: linear-gradient(to bottom, #4ade80, #30c04f); /* light green to LINE green */
             /* サイズと形状を調整 */
-            padding: 1rem 1.5rem; 
+            padding: 1rem 1.5rem;
             border-radius: 9999px; /* full rounded */
             font-size: 1.8rem; /* 大きめのフォント */
-            font-weight: 800; 
+            font-weight: 800;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            box-shadow: 0 10px 15px -3px rgba(48, 192, 79, 0.5), 0 4px 6px -2px rgba(48, 192, 79, 0.2); 
+            box-shadow: 0 10px 15px -3px rgba(48, 192, 79, 0.5), 0 4px 6px -2px rgba(48, 192, 79, 0.2);
             border: 4px solid #ccfbf1; /* teal-100 の縁取りでポップ感を強調 */
-            width: 100%; 
+            width: 100%;
             display: inline-block; /* 中央揃えのため */
             /* Flexbox関連を削除 */
-            display: block; 
+            display: block;
             text-align: center;
         }
         /* 特典ボタン内の不要な要素を非表示 */
@@ -628,7 +628,7 @@
             }
         }
 
-        
+
         /* 特典セクションの全体装飾を強化 */
         #sec-line-benefit .container-wrapper {
             padding: 2rem;
@@ -660,7 +660,7 @@
                 font-size: 2.25rem;
             }
         }
-        
+
         /* ★★★ 修正箇所: PCでのタイトルを1行に、スマホで2行に調整 ★★★ */
         /* PC (>=768px) では、このタイトルを強制的に1行で表示する (スペースを確保) */
         @media (min-width: 768px) {
@@ -694,7 +694,7 @@
         /* 添付画像に合わせて、フッターのLINEボタンを修正 */
         .final-cta-line-block .line-cta-button {
             background: linear-gradient(to bottom, #4ade80, #30c04f); /* light green to LINE green */
-            box-shadow: 0 10px 15px -3px rgba(48, 192, 79, 0.5), 0 4px 6px -2px rgba(48, 192, 79, 0.2); 
+            box-shadow: 0 10px 15px -3px rgba(48, 192, 79, 0.5), 0 4px 6px -2px rgba(48, 192, 79, 0.2);
             border: none; /* 下のボタンは縁取りをなくす */
             font-size: 1.25rem; /* text-xl */
             font-weight: 700; /* font-bold */
@@ -705,7 +705,7 @@
             width: auto;
             min-width: 250px;
         }
-        
+
         /* ★★★ 求人ラインナップのバブルスタイル (新規追加) ★★★ */
         .job-bubble-list {
             display: flex;
@@ -796,7 +796,7 @@
         /* ★★★ MBTI結果表示のカスタムデザイン ★★★ */
         #mbti-result .result-header {
             display: flex;
-            flex-direction: column; 
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             /* ★★★ 修正: マージンを調整し、コンパクトに ★★★ */
@@ -821,7 +821,7 @@
             height: 50px;
             object-fit: contain;
         }
-        
+
         #mbti-result #result-type-name {
             /* ★★★ 修正: スマホでの文字の大きさを調整（圧迫感軽減） ★★★ */
             font-size: 1.4rem; /* 修正: 1.6rem -> 1.4rem */
@@ -831,7 +831,7 @@
         }
         @media (min-width: 640px) {
              #mbti-result #result-type-name {
-                font-size: 2.25rem; 
+                font-size: 2.25rem;
             }
         }
 
@@ -844,7 +844,7 @@
         }
         @media (min-width: 640px) {
             #mbti-result #result-type-nickname {
-                font-size: 1.8rem; 
+                font-size: 1.8rem;
             }
         }
         .career-match-box {
@@ -876,7 +876,7 @@
             font-size: 1.05rem; /* 修正: 1.15rem -> 1.05rem */
         }
 
-        
+
         /* ★★★ NEW: ローディングオーバーレイのスタイル ★★★ */
         .loading-overlay {
             position: absolute;
@@ -915,21 +915,21 @@
             animation: spin 1s linear infinite;
             margin-bottom: 1rem;
         }
-        
+
         /* ★★★ NEW: 動く背景アニメーションの追加 (Final CTA用) ★★★ */
         @keyframes subtle-move {
             0% { transform: translate(0, 0); }
             50% { transform: translate(10px, 10px); }
             100% { transform: translate(0, 0); }
         }
-        
+
         .animated-background {
             position: relative;
             overflow: hidden;
             background-color: #e0f7fa; /* Light cyan background */
             /* padding/marginはHTML側で制御 */
         }
-        
+
         .animated-background::before,
         .animated-background::after {
             content: '';
@@ -954,14 +954,108 @@
             border-radius: 45%;
             opacity: 0.2;
         }
-        
+
         .animated-content {
             position: relative;
             z-index: 10; /* コンテンツを前面に */
             background: transparent; /* 動く背景を透過させる */
         }
 
+        /* ★★★ 修正: FVリード文の改行調整 ★★★ */
+        .fv-lead-text .sp-line-break {
+            display: none; /* デフォルト（PC）では非表示 */
+        }
+        @media (max-width: 639px) { /* スマホ向け */
+            .fv-lead-text .sp-line-break {
+                display: block; /* スマホでは強制改行 */
+            }
+        }
+        /* ★★★ 修正: メインCTAボタンのスマホ改行と文字調整 ★★★ */
+        .main-cta-button .pc-text {
+            display: inline; /* デフォルト（PC）では表示 */
+        }
+        .main-cta-button .sp-text {
+            display: none; /* デフォルト（PC）では非表示 */
+        }
+        @media (max-width: 639px) { /* スマホ向け */
+            .main-cta-button {
+                /* スマホでは2行表示を強制 */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                line-height: 1.2;
+            }
+            .main-cta-button .pc-text {
+                display: none; /* スマホではPCテキストを非表示 */
+            }
+            .main-cta-button .sp-text {
+                display: block; /* スマホではSPテキストを表示 */
+                text-align: center;
+            }
+        }
+        
+        /* ★★★ 修正1: 診断開始ボタンのフォントサイズ調整 ★★★ */
+        .start-quiz-button-sp {
+            font-size: 1.25rem; /* text-xl */
+        }
+        @media (max-width: 639px) { /* スマホ向け */
+            .start-quiz-button-sp {
+                font-size: 1.1rem; /* スマホで1行に収まるように少し小さく */
+                padding: 1rem 1.5rem; /* 縦パディングを少し増やして高さを確保 */
+            }
+        }
+        
+        /* ★★★ 修正3: 比較表セクションのフォントサイズ調整 ★★★ */
+        .commit-text-sp {
+            /* スマホでのみフォントサイズを小さくするCSS */
+            font-size: 0.9rem; /* 14.4px 相当 */
+        }
+        
+        /* ★★★ 修正2: 比較表タイトルの改行調整用CSS ★★★ */
+        .compare-title-sp .pc-break {
+            display: none; /* スマホではPC用改行を非表示 */
+        }
+        @media (max-width: 639px) { /* スマホ向け */
+             .compare-title-sp .sp-break {
+                display: block; /* スマホで強制改行 */
+             }
+        }
 
+        /* ★★★ 修正1: プランタイトルと無料表記の調整用CSS ★★★ */
+        .plan-title-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* プランタイトル */
+        .plan-title-sp {
+            font-size: 1.7rem; /* h3のデフォルト */
+            line-height: 1.4;
+        }
+        /* 無料表記 */
+        .plan-free-note {
+            font-size: 0.9rem; /* 小さく表記 */
+            font-weight: 600;
+            color: #10b981; /* エメラルドグリーン系 */
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 639px) {
+            /* スマホでのみ改行を適用 */
+            .plan-title-sp .sp-break {
+                display: block;
+            }
+        }
+        @media (min-width: 640px) {
+            /* PCでは改行を解除 */
+            .plan-title-sp {
+                font-size: 2.25rem; /* sm:text-4xl */
+                line-height: 1.2;
+            }
+            .plan-title-sp .sp-break {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -982,7 +1076,7 @@
     <nav id="global-nav" class="border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-0 py-2">
             <!-- 修正点: 目次のリンクの色を黒字（text-gray-700）に変更 -->
-            
+
             <div class="nav-link-item">
                 <a href="#sec-mbti" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">キャリア診断</a>
             </div>
@@ -1014,7 +1108,7 @@
             </div>
             <div class="nav-link-item">
                 <!-- ★★★ 修正: よくある質問の文字色を黒字に変更済み ★★★ -->
-                <a href="#sec-faq" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">よくある質問</a> 
+                <a href="#sec-faq" class="nav-link-button text-sm font-semibold hover:text-teal-600 hover:bg-teal-50 transition duration-150">よくある質問</a>
             </div>
             <div class="nav-link-item">
                 <a href="#sec-quick-form" class="nav-link-button text-sm font-semibold text-red-500 hover:text-red-600 hover:bg-red-50 transition duration-150">無料相談へ</a>
@@ -1028,26 +1122,31 @@
     <section id="sec-fv" class="fv-background py-12 md:py-24">
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <!-- ★★★ 修正: 文言を新しいものに変更 ★★★ -->
+            <!-- FVタイトルを20代向けに戻す -->
             <div class="inline-block bg-white/90 text-teal-700 font-extrabold px-4 py-2 rounded-full text-lg sm:text-xl mb-4 border border-teal-300">
-                誰にでも可能性はあります。その可能性を実現するもしないもあなた次第。
+                20代・社会人5年未満の方へ
             </div>
+
 
             <h2 class="text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight mb-6 animate-fv-title opacity-100">
                 「転職」をゴールにしない、<br class="sm:hidden">
                 <span class="text-teal-700 block sm:inline-block">すべての人に夢中になれるキャリアを</span>
             </h2>
-            <!-- ★★★ 修正: 文言を新しいものに変更し、PCで2行、スマホで3行改行を適用 ★★★ -->
-            <p class="mt-4 text-lg sm:text-2xl text-gray-700 max-w-3xl mx-auto font-medium">
-                変えたい方、変わりたい方<br class="hidden sm:block">
-                キャリアのゴールから逆算した、<br class="sm:hidden">
+            
+            <!-- ★★★ 修正2: リード文の改行調整 ★★★ -->
+            <p class="mt-4 text-lg sm:text-2xl text-gray-700 max-w-3xl mx-auto font-medium fv-lead-text">
+                変えたい方、変わりたい方<span class="sp-line-break"></span>
+                キャリアのゴールから逆算した<span class="sp-line-break"></span>
                 最適な選択を選びませんか？
             </p>
-            
+
             <!-- Main CTA Button - Quick Formへ誘導 -->
             <div class="mt-10">
-                <a href="#sec-quick-form" class="inline-block bg-teal-600 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta">
-                    【完全無料】キャリア相談を予約する
+                <!-- ★★★ 修正3: ボタンの文言と改行をスマホ向けに調整 ★★★ -->
+                <a href="#sec-quick-form" class="inline-block bg-teal-600 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow animate-cta main-cta-button">
+                    <span class="pc-text">【完全無料】キャリア相談を予約する</span>
+                    <span class="sp-text">【完全無料】</span>
+                    <span class="sp-text">キャリア相談をしてみる</span>
                 </a>
             </div>
 
@@ -1067,13 +1166,13 @@
 
         </div>
     </section>
-    
+
     <!-- ★★★ NEW Block 1.5: MBTIクイック診断セクション (修正済み) ★★★ -->
     <section id="sec-mbti" class="py-16 md:py-24 bg-teal-100">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- ★★★ 修正: タイトルからMBTIを削除し、改行を調整 ★★★ -->
             <h3 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-900 proof-title-responsive">
-                4問でわかる！<span class="sp-line-break"></span>あなたのキャリアの可能性<span class="text-teal-600">（簡易診断）</span>
+                4問でわかる！<span class="sp-line-break"></span>あなたのキャリアの可能性<span class="text-teal-600"></span>
             </h3>
             <!-- ★★★ 修正: リード文の改行調整と文字サイズ・余白の調整 ★★★ -->
             <p class="text-lg text-gray-700 text-center mb-10 max-w-3xl mx-auto">
@@ -1082,25 +1181,26 @@
             </p>
 
             <div id="mbti-quiz-container-wrapper" class="mbti-card rounded-xl p-6 sm:p-8">
-                
+
                 <!-- ローディングオーバーレイ (初期は非表示) -->
                 <div id="mbti-loading-overlay" class="loading-overlay">
                     <div class="spinner"></div>
                     <p class="text-xl font-bold text-teal-700">結果を分析中です...</p>
                     <p class="text-sm text-gray-600 mt-2">（3秒ほどお待ちください）</p>
                 </div>
-                
+
                 <!-- 診断開始ボタン (初期表示) -->
                 <div id="mbti-start-content" class="text-center">
                     <p class="text-xl font-bold text-gray-800 mb-6">あなたの本当の強みを見つけ出しませんか？</p>
-                    <button id="start-quiz-button" class="inline-block bg-teal-600 text-white font-extrabold py-4 px-10 rounded-xl text-xl hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow">
-                        簡易キャリア診断を始める (4問)
+                    <!-- ★★★ 修正1: 「（4問）」を削除し、スマホ用クラスを追加してサイズ調整 ★★★ -->
+                    <button id="start-quiz-button" class="inline-block bg-teal-600 text-white font-extrabold py-4 px-10 rounded-xl start-quiz-button-sp hover:bg-teal-700 transition duration-300 transform hover:scale-105 cta-shadow">
+                        簡易キャリア診断を始める
                     </button>
                 </div>
 
                 <!-- 質問コンテンツ (初期は非表示) -->
                 <div id="mbti-quiz-content" class="hidden">
-                    
+
                     <!-- Q1: エネルギーの方向 (E/I) -->
                     <div id="mbti-q1" class="mbti-question rounded-xl p-5 mb-6 text-center">
                         <p class="text-sm font-semibold text-teal-700 mb-2">質問 1/4：【行動エネルギーの源】</p>
@@ -1176,14 +1276,14 @@
                             <p class="text-xl font-extrabold text-gray-900" id="result-type-nickname"></p>
                         </div>
                     </div>
-                    
+
                     <div class="career-match-box mt-8">
                         <p class="career-match-title">向いている仕事の傾向</p>
                         <p class="text-xl font-bold text-gray-800" id="result-career-match">
                             <!-- JSで結果が挿入されます -->
                         </p>
                     </div>
-                    
+
                     <!-- 次のアクション CTA -->
                     <div class="mt-6 text-center">
                         <p class="text-xl font-bold text-red-500 mb-4">
@@ -1231,8 +1331,10 @@
     <!-- Block 3: Unique Value (本質支援とは) - 比較表に置き換え -->
     <section id="sec-compare" class="scroll-offset py-16 md:py-24 bg-gray-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-2xl sm:text-3xl lg:text-3xl font-bold text-center mb-16 text-gray-900">
-                私たちは、一般的な転職相談支援と<br class="sm:hidden">どう違うのか？
+            <!-- ★★★ 修正2: タイトル改行を修正 ★★★ -->
+            <h3 class="text-2xl sm:text-3xl lg:text-3xl font-bold text-center mb-16 text-gray-900 compare-title-sp">
+                私たちは、一般的な転職エージェントと<br class="sp-break">
+                どう違うのか？
             </h3>
 
             <!-- 比較表 (Table) -->
@@ -1247,7 +1349,8 @@
                 <!-- Table Row 1: 面談回数・期間 -->
                 <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
                     <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">面談回数・期間</div>
-                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">最低8回以上をコミット</div>
+                    <!-- ★★★ 修正3: スマホで1行に収まるようにフォントサイズを調整 ★★★ -->
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center commit-text-sp">最低8回以上をコミット</div>
                     <div class="text-gray-700 text-sm lg:text-base text-center">1〜3回程度（求人紹介がメイン）</div>
                 </div>
 
@@ -1291,7 +1394,7 @@
     <section id="sec-proof" class="scroll-offset py-16 md:py-24 bg-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="proof-title-responsive font-bold text-center mb-6 text-gray-900">
-                担当者紹介：成功へと導くメソッドを確立した<span class="sp-line-break"></span>キャリアプロ
+                担当者紹介：成功へと導く<span class="sp-line-break"></span>キャリアのプロ
             </h3>
             <!-- ★★★ 修正: 注釈を追加 ★★★ -->
             <p class="text-center text-sm text-gray-500 mb-8">
@@ -1306,7 +1409,7 @@
                         <!-- Left Arrow SVG -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
                     </button>
-                    
+
                     <!-- Dots Container -->
                     <div id="consultant-dots" class="flex space-x-2">
                         <!-- ドットはJSで制御されます -->
@@ -1326,7 +1429,7 @@
             <!-- 左右のパディングを内側で調整するため、親要素のパディングと相殺するクラス (-mx-4, px-4) を使用し、
                  コンテナ全体を画面幅いっぱいにして、カルーセルをスムーズに表示します -->
             <div id="consultant-carousel" class="consultant-carousel -mx-4 px-4 sm:px-0 sm:mx-auto">
-                
+
                 <!-- Consultant 1 (最速内定獲得 & キャリア再生のプロ) -->
                 <!-- ★★★ 修正: 実績を削除しました ★★★ -->
                 <div class="consultant-card-wrapper flex-shrink-0">
@@ -1408,16 +1511,16 @@
                     <!-- consultant-container が flex-col にならないように調整 -->
                     <div class="bg-teal-50/50 p-6 rounded-2xl shadow-inner consultant-container flex flex-col justify-center items-center h-full">
                          <svg class="w-16 h-16 text-teal-600 mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 17v-2a4 4 0 0 0-4-4H12"/></svg>
-                         <p class="text-xl font-bold text-gray-600">他のアドバイザーも多数在籍！</p>
+                         <p class="text-xl font-bold text-gray-600">他のアドバイザーも在籍！</p>
                          <a href="#sec-quick-form" class="mt-4 text-teal-600 font-extrabold text-lg hover:underline transition duration-200">無料の個別キャリア相談を予約する</a>
                     </div>
                 </div>
-                
+
             </div>
             <!-- ★★★ 修正箇所終わり ★★★ -->
         </div>
     </section>
-    
+
     <!-- ★★★ 修正 Block 4.5: Coaching Cases/Success Stories -> キャリア変革事例に変更 ★★★ -->
     <section id="sec-cases" class="scroll-offset py-16 md:py-24 bg-orange-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1431,7 +1534,7 @@
 
             <!-- ★★★ 修正: カードデザインとレイアウトを添付画像風に変更 ★★★ -->
             <div class="flex flex-col lg:flex-row justify-center gap-8">
-                
+
                 <!-- Card 1: H・Tさん - 本質的な自己理解と自信の獲得 -->
                 <div class="w-full lg:w-1/2 bg-white p-8 rounded-3xl shadow-2xl border-t-8 border-red-500 scroll-animate">
                     <div class="flex justify-between items-start mb-4">
@@ -1439,10 +1542,10 @@
                         <svg class="w-12 h-12 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         <div class="text-sm font-extrabold bg-red-100 text-red-700 px-3 py-1 rounded-full">#キャリアの軸発見</div>
                     </div>
-                    
+
                     <h4 class="text-xl font-extrabold text-gray-900 mb-2">本質的な自己理解で迷走から脱出</h4>
                     <p class="text-sm text-gray-600 mb-4">H・Tさん（20代・営業職）</p>
-                    
+
                     <!-- 引用フィードバック -->
                     <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-red-300">
                         <p class="text-lg text-gray-800 italic leading-relaxed">
@@ -1458,10 +1561,10 @@
                         <svg class="w-12 h-12 text-teal-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         <div class="text-sm font-extrabold bg-teal-100 text-teal-700 px-3 py-1 rounded-full">#社内トップ達成</div>
                     </div>
-                    
+
                     <h4 class="text-xl font-extrabold text-gray-900 mb-2">得意領域を明確化し、社内トップの成績へ</h4>
                     <p class="text-sm text-gray-600 mb-4">U・Mさん（20代・営業職）</p>
-                    
+
                     <!-- 引用フィードバック -->
                     <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-teal-300">
                         <p class="text-lg text-gray-800 italic leading-relaxed">
@@ -1632,10 +1735,17 @@
     <!-- Block 6: How It Works (フロー) - プラン選択式に変更 -->
     <section id="sec-plan" class="scroll-offset py-16 md:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl sm:text-4xl lg:text-3xl font-bold text-center mb-16 text-gray-900">
-                あなたの希望に合わせた2つの<br class="sm:hidden">サポートプラン
-            </h3>
-
+            <!-- ★★★ 修正1, 2: タイトルと無料表記の調整 ★★★ -->
+            <div class="plan-title-wrapper mb-16">
+                <h3 class="text-3xl sm:text-4xl lg:text-3xl font-bold text-center text-gray-900 plan-title-sp">
+                    あなたの希望に合わせた<br class="sp-break">
+                    2つのサポートプラン
+                </h3>
+                <p class="plan-free-note">
+                    （両プラン無料でご利用可能です）
+                </p>
+            </div>
+            
             <div class="flex flex-col lg:flex-row justify-center items-stretch space-y-8 lg:space-y-0 lg:space-x-12">
 
                 <!-- Plan 1: キャリア本質追求プラン (おすすめ) -->
@@ -1722,10 +1832,11 @@
             <p class="mt-12 text-center text-xl font-bold text-teal-700">
                 ⭐ 迷ったら、まずはキャリア本質追求プランをご検討ください。
             </p>
-            <!-- 追加した無料のメッセージ -->
+            <!-- ★★★ 修正2: このブロックを削除しました ★★★
             <p class="mt-4 text-center text-xl font-bold text-teal-700 bg-teal-100 p-3 rounded-lg">
                 ✅ もちろん、全てのプランは完全無料でご利用いただけます。
             </p>
+            -->
             <!-- 面談回数の柔軟性に関する注釈 -->
             <p class="mt-4 text-center text-sm text-gray-500">
                 ※面談回数（最低8回）は、キャリアの進捗やご希望に応じて柔軟に調整可能です。
@@ -1767,25 +1878,25 @@
             </p>
         </div>
     </section>
-    
-    <!-- ★★★ NEW Block: Combined CTA and Quick Form (横並び、フォーム左側) ★★★ -->
+
+    <!-- NEW Block: Combined CTA and Quick Form (横並び、フォーム左側) ★★★ -->
     <section id="sec-quick-form" class="scroll-offset py-16 md:py-24 bg-orange-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
-                まずは【無料相談】で得られる<br class="sm:hidden"><span class="text-orange-600">3つの確信</span>と面談予約
+                【無料相談】で得られる<br class="sm:hidden"><span class="text-orange-600">3つの確信</span>
             </h3>
-            
+
             <!-- メリットとフォームを横並びにするコンテナ -->
             <div class="combined-cta-container">
 
                 <!-- 左側: 4ステップフォーム (既存の #sec-quick-form の中身) -->
                 <div class="w-full md:w-1/2 quick-form-wrapper">
                     <div class="quick-form-card rounded-3xl shadow-2xl p-8 text-center" id="form-card-content">
-                        
+
                         <div class="inline-block bg-orange-500 text-white font-extrabold px-6 py-2 rounded-full text-lg mb-6 shadow-md">
                             質問に答えて面談予約に進もう！
                         </div>
-                        
+
                         <!-- ステップインジケーター -->
                         <div class="step-indicator">
                             <div id="step-1-nav" class="step-item active">
@@ -1826,7 +1937,7 @@
                                     </button>
                                 </div>
                             </div>
-                            
+
                             <!-- ステップ2: 希望勤務地 (非表示) -->
                             <div id="step-2" class="step-content hidden">
                                 <h4 class="text-2xl font-bold text-gray-900 mb-8">希望勤務地（メイン）は？</h4>
@@ -1890,7 +2001,7 @@
                     <h4 class="text-2xl font-extrabold text-gray-900 border-b-2 border-orange-300 pb-2 mb-6">
                         堅苦しさゼロ！カジュアル相談でわかること
                     </h4>
-                    
+
                     <!-- ★★★ 修正: カジュアルメッセージをタイトル直下に移動 ★★★ -->
                     <p class="casual-message">
                         ご相談だけでも、ラフな会話だけでもOKです！
@@ -1929,7 +2040,7 @@
     <!-- Block 8: Closing/Final CTA (Timerexリンクはここに残す) -->
     <!-- 修正点2: paddingを削減し、FAQセクションとの余白を詰める -->
     <!-- ★★★ 修正: このセクション全体を削除しました。 ★★★ -->
-    
+
     <!-- NEW Block: FAQ Section (よくある質問) - 修正点1: 新規追加 -->
     <section id="sec-faq" class="scroll-offset py-16 md:py-24 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1938,9 +2049,9 @@
                     よくある質問 <span class="text-orange-500 text-xl font-semibold ml-2">FAQ</span>
                 </h3>
             </div>
-            
+
             <div class="border border-gray-200 rounded-xl overflow-hidden shadow-lg">
-                
+
                 <!-- QA Item 6: 面談時間調整 (新規追加) -->
                 <div class="faq-item">
                     <button class="faq-q-button bg-white hover:bg-gray-50" aria-expanded="false" aria-controls="faq-answer-6">
@@ -2112,7 +2223,7 @@
             tokyo: "東京都", osaka: "大阪府", fukuoka: "福岡県", aichi: "愛知県",
             kanagawa: "神奈川県", saitama: "埼玉県", chiba: "千葉県", other: "その他"
         };
-        
+
         // --- スムーズスクロール機能 (既存) ---
         function applySmoothScroll(selector, skipUrls = []) {
             document.querySelectorAll(selector).forEach(anchor => {
@@ -2126,11 +2237,11 @@
                     if (!this.getAttribute('href').startsWith('#')) {
                         return;
                     }
-                    
+
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-                    
+
                     if (targetElement) {
                         const offset = 100; // Header + Nav の高さ分
                         window.scrollTo({
@@ -2141,26 +2252,26 @@
                 });
             });
         }
-        
+
         // --- MBTI診断ロジック (簡素化) ---
         let mbtiAnswers = {};
         let mbtiCurrentQ = 1;
         const mbtiMaxQ = 4;
-        
+
         // ★★★ 修正: 判定ロジックをシンプル化し、結果を直接返す関数 (統合)
         function getSimpleCareerMatch(answers) {
             // answers: { 'E/I': 'E', 'S/N': 'N', 'T/F': 'F', 'J/P': 'J' } のような構造
-            
-            const E_I = answers['E/I']; 
-            const S_N = answers['S/N']; 
-            const T_F = answers['T/F']; 
-            const J_P = answers['J/P']; 
-            
+
+            const E_I = answers['E/I'];
+            const S_N = answers['S/N'];
+            const T_F = answers['T/F'];
+            const J_P = answers['J/P'];
+
             let nickname = "バランス型";
             let career = "チームワークを活かせる事務職、企画サポート、または柔軟な対応が求められるサービス業や営業職など";
 
             // ★★★ シンプルなルールベースで傾向を決定 ★★★
-            
+
             // 傾向1: 外向的 (E) かつ 協調的 (F) な行動派
             if (E_I === 'E' && T_F === 'F') {
                 nickname = "社交的リーダー・共感型";
@@ -2187,22 +2298,22 @@
                 career = "成果を出すことに特化した職種（営業リーダー、経営管理、コンサルタント、スタートアップの幹部候補、高インセンティブの営業職）";
             }
             // その他のバランス型や不明確な場合はデフォルト値を返す
-            
+
             return { nickname, career };
         }
-        
+
         // ★★★ 修正: 質問の遷移と回答保存を同時に行う関数 (遅延なし)
         function mbtiNextQ(answerKey, answerValue) {
             // 回答を保存
             mbtiAnswers[answerKey] = answerValue;
-            
+
             // 現在の質問を非表示
             const currentQEl = document.getElementById(`mbti-q${mbtiCurrentQ}`);
             if (currentQEl) {
                  // 選択したボタンに色を付けてフィードバック
                  currentQEl.querySelector(`[data-type="${answerValue}"]`).classList.add('selected');
             }
-            
+
             mbtiCurrentQ++;
 
             if (mbtiCurrentQ <= mbtiMaxQ) {
@@ -2218,7 +2329,7 @@
                 if (currentQEl) {
                     currentQEl.classList.add('hidden'); // 最終質問を隠す
                 }
-                
+
                 // ★★★ ローディング表示を開始し、3秒後に結果を表示 ★★★
                 const loadingOverlay = document.getElementById('mbti-quiz-container-wrapper').querySelector('.loading-overlay'); // 親要素から探索
                 const mbtiSection = document.getElementById('sec-mbti');
@@ -2228,7 +2339,7 @@
                     loadingOverlay.classList.add('visible');
                     // 診断セクションの先頭にスクロール
                     window.scrollTo({ top: mbtiSection.offsetTop - offset, behavior: 'smooth' });
-                    
+
                     setTimeout(() => {
                         displayMbtiResult();
                     }, 3000); // 3秒後に実行
@@ -2237,7 +2348,7 @@
                 }
                 return;
             }
-            
+
             // 診断セクションの先頭にスクロール
             const mbtiSection = document.getElementById('sec-mbti');
             const offset = 100;
@@ -2246,7 +2357,7 @@
                 behavior: 'smooth'
             });
         }
-        
+
         // ★★★ 修正: HTML側の onclick から直接呼び出される関数
         function handleMbtiAnswer(button) {
             // 質問のキーを判定
@@ -2255,8 +2366,8 @@
             else if (mbtiCurrentQ === 2) key = 'S/N';
             else if (mbtiCurrentQ === 3) key = 'T/F';
             else if (mbtiCurrentQ === 4) key = 'J/P';
-            
-            const answerValue = button.getAttribute('data-type'); 
+
+            const answerValue = button.getAttribute('data-type');
 
             // 選択状態の切り替え
             const parentQ = button.closest('.mbti-question');
@@ -2272,12 +2383,12 @@
         // ★★★ 修正: 結果表示ロジック (最終チェック)
         function displayMbtiResult() {
             const answersToCombine = {
-                'E/I': mbtiAnswers['E/I'], 
-                'S/N': mbtiAnswers['S/N'], 
-                'T/F': mbtiAnswers['T/F'], 
-                'J/P': mbtiAnswers['J/P'] 
+                'E/I': mbtiAnswers['E/I'],
+                'S/N': mbtiAnswers['S/N'],
+                'T/F': mbtiAnswers['T/F'],
+                'J/P': mbtiAnswers['J/P']
             };
-            
+
             const resultData = getSimpleCareerMatch(answersToCombine);
 
             // ローディングを非表示にする
@@ -2287,7 +2398,7 @@
             // コンテナの表示/非表示を確実に制御
             const quizContainerContent = document.getElementById('mbti-quiz-content');
             const resultContainer = document.getElementById('mbti-result');
-            
+
             // ★★★ 修正: 質問コンテンツ全体を非表示にする (以前は mbti-quiz-content のみ) ★★★
             const startContent = document.getElementById('mbti-start-content');
 
@@ -2300,9 +2411,9 @@
             const resultCareerEl = document.getElementById('result-career-match'); // 向いている仕事
 
             // ★★★ 修正: ここで resultNicknameEl と resultCareerEl に値を代入する ★★★
-            if (resultNicknameEl) resultNicknameEl.textContent = resultData.nickname; 
-            if (resultCareerEl) resultCareerEl.textContent = resultData.career; 
-            
+            if (resultNicknameEl) resultNicknameEl.textContent = resultData.nickname;
+            if (resultCareerEl) resultCareerEl.textContent = resultData.career;
+
             // 結果セクションの先頭にスクロール
             const mbtiSection = document.getElementById('sec-mbti');
             const offset = 100;
@@ -2319,12 +2430,12 @@
             const quizContainerContent = document.getElementById('mbti-quiz-content');
             const resultContainer = document.getElementById('mbti-result');
             const startContent = document.getElementById('mbti-start-content');
-            
+
             if (quizContainerContent) quizContainerContent.classList.add('hidden');
             if (resultContainer) resultContainer.classList.add('hidden');
             if (startContent) startContent.classList.remove('hidden'); // スタートボタンを表示
 
-            
+
             // すべての質問を表示に戻す
             for (let i = 1; i <= mbtiMaxQ; i++) {
                 const qEl = document.getElementById(`mbti-q${i}`);
@@ -2333,7 +2444,7 @@
                     qEl.querySelectorAll('.mbti-answer-button').forEach(btn => btn.classList.remove('selected'));
                 }
             }
-            
+
             // 質問2, 3, 4を隠す (初期状態に戻す)
             const q2 = document.getElementById('mbti-q2');
             const q3 = document.getElementById('mbti-q3');
@@ -2350,13 +2461,13 @@
                 behavior: 'smooth'
             });
         }
-        
+
         // --- クイックフォームのステップレンダリング/遷移ロジック (修正) ---
-        
+
         function updateStepIndicator() {
             for (let i = 1; i <= totalSteps; i++) {
                 const navElement = document.getElementById(`step-${i}-nav`);
-                
+
                 // エラーチェックを追加: 要素が存在しない場合はスキップ
                 if (!navElement) continue;
 
@@ -2388,7 +2499,7 @@
             if (currentStepEl) {
                 currentStepEl.classList.remove('hidden');
                 updateStepIndicator();
-                
+
                 // エラーメッセージを非表示に戻す
                 const ageError = document.getElementById('age-error-message');
                 if (ageError) {
@@ -2419,7 +2530,7 @@
 
         function buildFinalUrl(baseUrl) {
             const params = new URLSearchParams();
-            
+
             if (formData.status) params.append('status', formData.status);
             if (formData.workplace) params.append('workplace', formData.workplace);
             if (formData.residence) {
@@ -2469,7 +2580,7 @@
                 });
             });
         }
-        
+
         // --- カルーセル機能 (既存) ---
         let currentCardIndex = 0;
         let cardCount = 3; // 3枚のカード (2人のアドバイザー + CTA)
@@ -2495,7 +2606,7 @@
                 rightBtn.disabled = currentCardIndex >= cardCount - 1;
             }
         }
-        
+
         function scrollToCard(index) {
             currentCardIndex = Math.min(Math.max(0, index), cardCount - 1);
             if (carousel) {
@@ -2504,9 +2615,9 @@
 
                 const cardRect = firstCard.getBoundingClientRect();
                 const computedStyle = getComputedStyle(carousel);
-                const gap = parseFloat(computedStyle.gap) || 24; 
+                const gap = parseFloat(computedStyle.gap) || 24;
                 const cardWidth = cardRect.width + gap;
-                
+
                 carousel.scrollTo({
                     left: currentCardIndex * cardWidth,
                     behavior: 'smooth'
@@ -2521,7 +2632,7 @@
             leftBtn = document.getElementById('consultant-scroll-left');
             rightBtn = document.getElementById('consultant-scroll-right');
             const firstCard = carousel ? carousel.querySelector('.consultant-card-wrapper') : null;
-            
+
             if (!carousel || !firstCard || dots.length !== cardCount) {
                 // 初期化失敗の場合はログを出して終了
                 console.log("Carousel setup failed: Missing elements.");
@@ -2561,11 +2672,11 @@
                 // スクロール中にリアルタイムでボタンの状態を更新
                 const scrollLeft = carousel.scrollLeft;
                 const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                
+
                 leftBtn.disabled = scrollLeft < 5; // わずかな誤差を許容
                 rightBtn.disabled = scrollLeft > maxScroll - 5;
             });
-            
+
             // 初期の状態を設定
             updateCarouselState();
         }
@@ -2611,7 +2722,7 @@
         // --- 初期設定とイベントリスナー設定 ---
         document.addEventListener('DOMContentLoaded', () => {
             // スムーズスクロール設定
-            const skipUrls = ["lin.ee", "timerex.net"]; 
+            const skipUrls = ["lin.ee", "timerex.net"];
             applySmoothScroll('a[href^="#"]', skipUrls);
 
             // Q&Aアコーディオン設定
@@ -2654,10 +2765,10 @@
                 }
                 ageError.classList.add('hidden');
                 formData.age = age;
-                
+
                 // 2. Timerex URLを生成
                 const finalUrl = buildFinalUrl(TIMBREX_URL);
-                
+
                 // 3. 新しいウィンドウを開く
                 const newWindow = window.open(finalUrl, '_blank');
 
@@ -2679,7 +2790,7 @@
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                 // 問い合わせ件数は整数なのでMath.roundではなくMath.floorを使用
-                const currentValue = Math.floor(progress * (end - start) + start); 
+                const currentValue = Math.floor(progress * (end - start) + start);
 
                 obj.innerHTML = currentValue + `<span class="text-3xl">${unit}</span>`;
 
@@ -2702,7 +2813,7 @@
                             const target = parseInt(el.getAttribute('data-target'));
                             const unit = el.getAttribute('data-unit');
                             // ★★★ 修正: アニメーションを再実行するために、毎回 0 から開始するように変更 ★★★
-                            animateValue(el, 0, target, 2000, unit); 
+                            animateValue(el, 0, target, 2000, unit);
                         });
                         // observer.unobserve(entry.target); // コメントアウト: 常にアニメーションを有効にするため
                     }
