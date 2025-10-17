@@ -1014,15 +1014,52 @@
         
         /* ★★★ 修正2: 比較表タイトルの改行調整用CSS ★★★ */
         .compare-title-sp .pc-break {
-            display: none; /* スマホではPC用改行を非表示 */
+            display: none; /* PCではPC用改行を非表示 */
+        }
+        .compare-title-sp .sp-break-strong {
+            display: none; /* デフォルトは非表示 */
         }
         @media (max-width: 639px) { /* スマホ向け */
              .compare-title-sp .sp-break {
-                display: block; /* スマホで強制改行 */
+                display: none; /* 弱い改行は削除 */
+             }
+             .compare-title-sp .sp-break-strong {
+                display: block; /* 強い改行（希望の場所）を有効 */
              }
         }
 
-        /* ★★★ 修正1: プランタイトルと無料表記の調整用CSS ★★★ */
+        /* ★★★ 比較表セルの改行制御用CSS ★★★ */
+        /* 目標値セル (CAREER Re:Design) */
+        .compare-target-sp {
+            white-space: nowrap; /* 1行に強制 */
+            font-size: 0.95rem; /* 少し小さくして1行に収まりやすくする */
+        }
+        /* 比較対象値セル (一般的な転職エージェント) */
+        .compare-value-sp {
+            /* 複数行を許容するが、単語の途中の改行を防ぐ */
+            word-break: keep-all; 
+            overflow-wrap: break-word;
+            white-space: normal; /* デフォルトの折り返しを維持 */
+            font-size: 0.85rem; /* さらに小さくしてスペースを確保 */
+        }
+        @media (min-width: 640px) {
+            .compare-target-sp, .compare-value-sp {
+                white-space: nowrap; /* PCでは1行に強制 */
+                font-size: 1rem;
+            }
+        }
+        /* 報酬、知識、入社まで等の意図的な改行用クラス */
+        .sp-break-compensation {
+            display: none; /* PCでは改行を非表示 */
+        }
+        @media (max-width: 639px) {
+            .sp-break-compensation {
+                display: block; /* スマホで強制改行 */
+            }
+        }
+
+
+        /* ★★★ プランタイトルと無料表記の調整用CSS ★★★ */
         .plan-title-wrapper {
             display: flex;
             flex-direction: column;
@@ -1331,9 +1368,10 @@
     <!-- Block 3: Unique Value (本質支援とは) - 比較表に置き換え -->
     <section id="sec-compare" class="scroll-offset py-16 md:py-24 bg-gray-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- ★★★ 修正2: タイトル改行を修正 ★★★ -->
+            <!-- ★★★ 修正1: タイトル改行を修正 ★★★ -->
             <h3 class="text-2xl sm:text-3xl lg:text-3xl font-bold text-center mb-16 text-gray-900 compare-title-sp">
-                私たちは、一般的な転職エージェントと<br class="sp-break">
+                私たちは、<br class="sp-break-strong">
+                一般的な転職エージェントと<br class="sp-break-strong">
                 どう違うのか？
             </h3>
 
@@ -1349,38 +1387,40 @@
                 <!-- Table Row 1: 面談回数・期間 -->
                 <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
                     <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">面談回数・期間</div>
-                    <!-- ★★★ 修正3: スマホで1行に収まるようにフォントサイズを調整 ★★★ -->
-                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center commit-text-sp">最低8回以上をコミット</div>
-                    <div class="text-gray-700 text-sm lg:text-base text-center">1〜3回程度（求人紹介がメイン）</div>
+                    <!-- ★★★ 修正2: 1行に収まるよう white-space: nowrap; を追加。font-sizeはCSSで調整済み ★★★ -->
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center compare-target-sp whitespace-nowrap">最低8回以上をコミット</div>
+                    <div class="text-gray-700 text-sm lg:text-base text-center compare-value-sp">1〜3回程度（求人紹介がメイン）</div>
                 </div>
 
                 <!-- Table Row 2: ゴール設定 -->
                 <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
                     <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">ゴール設定</div>
-                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">本質的なキャリアゴールの言語化</div>
-                    <div class="text-gray-700 text-sm lg:text-base text-center">転職先決定、内定獲得</div>
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center compare-target-sp">本質的なキャリアゴールの言語化</div>
+                    <div class="text-gray-700 text-sm lg:text-base text-center compare-value-sp">転職先決定、内定獲得</div>
                 </div>
 
                 <!-- Table Row 3: 求人提案の軸 -->
                 <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
                     <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">求人提案の軸</div>
-                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">求職者（あなた）の理想から逆算</div>
-                    <div class="text-gray-700 text-sm lg:text-base text-center">企業側の採用ニーズや報酬</div>
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center compare-target-sp">求職者（あなた）の理想から逆算</div>
+                    <!-- ★★★ 修正2: 報酬の改行を修正 ★★★ -->
+                    <div class="text-gray-700 text-sm lg:text-base text-center compare-value-sp">企業側の採用ニーズや<span class="sp-break-compensation"></span>報酬</div>
                 </div>
 
                 <!-- Table Row 4: 独自の強み -->
                 <div class="grid grid-cols-2 lg:grid-cols-3 items-center border-b border-gray-200 py-4 px-4 gap-y-2">
                     <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">独自の強み</div>
-                    <!-- ★★★ 修正: テキストを「潜在的な強みを本質的に特定」に変更 ★★★ -->
-                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">潜在的な強みを本質的に特定</div>
-                    <div class="text-gray-700 text-sm lg:text-base text-center">多数の求人情報、業界知識</div>
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center compare-target-sp">潜在的な強みを本質的に特定</div>
+                    <!-- ★★★ 修正2: 知識の改行を修正 ★★★ -->
+                    <div class="text-gray-700 text-sm lg:text-base text-center compare-value-sp">多数の求人情報、<span class="sp-break-compensation"></span>業界知識</div>
                 </div>
 
                 <!-- Table Row 5: 入社後の支援 -->
                 <div class="grid grid-cols-2 lg:grid-cols-3 items-center py-4 px-4 gap-y-2">
                     <div class="font-bold text-gray-800 text-base lg:text-lg col-span-2 lg:col-span-1 bg-gray-100 lg:bg-transparent p-2 lg:p-0 rounded-lg lg:rounded-none mb-0">入社後の支援</div>
-                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center">継続的な伴走支援あり</div>
-                    <div class="text-gray-700 text-sm lg:text-base text-center">基本的には内定・入社まで</div>
+                    <div class="text-teal-700 font-bold text-base lg:text-lg text-center compare-target-sp">継続的な伴走支援あり</div>
+                    <!-- ★★★ 修正2: 入社までの改行を修正 ★★★ -->
+                    <div class="text-gray-700 text-sm lg:text-base text-center compare-value-sp">基本的には内定・<span class="sp-break-compensation"></span>入社まで</div>
                 </div>
             </div>
 
@@ -1832,11 +1872,6 @@
             <p class="mt-12 text-center text-xl font-bold text-teal-700">
                 ⭐ 迷ったら、まずはキャリア本質追求プランをご検討ください。
             </p>
-            <!-- ★★★ 修正2: このブロックを削除しました ★★★
-            <p class="mt-4 text-center text-xl font-bold text-teal-700 bg-teal-100 p-3 rounded-lg">
-                ✅ もちろん、全てのプランは完全無料でご利用いただけます。
-            </p>
-            -->
             <!-- 面談回数の柔軟性に関する注釈 -->
             <p class="mt-4 text-center text-sm text-gray-500">
                 ※面談回数（最低8回）は、キャリアの進捗やご希望に応じて柔軟に調整可能です。
